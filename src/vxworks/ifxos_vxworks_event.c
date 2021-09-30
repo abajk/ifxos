@@ -39,7 +39,7 @@
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 
 /**
-   VxWorks - Initialize a Event Object for synchronisation.
+   VxWorks - Initialize a Event Object for synchronization.
 
 \par Implementation
    - the binary semaphore is created (see "semBCreate").
@@ -47,9 +47,9 @@
    - the queuing is FIFO based
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -66,7 +66,7 @@ IFX_int_t IFXOS_EventInit(
          return IFX_SUCCESS;
       }
    }
-   
+
    return IFX_ERROR;
 }
 
@@ -77,7 +77,7 @@ IFX_int_t IFXOS_EventInit(
    - delete the semaphore object (see "semDelete").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -90,7 +90,7 @@ IFX_int_t IFXOS_EventDelete(
    {
       if (IFXOS_EVENT_INIT_VALID(pEventId) == IFX_TRUE)
       {
-         if (semDelete(pEventId->object) == OK) 
+         if (semDelete(pEventId->object) == OK)
          {
             pEventId->bValid = IFX_FALSE;
             return IFX_SUCCESS;
@@ -102,14 +102,14 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   VxWorks - Wakeup a Event Object to signal the occurance of the "event" to 
+   VxWorks - Wakeup a Event Object to signal the occurrence of the "event" to
    the waiting processes.
 
 \par Implementation
    - Give the semaphore to signal the event (see "semGive").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS on success.
@@ -132,14 +132,14 @@ IFX_int_t IFXOS_EventWakeUp(
 }
 
 /**
-   VxWorks - Wait for the occurance of an "event" with timeout.
+   VxWorks - Wait for the occurrence of an "event" with timeout.
 
 \par Implementation
    - Take the semaphore with timeout [ms] for wait for the event (see "semTake").
    - timeout signaling currently not supported.
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 \param
@@ -165,18 +165,18 @@ IFX_int_t IFXOS_EventWait(
          {
             if(errno == S_objLib_OBJ_TIMEOUT)
             {
-               if(pRetCode) 
+               if(pRetCode)
                   *pRetCode = 1;
             }
             else
             {
-               if(pRetCode) 
+               if(pRetCode)
                   *pRetCode = 0;
             }
          }
          else
          {
-            if(pRetCode) 
+            if(pRetCode)
                *pRetCode = 0;
 
             return IFX_SUCCESS;

@@ -12,15 +12,15 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for Lock / Protect handling for driver and 
+   This file contains definitions for Lock / Protect handling for driver and
    user (application) space.
 */
 
 /** \defgroup IFXOS_IF_LOCK Lock / Protection.
 
-   This Group contains the Lock and Protection definitions and function. 
+   This Group contains the Lock and Protection definitions and function.
 
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -100,7 +100,7 @@
 
 /**
    Initialize a Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \param
    lockId   Provides the pointer to the Lock Object.
@@ -173,7 +173,7 @@ IFX_int32_t IFXOS_LockRelease(
 IFX_int32_t IFXOS_NamedLockInit(
                IFXOS_lock_t      *lockId,
                const IFX_char_t  *pLockName,
-               const IFX_int_t   lockIdx);
+               IFX_int_t   lockIdx);
 
 #endif      /* #if ( defined(IFXOS_HAVE_NAMED_LOCK) && (IFXOS_HAVE_NAMED_LOCK == 1) ) */
 #endif      /* #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) ) */
@@ -202,7 +202,7 @@ IFX_int32_t IFXOS_NamedLockInit(
    IFX_ERROR   on error or timeout.
 
 \note
-   To detect timeouts provide the return code varibale, in case of timeout
+   To detect timeouts provide the return code variable, in case of timeout
    the return code is set to 1.
 */
 IFX_int32_t IFXOS_LockTimedGet(

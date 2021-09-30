@@ -14,7 +14,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains LINUX definitions for timer and wait handling within driver and 
+   This file contains LINUX definitions for timer and wait handling within driver and
    user (application) space.
 */
 
@@ -33,15 +33,15 @@
 /** \defgroup IFXOS_TIME_LINUX_DRV Time and Wait Functions (Linux Kernel).
 
    This Group contains the LINUX time and Sleep definitions used on driver level
-   (Kernel Space). 
+   (Kernel Space).
 
 \ingroup IFXOS_TIME_LINUX
 */
 
 /** \defgroup IFXOS_TIME_LINUX_APPL Time and Wait Functions (Linux User Space).
 
-   This Group contains the LINUX time and Sleep definitions used on 
-   application level (Application Space). 
+   This Group contains the LINUX time and Sleep definitions used on
+   application level (Application Space).
 
 \ingroup IFXOS_TIME_LINUX
 */
@@ -67,7 +67,7 @@
 #  ifndef IFXOS_HAVE_TIME_SLEEP_MS
 #     define IFXOS_HAVE_TIME_SLEEP_MS                1
 #  endif
-   /** IFX LINUX adaptation - Kernel support "get elapesed time in ms" */
+   /** IFX LINUX adaptation - Kernel support "get elapsed time in ms" */
 #  ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #  endif
@@ -77,13 +77,13 @@
 #     define IFXOS_HAVE_TIME_SLEEP_SEC               0
 #  endif
 
-   /** IFX LINUX adaptation - Kernel support "get elapesed time in sec" */
+   /** IFX LINUX adaptation - Kernel support "get elapsed time in sec" */
 #  ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
-#     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    0 
+#     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    0
 #  endif
 
    /** IFX LINUX adaptation - support "get system time in sec" */
-#  ifndef IFXOS_HAVE_TIME_SYS_TIME_GET             
+#  ifndef IFXOS_HAVE_TIME_SYS_TIME_GET
 #     define IFXOS_HAVE_TIME_SYS_TIME_GET            0
 #  endif
 
@@ -94,7 +94,7 @@
 #     define IFXOS_HAVE_TIME_SLEEP_MS                1
 #  endif
 
-   /** IFX LINUX adaptation - User support "get elapesed time in ms" */
+   /** IFX LINUX adaptation - User support "get elapsed time in ms" */
 #  ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #  endif
@@ -104,7 +104,7 @@
 #     define IFXOS_HAVE_TIME_SLEEP_SEC               1
 #  endif
 
-   /** IFX LINUX adaptation - User support "get elapesed time in sec" */
+   /** IFX LINUX adaptation - User support "get elapsed time in sec" */
 #  ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
 #     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    1
 #  endif

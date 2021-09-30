@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS User 
+   This file contains the IFXOS Layer implementation for GENERIC_OS User
    Socket.
 */
 
@@ -51,7 +51,7 @@
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR   if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketInit(void)
 {
    /*
@@ -76,7 +76,7 @@ IFX_int_t IFXOS_SocketInit(void)
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR   if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketCleanup(void)
 {
    /*
@@ -106,9 +106,9 @@ IFX_int_t IFXOS_SocketCleanup(void)
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR   if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketCreate(
-                  IFXOS_socketType_t socType, 
+                  IFXOS_socketType_t socType,
                   IFXOS_socket_t     *pSocketFd)
 {
    /*
@@ -134,7 +134,7 @@ IFX_int_t IFXOS_SocketCreate(
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR   if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketClose(
                   IFXOS_socket_t socketFd)
 {
@@ -161,7 +161,7 @@ IFX_int_t IFXOS_SocketClose(
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR   if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketShutdown(
                   IFXOS_socket_t socketFd,
                   IFX_int_t      how)
@@ -202,7 +202,7 @@ IFX_int_t IFXOS_SocketShutdown(
 \return
    Returns 0 on timeout, a positive value on receiving a event
    or a negative value on error
-*/ 
+*/
 IFX_int_t IFXOS_SocketSelect(
                   IFXOS_socFd_t     maxSocFd,
                   IFXOS_socFd_set_t *pSocFdRead,
@@ -214,7 +214,7 @@ IFX_int_t IFXOS_SocketSelect(
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       select(maxSocFd, pSocFdRead, pSocFdWrite, pSocFdExcept,  pTime);
    */
 
@@ -238,17 +238,17 @@ IFX_int_t IFXOS_SocketSelect(
 \return
    Returns the number of received bytes. Returns a negative value if an error
    occured
-*/ 
+*/
 IFX_int_t IFXOS_SocketRecv(
-                  IFXOS_socket_t socFd, 
-                  IFX_char_t     *pBuffer, 
+                  IFXOS_socket_t socFd,
+                  IFX_char_t     *pBuffer,
                   IFX_int_t      bufSize_byte)
 {
    IFX_int_t ret = 0;
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       return (IFX_int_t)recv((int)socFd, (char*)pBuffer, (int)bufSize_byte, 0);
    */
 
@@ -273,17 +273,17 @@ IFX_int_t IFXOS_SocketRecv(
 \return
    Returns the number of received bytes. Returns a negative value if an error
    occured
-*/ 
+*/
 IFX_int_t IFXOS_SocketSend(
-                  IFXOS_socket_t socFd, 
-                  IFX_char_t     *pBuffer, 
+                  IFXOS_socket_t socFd,
+                  IFX_char_t     *pBuffer,
                   IFX_int_t      bufSize_byte)
 {
    IFX_int_t ret = 0;
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       return (IFX_int_t)send((int)socFd, (const char*)pBuffer, (int)bufSize_byte, 0);
    */
 
@@ -311,10 +311,10 @@ IFX_int_t IFXOS_SocketSend(
 \return
    Returns the number of received bytes. Returns a negative value if an error
    occured
-*/ 
+*/
 IFX_int_t IFXOS_SocketSendTo(
-                  IFXOS_socket_t socFd, 
-                  IFX_char_t     *pBuffer, 
+                  IFXOS_socket_t socFd,
+                  IFX_char_t     *pBuffer,
                   IFX_int_t      bufSize_byte,
                   IFXOS_sockAddr_t  *pSocAddr)
 {
@@ -325,7 +325,7 @@ IFX_int_t IFXOS_SocketSendTo(
       Fill with your customer OS implementation - like
    ret = (IFX_int_t)sendto((SOCKET)socFd, (const char*)pBuffer, (int)bufSize_byte, 0, pSocAddr, sizeof(IFXOS_sockAddr_t));
    */
-   
+
    IFXOS_RETURN_IF_POINTER_NULL(pBuffer, IFX_ERROR);
    IFXOS_RETURN_IF_ARG_LE_ZERO(bufSize_byte, IFX_ERROR);
 
@@ -347,16 +347,16 @@ IFX_int_t IFXOS_SocketSendTo(
 \return
    - IFX_SUCCESS in case of success
    - IFX_ERROR if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketBind(
-                  IFXOS_socket_t    socFd, 
+                  IFXOS_socket_t    socFd,
                   IFXOS_sockAddr_t  *pSocAddr)
 {
    IFX_int_t ret = 0;
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       ret = bind(socFd, pSocAddr, sizeof(struct sockaddr_in));
    */
 
@@ -382,16 +382,16 @@ IFX_int_t IFXOS_SocketBind(
    Return values are defined within the IFX_int_t definition
    - IFX_SUCCESS in case of success
    - IFX_ERROR if operation failed
-*/ 
+*/
 IFX_int_t IFXOS_SocketListen(
-                  IFXOS_socket_t socFd, 
+                  IFXOS_socket_t socFd,
                   IFX_uint16_t   nBacklog)
 {
    IFX_int_t ret = 0;
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       listen(socFd, nBacklog);
    */
 
@@ -410,18 +410,18 @@ IFX_int_t IFXOS_SocketListen(
    pSocAddr    specifies a pointer to the DSL address structure
 
 \return
-   Returns the socket of the new accept connection. 
+   Returns the socket of the new accept connection.
    Is negative if an error occurs.
-*/ 
+*/
 IFXOS_socket_t IFXOS_SocketAccept(
-                  IFXOS_socket_t    socFd, 
+                  IFXOS_socket_t    socFd,
                   IFXOS_sockAddr_t  *pSocAddr)
 {
    IFX_int_t ret = 0;
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       accept((int)socFd, (struct sockaddr *)pSocAddr, &addrlen);
    */
 
@@ -451,9 +451,9 @@ IFXOS_socket_t IFXOS_SocketAccept(
 \return
    IFX_SUCCESS if the connection has been establieshed, else
    IFX_ERROR   if the operation fails.
-*/ 
+*/
 IFX_int_t IFXOS_SocketConnect(
-                  IFXOS_socket_t    socFd, 
+                  IFXOS_socket_t    socFd,
                   IFXOS_sockAddr_t  *pSocAddr,
                   IFX_int_t         socAddrLen)
 {
@@ -461,7 +461,7 @@ IFX_int_t IFXOS_SocketConnect(
 
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
 
       if ( (connect((int)socFd, (struct sockaddr *)pSocAddr, socAddrLen)) != 0)
       {
@@ -491,21 +491,19 @@ IFX_int_t IFXOS_SocketConnect(
 
 \return
    None
-*/ 
+*/
 IFX_void_t IFXOS_SocketNtoa(
-                  IFXOS_sockAddr_t  *pSocAddr, 
+                  IFXOS_sockAddr_t  *pSocAddr,
                   IFX_char_t        *pBuffer)
 {
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       inet_ntoa_b(pSocAddr->sin_addr, pBuffer);
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocAddr, IFX_ERROR);
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pBuffer, IFX_ERROR);
-
-   return;
 }
 
 /**
@@ -520,18 +518,16 @@ IFX_void_t IFXOS_SocketNtoa(
    NONE
 */
 IFX_void_t IFXOS_SocFdSet(
-               IFXOS_socket_t    socFd, 
+               IFXOS_socket_t    socFd,
                IFXOS_socFd_set_t *pSocFdSet)
 {
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       FD_SET(socFd, pSocFdSet);
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocFdSet, IFX_ERROR);
-
-   return;
 }
 
 /**
@@ -546,18 +542,16 @@ IFX_void_t IFXOS_SocFdSet(
    NONE
 */
 IFX_void_t IFXOS_SocFdClr(
-               IFXOS_socket_t    socFd, 
+               IFXOS_socket_t    socFd,
                IFXOS_socFd_set_t *pSocFdSet)
 {
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       FD_CLR(socFd, pSocFdSet);
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocFdSet, IFX_ERROR);
-
-   return;
 }
 
 /**
@@ -573,12 +567,12 @@ IFX_void_t IFXOS_SocFdClr(
    0 if the descriptor is not set.
 */
 IFX_int_t IFXOS_SocFdIsSet(
-               IFXOS_socket_t          socFd, 
+               IFXOS_socket_t          socFd,
                const IFXOS_socFd_set_t *pSocFdSet)
 {
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       return FD_ISSET(socFd, pSocFdSet);
    */
 
@@ -599,13 +593,11 @@ IFX_void_t IFXOS_SocFdZero(
 {
    /*
       Customer-ToDo:
-      Fill with your customer OS implementation - like 
+      Fill with your customer OS implementation - like
       FD_ZERO(pSocFdSet);
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocFdSet, IFX_ERROR);
-
-   return;
 }
 
 #endif   /* #if ( defined(IFXOS_HAVE_SOCKET) && (IFXOS_HAVE_SOCKET == 1) ) */

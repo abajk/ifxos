@@ -14,7 +14,7 @@
 */
 
 /* ============================================================================
-   inlcudes
+   includes
    ========================================================================= */
 
 #include "ifx_types.h"
@@ -45,7 +45,7 @@
 
 
 /* = Start ====================================================================
-   IFXOS Sys Objects - OS independant definitons
+   IFXOS Sys Objects - OS independent definitions
    ========================================================================= */
 
 /* ============================================================================
@@ -53,8 +53,8 @@
    ========================================================================= */
 
 /**
-   The IFXOS SYS Objects requires IFXOS independant definitions for 
-   synchronisation
+   The IFXOS SYS Objects requires IFXOS independent definitions for
+   synchronization
 */
 #ifdef LINUX
 #  ifdef __KERNEL__
@@ -314,7 +314,7 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_LockGet(
    /*
       !!! Always a Blocking Call !!!
    */
-   
+
    sb.sem_num = 0;
    /* specifies the operation ie to get the semaphore */
    sb.sem_op = -1;
@@ -355,7 +355,7 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_LockGet(
 
 #elif defined(WIN32)
    /* add WIN32 implementation */
-   EnterCriticalSection(pLockId); 
+   EnterCriticalSection(pLockId);
 
    return IFX_SUCCESS;
 
@@ -446,7 +446,7 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_LockRelease(
 }
 
 /* = END ======================================================================
-   IFXOS Sys Objects - OS independant definitons
+   IFXOS Sys Objects - OS independent definitions
    ========================================================================= */
 
 /* ============================================================================
@@ -472,9 +472,9 @@ IFXOS_sys_object_cntrl_t IFXOS_sysObjectControl = {IFX_FALSE};
 /** global debug object buffer */
 IFXOS_sys_object_t IFXOS_sysObjectBuffer[IFXOS_SYS_MAX_OBJECT] = {{0}};
 
-/** points to the first SYS Obj - used for own purposals */
+/** points to the first SYS Obj - used for own purpose */
 IFXOS_sys_object_t *pIFXOS_sysObjectThis   = IFX_NULL;
-/** points to the second SYS Obj - used for memory purposals */
+/** points to the second SYS Obj - used for memory purpose */
 IFXOS_sys_object_t *pIFXOS_sysObjectMemory = IFX_NULL;
 
 /** dummy system object */
@@ -488,36 +488,36 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_SetCreatorThrInfo(
 
 #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_MemAlloc(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_mem_t     *pSysObjMemory);
 #endif
 
 #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Lock(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_lock_t    *pSysObjLock);
 #endif
 
 #if ( defined(IFXOS_HAVE_MUTEX) && (IFXOS_HAVE_MUTEX == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Mutex(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_mutex_t   *pSysObjMutex);
 #endif
 
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Event(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_event_t   *pSysObjEvent);
 #endif
 
 #if ( defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Thread(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_thread_t  *pSysObjThread);
 #endif
 
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Fifo(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_fifo_t    *pSysObjFifo);
 
 
@@ -533,8 +533,8 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_SetCreatorThrInfo(
       pSysObject->reqCount++;
 
 #if ( defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1) )
-      pSysObject->creatorThr.pId   = (IFX_int_t)IFXOS_ProcessIdGet();
-      pSysObject->creatorThr.thrId = (IFX_int_t)IFXOS_ThreadIdGet();
+      pSysObject->creatorThr.pId   = IFXOS_ProcessIdGet();
+      pSysObject->creatorThr.thrId = IFXOS_ThreadIdGet();
 #else
       pSysObject->creatorThr.pId   = -1;
       pSysObject->creatorThr.thrId = -1;
@@ -548,156 +548,144 @@ IFXOS_STATIC IFX_int_t IFXOS_SysObject_SetCreatorThrInfo(
 
 #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_MemAlloc(
-                  IFX_uint_t              objIndex, 
+                  IFX_uint_t              objIndex,
                   IFXOS_sys_object_mem_t  *pSysObjMemory)
 {
    if (pSysObjMemory != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] Mem - calls: %d / %d (alloc / free)" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] Mem - calls: %d / %d (alloc / free)" IFXOS_CRLF,
             objIndex, pSysObjMemory->numOfMemAlloc, pSysObjMemory->numOfMemFree);
 
    }
-   return;
 }
 #endif
 
 #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Lock(
-                  IFX_uint_t              objIndex, 
+                  IFX_uint_t              objIndex,
                   IFXOS_sys_object_lock_t *pSysObjLock)
 {
    if (pSysObjLock != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] LOCK - calls: init %d,  get %d, release %d" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] LOCK - calls: init %d,  get %d, release %d" IFXOS_CRLF,
             objIndex, pSysObjLock->numOfInit, pSysObjLock->numOfGet, pSysObjLock->numOfRelease);
 
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] LOCK - timeouts %d,  get failed %d, recursive calles %d" IFXOS_CRLF, 
-            objIndex, pSysObjLock->numOfGetTimeout, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] LOCK - timeouts %d,  get failed %d, recursive calls %d" IFXOS_CRLF,
+            objIndex, pSysObjLock->numOfGetTimeout,
             pSysObjLock->numOfGetFails, pSysObjLock->numOfRecursiveCalls);
 
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] LOCK - last wait thread %d" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] LOCK - last wait thread %d" IFXOS_CRLF,
             objIndex, pSysObjLock->reqThreadId);
 #if ( defined(HAVE_IFXOS_SYSOBJ_EXT_TRACE_SUPPORT) && (HAVE_IFXOS_SYSOBJ_EXT_TRACE_SUPPORT == 1))
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] LOCK - ext Trace \"%s\"" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] LOCK - ext Trace \"%s\"" IFXOS_CRLF,
             objIndex, (strlen(pSysObjLock->extTraceInfo) > 0) ? pSysObjLock->extTraceInfo : "none" );
 
 #endif
    }
-
-   return;
 }
 #endif
 
 #if ( defined(IFXOS_HAVE_MUTEX) && (IFXOS_HAVE_MUTEX == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Mutex(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_mutex_t   *pSysObjMutex)
 {
    if (pSysObjMutex != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] MUTEX - calls: init %d,  get %d, release %d" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] MUTEX - calls: init %d,  get %d, release %d" IFXOS_CRLF,
             objIndex, pSysObjMutex->numOfInit, pSysObjMutex->numOfGet, pSysObjMutex->numOfRelease);
 
       IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-            "SysObj[%03d] MUTEX - get failed %d" IFXOS_CRLF, 
+            "SysObj[%03d] MUTEX - get failed %d" IFXOS_CRLF,
             objIndex, pSysObjMutex->numOfGetFails);
    }
-
-   return;
 }
 #endif
 
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Event(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_event_t   *pSysObjEvent)
 {
    if (pSysObjEvent != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] EVENT - calls: init %d" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] EVENT - calls: init %d" IFXOS_CRLF,
             objIndex, pSysObjEvent->numOfInit);
    }
-
-   return;
 }
 #endif
 
 
 #if ( defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1) )
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Thread(
-                  IFX_uint_t                 objIndex, 
+                  IFX_uint_t                 objIndex,
                   IFXOS_sys_object_thread_t  *pSysObjThread)
 {
    if (pSysObjThread != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] THREAD - calls: init %d" IFXOS_CRLF, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] THREAD - calls: init %d" IFXOS_CRLF,
             objIndex, pSysObjThread->numOfInit);
 
       if (pSysObjThread->pThis && pSysObjThread->pThis->bValid)
       {
-         IFXOS_DBG_PRINT_USR( 
-               "SysObj[%03d] THREAD <%s> tid = %d, prio = %d, bRun =%d" IFXOS_CRLF, 
+         IFXOS_DBG_PRINT_USR(
+               "SysObj[%03d] THREAD <%s> tid = %d, prio = %d, bRun =%d" IFXOS_CRLF,
                objIndex, pSysObjThread->pThis->thrParams.pName,
                pSysObjThread->pThis->tid,
                pSysObjThread->pThis->nPriority,
                pSysObjThread->pThis->thrParams.bRunning);
 
 #if ( defined(HAVE_IFXOS_SYSOBJ_EXT_TRACE_SUPPORT) && (HAVE_IFXOS_SYSOBJ_EXT_TRACE_SUPPORT == 1))
-               IFXOS_DBG_PRINT_USR( 
-                     "SysObj[%03d] THREAD - run Count = %d, Info \"%s\"" IFXOS_CRLF, 
+               IFXOS_DBG_PRINT_USR(
+                     "SysObj[%03d] THREAD - run Count = %d, Info \"%s\"" IFXOS_CRLF,
                      objIndex, pSysObjThread->runCount,
                      (strlen(pSysObjThread->extTraceInfo) > 0) ? pSysObjThread->extTraceInfo : "none" );
 #endif
-
       }
       else
       {
-         IFXOS_DBG_PRINT_USR( 
-               "SysObj[%03d] THREAD <invalid> - thread object not valid" IFXOS_CRLF, 
+         IFXOS_DBG_PRINT_USR(
+               "SysObj[%03d] THREAD <invalid> - thread object not valid" IFXOS_CRLF,
                objIndex);
       }
    }
-
-   return;
 }
 #endif
 
 IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Fifo(
-                  IFX_uint_t              objIndex, 
+                  IFX_uint_t              objIndex,
                   IFXOS_sys_object_fifo_t *pSysObjFifo)
 {
    if (pSysObjFifo != IFX_NULL)
    {
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] FIFO - FIFO: pStart 0x%08X (0x%08X), pStart 0x%08X (0x%08X) --> Size 0x%X (%d)" IFXOS_CRLF, 
-            objIndex, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] FIFO - FIFO: pStart 0x%08X (0x%08X), pStart 0x%08X (0x%08X) --> Size 0x%X (%d)" IFXOS_CRLF,
+            objIndex,
             pSysObjFifo->pThis->pStart, pSysObjFifo->pStart,
             pSysObjFifo->pThis->pEnd,   pSysObjFifo->pEnd,
             (pSysObjFifo->pEnd - pSysObjFifo->pStart),
             (pSysObjFifo->pEnd - pSysObjFifo->pStart) );
 
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] FIFO - FIFO: pRd 0x%08X, pWr 0x%08X, Count %d, Max ElSize %d" IFXOS_CRLF, 
-            objIndex, 
-            pSysObjFifo->pThis->pRead, pSysObjFifo->pThis->pWrite, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] FIFO - FIFO: pRd 0x%08X, pWr 0x%08X, Count %d, Max ElSize %d" IFXOS_CRLF,
+            objIndex,
+            pSysObjFifo->pThis->pRead, pSysObjFifo->pThis->pWrite,
             pSysObjFifo->pThis->count, pSysObjFifo->pThis->size );
 
-      IFXOS_DBG_PRINT_USR( 
-            "SysObj[%03d] FIFO - Elements: reqWr %d, written %d, read %d" IFXOS_CRLF, 
-            objIndex, 
+      IFXOS_DBG_PRINT_USR(
+            "SysObj[%03d] FIFO - Elements: reqWr %d, written %d, read %d" IFXOS_CRLF,
+            objIndex,
             pSysObjFifo->rqNumOfElem, pSysObjFifo->wrNumOfElem, pSysObjFifo->rdNumOfElem );
 
    }
-
-   return;
 }
 
 
@@ -709,8 +697,7 @@ IFXOS_STATIC IFX_void_t IFXOS_SysObjectShow_Fifo(
    Search for the next free debug object and return it.
 
 \param
-   maxNumOfObjects   max. number of expected objects
-                     (fixed size currently used)
+   objectType - Type of Object to search
 */
 IFXOS_sys_object_t* IFXOS_SysObject_Get(
                               IFX_int_t objectType)
@@ -772,8 +759,7 @@ IFXOS_sys_object_t* IFXOS_SysObject_Get(
    Release the debug object.
 
 \param
-   maxNumOfObjects   max. number of expected objects
-                     (fixed size currently used)
+   pSysObject - Pointer to debug object
 */
 IFX_void_t IFXOS_SysObject_Release(
                               IFXOS_sys_object_t *pSysObject)
@@ -793,13 +779,13 @@ IFX_void_t IFXOS_SysObject_Release(
 
    if (pSysObject->objType != 0)
    {
-      pSysObject->reqCount--;      
+      pSysObject->reqCount--;
    }
 
    if (pSysObject->reqCount > 0)
    {
       IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-            "ERROR Release: Object[%d] multiple use (count = %d, type = 0x=%08X)!!" IFXOS_CRLF, 
+            "ERROR Release: Object[%d] multiple use (count = %d, type = 0x=%08X)!!" IFXOS_CRLF,
             pSysObject->objIndex, pSysObject->reqCount, pSysObject->objType);
 
       return;
@@ -820,8 +806,6 @@ IFX_void_t IFXOS_SysObject_Release(
 
       return;
    }
-
-   return;
 }
 
 
@@ -831,16 +815,13 @@ IFX_void_t IFXOS_SysObject_SetOwnerThrInfo(
    if (pSysObject != IFX_NULL)
    {
 #if ( defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1) )
-      pSysObject->ownerThr.pId     = (IFX_int_t)IFXOS_ProcessIdGet();
-      pSysObject->ownerThr.thrId   = (IFX_int_t)IFXOS_ThreadIdGet();
+      pSysObject->ownerThr.pId     = IFXOS_ProcessIdGet();
+      pSysObject->ownerThr.thrId   = IFXOS_ThreadIdGet();
 #else
-      pSysObject->ownerThr.pId   = -1;
-      pSysObject->ownerThr.thrId = -1;
+      pSysObject->ownerThr.pId     = (IFXOS_process_t)-1;
+      pSysObject->ownerThr.thrId   = (IFXOS_thread_t)-1;
 #endif
-      return;
    }
-
-   return;
 }
 
 
@@ -849,13 +830,9 @@ IFX_void_t IFXOS_SysObject_ClearOwnerThrInfo(
 {
    if (pSysObject != IFX_NULL)
    {
-      pSysObject->ownerThr.pId   = -1;
-      pSysObject->ownerThr.thrId = -1;
-
-      return;
+      pSysObject->ownerThr.pId   = (IFXOS_process_t)-1;
+      pSysObject->ownerThr.thrId = (IFXOS_thread_t)-1;
    }
-
-   return;
 }
 
 
@@ -881,7 +858,7 @@ IFX_void_t IFXOS_SysObject_Setup(
    if (IFXOS_sysObjectControl.initDone == IFX_TRUE)
    {
       IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-            "SysObj[---] Warning: Init IFXOS Sys Objects already done" IFXOS_CRLF, 
+            "SysObj[---] Warning: Init IFXOS Sys Objects already done" IFXOS_CRLF,
             numOfObj);
 
       return;
@@ -889,7 +866,7 @@ IFX_void_t IFXOS_SysObject_Setup(
 
 #if (IFXOS_SYS_OBJ_DEBUG == 1)
    IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-         "SysObj[---] Setup start, num of elements %d" IFXOS_CRLF, 
+         "SysObj[---] Setup start, num of elements %d" IFXOS_CRLF,
          numOfObj);
 #endif
 
@@ -936,7 +913,7 @@ IFX_void_t IFXOS_SysObject_Setup(
 
 #if (IFXOS_SYS_OBJ_DEBUG == 1)
       IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-            "SysObj[---] Setup done, num of elements %d" IFXOS_CRLF, 
+            "SysObj[---] Setup done, num of elements %d" IFXOS_CRLF,
             IFXOS_sysObjectControl.numOfObject);
 #endif
    }
@@ -949,15 +926,10 @@ IFX_void_t IFXOS_SysObject_Setup(
       IFXOS_DBG_PRINT_USR(
             "WARNING Setup: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif      /* #if defined(HAVE_IFXOS_SYSOBJ_SUPPORT) && (HAVE_IFXOS_SYSOBJ_SUPPORT == 1) */
-   return;
 }
 
 /**
-   Setup and init the IFXOS Debug Object feature.
-
-\param
-   maxNumOfObjects   max. number of expected objects
-                     (fixed size currently used)
+   Cleanup the IFXOS Debug Object feature.
 */
 IFX_void_t IFXOS_SysObject_Cleanup(void)
 {
@@ -972,8 +944,6 @@ IFX_void_t IFXOS_SysObject_Cleanup(void)
       IFXOS_DBG_PRINT_USR(
             "WARNING Cleanup: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 
 /**
@@ -982,7 +952,7 @@ IFX_void_t IFXOS_SysObject_Cleanup(void)
 \param
    pSysObject  - points to the system object
 \param
-   pDesrc      - points to the user description.
+   pDescr      - points to the user description.
 \param
    descrIdx    - user index of the object
 
@@ -1019,8 +989,6 @@ IFX_void_t IFXOS_SysObject_UserDesrcSet(
       IFXOS_DBG_PRINT_USR(
             "WARNING UserDesrcSet: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 
 /**
@@ -1033,21 +1001,21 @@ IFX_void_t IFXOS_SysObject_ShowObject(
    if (pSysObject)
    {
       IFXOS_DBG_PRINT_USR("--------" IFXOS_CRLF
-            "SysObj[%03d] - user: %d, type: 0x%08X, Desrc: %s" IFXOS_CRLF, 
+            "SysObj[%03d] - user: %d, type: 0x%08X, Descr: %s" IFXOS_CRLF,
             pSysObject->objIndex, pSysObject->reqCount, pSysObject->objType,
             (strlen(pSysObject->userDescr) > 0) ? pSysObject->userDescr : "<none>");
 
       if (pSysObject->objType == IFXOS_SYS_OBJECT_NOT_USED)
       {
          IFXOS_DBG_PRINT_USR(
-               "SysObj[%03d] - not used" IFXOS_CRLF, 
+               "SysObj[%03d] - not used" IFXOS_CRLF,
                pSysObject->objIndex);
       }
       else
       {
          IFXOS_DBG_PRINT_USR(
-               "SysObj[%03d] - creator: %d / %d current owner %d / %d (pId / thrId)" IFXOS_CRLF, 
-               pSysObject->objIndex, 
+               "SysObj[%03d] - creator: %d / %d current owner %d / %d (pId / thrId)" IFXOS_CRLF,
+               pSysObject->objIndex,
                pSysObject->creatorThr.pId, pSysObject->creatorThr.thrId,
                pSysObject->ownerThr.pId,   pSysObject->ownerThr.thrId);
 
@@ -1117,8 +1085,6 @@ IFX_void_t IFXOS_SysObject_ShowObject(
       IFXOS_DBG_PRINT_USR(
             "WARNING UserDesrcSet: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 
 
@@ -1138,9 +1104,9 @@ IFX_void_t IFXOS_SysObject_ShowAll(
 
 
    IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-         "SysObj[--] Cntrl - init %d,  curr count %d, available %d" IFXOS_CRLF, 
-         IFXOS_sysObjectControl.initDone, 
-         IFXOS_sysObjectControl.objCount, 
+         "SysObj[--] Cntrl - init %d,  curr count %d, available %d" IFXOS_CRLF,
+         IFXOS_sysObjectControl.initDone,
+         IFXOS_sysObjectControl.objCount,
          IFXOS_sysObjectControl.numOfObject);
 
 
@@ -1165,19 +1131,17 @@ IFX_void_t IFXOS_SysObject_ShowAll(
    }
 
    IFXOS_DBG_PRINT_USR( IFXOS_SYS_PREFIX
-         "SysObj[--] found %d objects from type 0x%08X" IFXOS_CRLF IFXOS_CRLF, 
+         "SysObj[--] found %d objects from type 0x%08X" IFXOS_CRLF IFXOS_CRLF,
          objCount, objType);
 #else
       IFXOS_DBG_PRINT_USR(
             "WARNING ShowAll: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 
 
 /**
-   Set exteded text trace informations.
+   Set extended text trace informations.
 
 \param
    pSysObject  - points to the system object
@@ -1223,13 +1187,11 @@ IFX_void_t IFXOS_SysObject_StringTraceInfoSet(
       IFXOS_DBG_PRINT_USR(
             "WARNING ExtTraceInfoSet: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 
 
 /**
-   Set exteded text trace informations.
+   Set extended text trace informations.
 
 \param
    pSysObject  - points to the system object
@@ -1273,7 +1235,5 @@ IFX_void_t IFXOS_SysObject_DigitTraceInfoSet(
       IFXOS_DBG_PRINT_USR(
             "WARNING DigitTraceInfoSet: IFXOS SYS Objects not enabled" IFXOS_CRLF);
 #endif
-
-   return;
 }
 

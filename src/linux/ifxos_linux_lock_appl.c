@@ -1,13 +1,12 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
 
 /* ============================================================================
    Description : IFX Linux adaptation - lock handling (Application Space)
@@ -179,7 +178,7 @@ IFXOS_STATIC void IFXOS_PrintLockError(int err)
 
 /**
    LINUX Application - Initialize a Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \par Implementation
    - Init the LINUX kernel semaphore as "UNLOCKED" (see "sema_init").
@@ -409,7 +408,7 @@ IFX_int32_t IFXOS_LockRelease(
          {
             /* Warning - lock is in use, but the semaphore counter is not zero */
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-                ("IFXOS WARNING - release lock - already released (count = %d), get/release missmatch" IFXOS_CRLF,
+                ("IFXOS WARNING - release lock - already released (count = %d), get/release mismatch" IFXOS_CRLF,
                   sem_val));
          }
 
@@ -457,7 +456,7 @@ IFX_int32_t IFXOS_LockRelease(
 #if ( defined(IFXOS_HAVE_NAMED_LOCK) && (IFXOS_HAVE_NAMED_LOCK == 1) )
 /**
    LINUX Application - Initialize a Named Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \remark
    The name will be set within the internal lock object.
@@ -525,7 +524,7 @@ IFX_int32_t IFXOS_NamedLockInit(
    IFX_ERROR   on error or timeout.
 
 \note
-   To detect timeouts provide the return code varibale, in case of timeout
+   To detect timeouts provide the return code variable, in case of timeout
    the return code is set to 1.
 */
 IFX_int32_t IFXOS_LockTimedGet(
@@ -589,8 +588,8 @@ IFX_int32_t IFXOS_LockTimedGet(
             ("IFXOS ERROR - IFXOS_LockTimedGet failed - ret = %d" IFXOS_CRLF, ret));
 
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-           ("   Caller: PID %d, thrId %d (curr lock owner: PID %d, thrID %d)" IFXOS_CRLF,
-            (int)IFXOS_ProcessIdGet(), (int)IFXOS_ThreadIdGet(),
+           ("   Caller: PID %d, thrId %d (curr lock owner: PID %d, thrID %ld)" IFXOS_CRLF,
+            (IFX_int_t)IFXOS_ProcessIdGet(), (IFX_long_t)IFXOS_ThreadIdGet(),
             IFXOS_SYS_OBJECT_OWNER_THREAD_ID_GET(lockId->pSysObject),
             IFXOS_SYS_OBJECT_OWNER_PROCESS_ID_GET(lockId->pSysObject) ));
 
@@ -699,50 +698,44 @@ IFX_int32_t IFXOS_LockTimedGet(
 
             return IFX_SUCCESS;
          }
-         else
+         if((timeout_ms > 0) && (timeout_ms < 0xFFFFFFFF))
          {
-            if((timeout_ms > 0) && (timeout_ms < 0xFFFFFFFF))
-            {
-               alarm(0);
-            }
-            if(errno == EINTR)
-            {
-               IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-                  ("IFXOS - get lock object timeout." IFXOS_CRLF ));
-
-               if (pRetCode)
-               {
-                  *pRetCode = 1 /* DSL_ERR_TIMEOUT */;
-               }
-
-               IFXOS_SYS_LOCK_GET_TOUT_COUNT_INC(lockId->pSysObject);
-
-               return IFX_ERROR;
-            }
-            else
-            {
-               if((timeout_ms == 0) && (errno == EAGAIN))
-               {
-                  if (pRetCode)
-                  {
-                     *pRetCode = 1 /* DSL_ERR_TIMEOUT */;
-                  }
-
-                  IFXOS_SYS_LOCK_GET_TOUT_COUNT_INC(lockId->pSysObject);
-
-                  return IFX_ERROR;
-               }
-
-               IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-                  ("IFXOS ERROR - get lock object failed - semop(0x%X,0,..,..), errno=%d" IFXOS_CRLF,
-                    lockId ? lockId->object : 0, errno));
-               IFXOS_PRINT_LOCK_ERROR(errno);
-
-               IFXOS_SYS_LOCK_GET_FAILED_COUNT_INC(lockId->pSysObject);
-
-               return IFX_ERROR;
-            }
+            alarm(0);
          }
+         if(errno == EINTR)
+         {
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
+               ("IFXOS - get lock object timeout." IFXOS_CRLF ));
+
+            if (pRetCode)
+            {
+               *pRetCode = 1 /* DSL_ERR_TIMEOUT */;
+            }
+
+            IFXOS_SYS_LOCK_GET_TOUT_COUNT_INC(lockId->pSysObject);
+
+            return IFX_ERROR;
+         }
+         if((timeout_ms == 0) && (errno == EAGAIN))
+         {
+            if (pRetCode)
+            {
+               *pRetCode = 1 /* DSL_ERR_TIMEOUT */;
+            }
+
+            IFXOS_SYS_LOCK_GET_TOUT_COUNT_INC(lockId->pSysObject);
+
+            return IFX_ERROR;
+         }
+
+         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
+            ("IFXOS ERROR - get lock object failed - semop(0x%X,0,..,..), errno=%d" IFXOS_CRLF,
+              lockId ? lockId->object : 0, errno));
+         IFXOS_PRINT_LOCK_ERROR(errno);
+
+         IFXOS_SYS_LOCK_GET_FAILED_COUNT_INC(lockId->pSysObject);
+
+         return IFX_ERROR;
       }
    }
 #endif

@@ -16,7 +16,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application 
+   This file contains the IFXOS Layer implementation for LINUX Application
    Time and Sleep.
 */
 
@@ -56,9 +56,6 @@ IFXOS_STATIC IFX_void_t IFXOS_NanoSleep(IFXOS_timespec_t *pTVal);
 
 \param
    pTVal points to the timeval struct containing the sleep time.
-
-\return
-   NONE
 */
 IFXOS_STATIC IFX_void_t IFXOS_NanoSleep(IFXOS_timespec_t *pTVal)
 {
@@ -72,15 +69,12 @@ IFXOS_STATIC IFX_void_t IFXOS_NanoSleep(IFXOS_timespec_t *pTVal)
          /* Completed the entire sleep time; all done. */
          return;
       }
-      else 
-      {
-         if (errno == EINTR)
-            /* Interrupted by a signal. Try again. */
-            continue;
-         else
-            /* Some other error; bail out. */
-            return;
-      }
+      if (errno == EINTR)
+         /* Interrupted by a signal. Try again. */
+         continue;
+
+      /* Some other error; bail out. */
+      return;
    }
 }
 #endif
@@ -98,9 +92,6 @@ IFXOS_STATIC IFX_void_t IFXOS_NanoSleep(IFXOS_timespec_t *pTVal)
 
 \param
    sleepTime_ms   Time to sleep [ms]
-
-\return
-   None.
 */
 IFX_void_t IFXOS_MSecSleep(
                IFX_time_t sleepTime_ms)
@@ -112,14 +103,12 @@ IFX_void_t IFXOS_MSecSleep(
    tv.tv_nsec = (long) ((sleepTime_ms - (tv.tv_sec * 1000)) * 1000 * 1000);
 
    IFXOS_NanoSleep(&tv);
-
-   return;
 }
 #endif
 
 #if (defined(IFXOS_HAVE_TIME_SLEEP_SEC) && (IFXOS_HAVE_TIME_SLEEP_SEC == 1))
 /**
-   LINUX Application - Sleep a given time in [seconcds].
+   LINUX Application - Sleep a given time in [seconds].
 
 \par Implementation
    - sleep for the given time by recall in case of interruption (signal).
@@ -127,9 +116,6 @@ IFX_void_t IFXOS_MSecSleep(
 
 \param
    sleepTime_sec  Time to sleep [sec]
-
-\return
-   None.
 */
 IFX_void_t IFXOS_SecSleep(
                IFX_time_t sleepTime_sec)
@@ -141,8 +127,6 @@ IFX_void_t IFXOS_SecSleep(
    tv.tv_nsec = 0;
 
    IFXOS_NanoSleep(&tv);
-
-   return;
 }
 #endif
 
@@ -157,7 +141,7 @@ IFX_void_t IFXOS_SecSleep(
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
@@ -195,7 +179,7 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark

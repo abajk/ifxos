@@ -12,7 +12,7 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains the IFXOS Layer implementation for VxWorks Application 
+   This file contains the IFXOS Layer implementation for VxWorks Application
    "Terminal IO System".
 */
 
@@ -41,7 +41,7 @@
 #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) )
 /**
    Disable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOff (void)
 {
 #ifndef _lint
@@ -50,12 +50,12 @@ IFX_void_t IFXOS_EchoOff (void)
 
    options = ioctl(iofd, FIOGETOPTIONS, 0);
    ioctl(iofd, FIOSETOPTIONS, (int)(options & ~OPT_ECHO));
-#endif   
+#endif
 }
 
 /**
    Enable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOn (void)
 {
 #ifndef _lint
@@ -64,14 +64,14 @@ IFX_void_t IFXOS_EchoOn (void)
 
    options = ioctl(iofd, FIOGETOPTIONS, 0);
    ioctl(iofd, FIOSETOPTIONS, (int)(options | OPT_ECHO));
-#endif   
+#endif
 }
 
 /**
    Enable the console line mode.
-   In this mode the input from the device is available only after receiving NEWLINE . 
+   In this mode the input from the device is available only after receiving NEWLINE .
    This allows to modify the command line until the Enter key is pressed.
-*/   
+*/
 IFX_void_t IFXOS_KeypressSet (void)
 {
 #ifndef _lint
@@ -80,13 +80,13 @@ IFX_void_t IFXOS_KeypressSet (void)
 
    options = ioctl(iofd, FIOGETOPTIONS, 0);
    ioctl(iofd, FIOSETOPTIONS, (int)(options & ~OPT_LINE));
-#endif   
+#endif
 }
 
 /**
-   Disable the console line mode. 
-   Plesae refer to \ref IFXOS_KeypressSet .
-*/   
+   Disable the console line mode.
+   Please refer to \ref IFXOS_KeypressSet .
+*/
 IFX_void_t IFXOS_KeypressReset (void)
 {
 #ifndef _lint
@@ -95,7 +95,7 @@ IFX_void_t IFXOS_KeypressReset (void)
 
    options = ioctl(iofd, FIOGETOPTIONS, 0);
    ioctl(iofd, FIOSETOPTIONS, (int)(options | OPT_LINE));
-#endif   
+#endif
 }
 #endif      /* #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) ) */
 

@@ -42,7 +42,6 @@ IFX_void_t IFXOS_EchoOff (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 
 /**
@@ -54,7 +53,6 @@ IFX_void_t IFXOS_EchoOn (void)
       Customer-ToDo:
       Fill with your customer OS implementation
    */
-   return;
 }
 
 /**
@@ -69,7 +67,6 @@ IFX_void_t IFXOS_KeypressSet (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 
 /**
@@ -83,7 +80,6 @@ IFX_void_t IFXOS_KeypressReset (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) ) */
 

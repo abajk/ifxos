@@ -17,7 +17,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Basic module setup and module load.
 */
 
@@ -80,7 +80,7 @@ const char IFXOS_WHATVERSION[] = IFXOS_WHAT_STR;
 
 /**
    Initialize the module
- 
+
 \return
    Error code or 0 on success
 \remark
@@ -106,7 +106,7 @@ IFXOS_STATIC int __init IFXOS_ModuleInit (void)
 
 /**
    Clean up the module if unloaded.
- 
+
    \remark
    Called by the kernel.
 */

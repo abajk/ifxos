@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Pipes.
 */
 
@@ -81,7 +81,7 @@ static IFX_int_t IFXOS_PipeIndexGetByName (IFX_char_t *pName)
 
 /**
    Return index of pipe descriptor in pipeTable by its server pipe handle
-\param pName Name of the pipe descriptor
+\param fp - pipe descriptor
 \return
    Pipe descriptor index or -1 if not found
 */
@@ -126,8 +126,6 @@ static IFX_int_t IFXOS_PipeTableAdd (IFXOS_Pipe_t fp, IFX_char_t* pName)
 /**
    Remove pipe descriptor from pipeTable
 \param index Pipe index in pipeTable
-\return
-   none
 */
 static IFX_void_t IFXOS_PipeTableRemove (IFX_int_t index)
 {
@@ -137,7 +135,6 @@ static IFX_void_t IFXOS_PipeTableRemove (IFX_int_t index)
    pipeTable[index].fpClient = INVALID_HANDLE_VALUE;
    pipeTable[index].fpServer = INVALID_HANDLE_VALUE;
    pipeTable[index].pName = IFX_NULL;
-   return;
 }
 
 /** \addtogroup IFXOS_PIPES_WIN32_APPL
@@ -224,8 +221,8 @@ IFX_int_t IFXOS_PipeCreate(IFX_char_t *pName)
    - in case of error the return value is NULL
 */
 IFXOS_Pipe_t *IFXOS_PipeOpen(
-                     IFX_char_t *pName, 
-                     IFX_boolean_t reading, 
+                     IFX_char_t *pName,
+                     IFX_boolean_t reading,
                      IFX_boolean_t blocking)
 {
    DWORD          dwMode;
@@ -349,9 +346,9 @@ IFX_int_t IFXOS_PipeClose(IFXOS_Pipe_t *pPipe)
       /* server pipe */
       FlushFileBuffers(*pPipe);
       DisconnectNamedPipe(*pPipe);
-      bResult = CloseHandle(*pPipe);
       /* clean table entry */
       IFXOS_PipeTableRemove(IFXOS_PipeIndexGetByServerHandle(*pPipe));
+      bResult = CloseHandle(*pPipe);
    }
    return (bResult != 0) ? IFX_SUCCESS : IFX_ERROR;
 }
@@ -364,13 +361,13 @@ IFX_int_t IFXOS_PipeClose(IFXOS_Pipe_t *pPipe)
    streamPipe  - handle of the pipe stream.
 \param
    format      - points to the printf format string.
-   
+
 \return
    For success - Number of written bytes.
    For error   - negative value.
 */
 IFX_int_t IFXOS_PipePrintf(
-                     IFXOS_Pipe_t      *streamPipe, 
+                     IFXOS_Pipe_t      *streamPipe,
                      const IFX_char_t  *format, ...)
 {
    IFX_char_t s[512];
@@ -454,9 +451,9 @@ IFX_int_t IFXOS_PipeWrite(
    a short item count (or zero) (see errno)
 */
 IFX_int_t IFXOS_PipeRead(
-                     IFX_void_t     *pDataBuf, 
-                     IFX_uint32_t   elementSize_byte,  
-                     IFX_uint32_t   elementCount, 
+                     IFX_void_t     *pDataBuf,
+                     IFX_uint32_t   elementSize_byte,
+                     IFX_uint32_t   elementCount,
                      IFXOS_Pipe_t   *pPipe)
 {
    DWORD  cbRead;
@@ -475,8 +472,8 @@ IFX_int_t IFXOS_PipeRead(
               IFXOS_CRLF, error));
          return -1;
       }
-      else
-         return 0;
+
+      return 0;
    }
    return cbRead;
 }

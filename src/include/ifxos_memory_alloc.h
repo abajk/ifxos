@@ -12,21 +12,21 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for the memory handling within the driver and 
+   This file contains definitions for the memory handling within the driver and
    user (application) space.
 */
 
-/** \defgroup IFXOS_IF_MEMORY Memory Handling 
+/** \defgroup IFXOS_IF_MEMORY Memory Handling
 
-   This Group contains the memory allocation and mapping definitions and  
-   function. 
+   This Group contains the memory allocation and mapping definitions and
+   function.
 
-   Beneath the standard memory allocation and free functions this group also 
+   Beneath the standard memory allocation and free functions this group also
    introduce additional Linux specific functions for memory handling.
-   This comes up with the clear split of user space (application) and kernel space 
-   (driver, privileged code) within the Linux system. So this border is also visible 
+   This comes up with the clear split of user space (application) and kernel space
+   (driver, privileged code) within the Linux system. So this border is also visible
    within the driver structure.
-   Further the Linux system use a virtual memory management which is also 
+   Further the Linux system use a virtual memory management which is also
    reflected within driver code.
 
    For compatibility and also for force a clear driver application structure
@@ -39,12 +39,12 @@
 
 /** \defgroup IFXOS_IF_MEM_ALLOC Memory Allocation.
 
-   This functions provides a interface for allocate and free memory from the 
+   This functions provides a interface for allocate and free memory from the
    underlaying OS.
-   Here it can be necessary to get an continious block (HW related) or organized 
+   Here it can be necessary to get an continuous block (HW related) or organized
    and managed by the OS.
 
-   Dependent of the underlaying OS the implementation differs also if we are in 
+   Dependent of the underlaying OS the implementation differs also if we are in
    user or driver space (see LINUX).
 
 \ingroup IFXOS_IF_MEMORY
@@ -116,7 +116,7 @@
 #define IFXOS_BLOCK_FREE(ptr)    if (ptr != IFX_NULL) {IFXOS_BlockFree((IFX_void_t*)ptr); ptr = IFX_NULL;}
 
 /**
-   Allocate a continious memory block of the given size [byte]
+   Allocate a continuous memory block of the given size [byte]
 
 \param
    memSize_byte   Size of the requested memory block [byte]
@@ -133,9 +133,6 @@ IFX_void_t *IFXOS_BlockAlloc(IFX_size_t memSize_byte);
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock);
@@ -162,9 +159,6 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock);

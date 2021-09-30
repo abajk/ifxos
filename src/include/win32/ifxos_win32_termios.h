@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_WIN32_APPL Terminal IO System (Win32)
 
-   This Group contains the Win32 "Terminal IO System" definitions and function. 
+   This Group contains the Win32 "Terminal IO System" definitions and function.
 
 \ingroup IFXOS_LAYER_WIN32
 */

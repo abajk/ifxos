@@ -20,7 +20,7 @@
    IFX VxWorks adaptation
    ========================================================================= */
 
-/** \defgroup IFXOS_IF_VXWORKS Defines for VxWorks Adaptaion
+/** \defgroup IFXOS_IF_VXWORKS Defines for VxWorks Adaptation
 
    This Group contains the VxWorks specific definitions and function.
 
@@ -30,7 +30,7 @@
    _LITTLE_ENDIAN,  _BIG_ENDIAN, _BYTE_ORDER
 
 \attention
-   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used 
+   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used
    within some external header files.
 
 \ingroup IFXOS_INTERFACE
@@ -70,7 +70,7 @@
 #  endif
 #else
 #  if !defined(_LITTLE_ENDIAN) || (__LITTLE_ENDIAN != _LITTLE_ENDIAN)
-#     error "macro define __LITTLE_ENDIAN missmatch"
+#     error "macro define __LITTLE_ENDIAN mismatch"
 #  endif
 #endif
 
@@ -80,7 +80,7 @@
 #  endif
 #else
 #  if !defined(_BIG_ENDIAN) || (__BIG_ENDIAN != _BIG_ENDIAN)
-#     error "macro define __BIG_ENDIAN missmatch"
+#     error "macro define __BIG_ENDIAN mismatch"
 #  endif
 #endif
 

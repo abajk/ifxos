@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_PIPES_GENERIC_OS_APPL Pipes (Generic OS)
 
-   This Group contains the Generic OS Pipes definitions and function. 
+   This Group contains the Generic OS Pipes definitions and function.
 
 \attention
    For Generic OS - The "pipe" feature is currently not implemented yet!

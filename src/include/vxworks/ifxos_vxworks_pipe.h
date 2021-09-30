@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_PIPES_VXWORKS_APPL Pipes (VxWorks)
 
-   This Group contains the VxWorks Pipes definitions and function. 
+   This Group contains the VxWorks Pipes definitions and function.
 
 \attention
    For VxWorks - The "pipe" feature is currently not implemented yet!

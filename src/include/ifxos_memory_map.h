@@ -12,22 +12,22 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for memory mapping between phsyical and virtual
+   This file contains definitions for memory mapping between physical and virtual
    address space.
 */
 
 /** \defgroup IFXOS_IF_DRV_MEMORY_MAP Physical and Virtual Address Mapping.
 
-   Because some operating system use a virual memory management we introduce this
-   functions for compatibility. The goal is to make a physical memory block (like a 
+   Because some operating system use a virtual memory management we introduce this
+   functions for compatibility. The goal is to make a physical memory block (like a
    HW interface) visible within the OS.
    From functional point of view the mapping of physical to virtual space is similar
-   to the memory allocation with the difference that no "real memory" have to 
-   be allocated. Only the administration has to be done like add an entry into 
+   to the memory allocation with the difference that no "real memory" have to
+   be allocated. Only the administration has to be done like add an entry into
    the memory management tables and so on.
 
 \note
-   This issue is mostly HW related, so this functionality is related 
+   This issue is mostly HW related, so this functionality is related
    to the driver code
 
 \ingroup IFXOS_IF_MEMORY
@@ -89,7 +89,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                         (Cleared if success)
 
 \return
-   IFX_SUCCESS if the release was successful. 
+   IFX_SUCCESS if the release was successful.
                The physicalAddr and the ppVirtAddr pointer is cleared, else
    IFX_ERROR   if something was wrong.
 */

@@ -24,7 +24,7 @@ extern "C"
 
 /**
 \para Not Mapped Functions clib functions
-   For this function there is no special mapped IFXOS function. They are only 
+   For this function there is no special mapped IFXOS function. They are only
    mapped to the corresponding standard function.
 
    For LINT processing only the proto-types are defined.
@@ -46,7 +46,7 @@ extern "C"
 
 /** size_t for proto type definitons */
 typedef  int      size_t;
-typedef struct 
+typedef struct
 {
    int      dummy;
 } FILE;

@@ -19,15 +19,15 @@
 
 /** \defgroup IFXOS_SELECT_WIN32_DRV Poll/Select, Driver Side (Win32).
 
-   This Group contains the VxWorks Synchronisation definitions and function
+   This Group contains the VxWorks Synchronization definitions and function
    on driver side for communication between driver and user code.
 
 \note
-   The intention of these signaling feature is to communicate between driver and 
+   The intention of these signaling feature is to communicate between driver and
    user parts.
 
 \attention
-   The driver part of the poll / select mechanism makes only sence for Driver Space. 
+   The driver part of the poll / select mechanism makes only sense for Driver Space.
    So do not use these functions and defines in application space.
 
 \ingroup IFXOS_SYNC_WIN32

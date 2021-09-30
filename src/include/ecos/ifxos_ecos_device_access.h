@@ -19,9 +19,9 @@
 
 /** \defgroup IFXOS_DEVICE_ACCESS_ECOS_APPL Device Access (eCos)
 
-   This Group contains the eCos Device Access definitions and function. 
+   This Group contains the eCos Device Access definitions and function.
 
-   The standard system calles (open, close, etc) are mapped to devcie specific
+   The standard system calls (open, close, etc) are mapped to device specific
    functions.
 
    The poll/select mechanism is supported. This requires OS support and a

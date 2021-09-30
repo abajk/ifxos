@@ -276,14 +276,11 @@ IFX_int32_t IFXOS_LockTimedGet(
              {
                 return IFX_SUCCESS;
              }
-             else
+             if (pRetCode)
              {
-                if (pRetCode)
-                {
-                   *pRetCode = 1 /* ERR_TIMEOUT */;
-                }
-                return IFX_ERROR;
+                *pRetCode = 1 /* ERR_TIMEOUT */;
              }
+             return IFX_ERROR;
          }
       }
    }

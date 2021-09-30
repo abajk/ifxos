@@ -14,7 +14,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains LINUX definitions for Lock / Protect handling 
+   This file contains LINUX definitions for Lock / Protect handling
    for kernel and user space.
 */
 
@@ -40,7 +40,7 @@
    This Group contains the LINUX Lock and Protection definition (Kernel Space).
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -137,7 +137,7 @@
 /** \addtogroup IFXOS_LOCK_LINUX_DRV
 @{ */
 
-/** LINUX Kernel - LOCK, type kernel semaphore for synchronisation. */
+/** LINUX Kernel - LOCK, type kernel semaphore for synchronization. */
 typedef struct
 {
    /** lock id */
@@ -164,12 +164,12 @@ typedef struct
 #include <semaphore.h>
 #endif
 
-/** LINUX User - LOCK, type kernel semaphore for synchronisation. */
+/** LINUX User - LOCK, type kernel semaphore for synchronization. */
 typedef struct
 {
    /** lock id */
 #if (USE_PHTREAD_SEM == 1)
-   sem_t object;  
+   sem_t object;
 #else
    int object;
 #endif
@@ -178,7 +178,7 @@ typedef struct
 
    /** points to the internal system object - for debugging */
    IFX_void_t  *pSysObject;
-} IFXOS_lock_t; 
+} IFXOS_lock_t;
 
 /** @} */
 

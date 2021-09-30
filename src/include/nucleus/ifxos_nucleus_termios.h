@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_NUCLEUS_APPL Terminal IO System (Nucleus)
 
-   This Group contains the Nucleus "Terminal IO System" definitions and function. 
+   This Group contains the Nucleus "Terminal IO System" definitions and function.
 
 
 \ingroup IFXOS_LAYER_NUCLEUS

@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_IOPRINT_SUN_OS_APPL I/O printout and get (Sun OS User Space)
 
-   This Group contains the Sun OS I/O printout and get definitions and function. 
+   This Group contains the Sun OS I/O printout and get definitions and function.
 
    Therefore the functions are splitted in groups concerning their functionality:
    - char handling, get, put

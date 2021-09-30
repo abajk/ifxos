@@ -63,7 +63,7 @@ typedef unsigned int IFXOS_INTSTAT;
 
 /** Enable interrupt
 \param irq - interrupt number
- 
+
 \attention not implemented now
  */
 #define IFXOS_IRQ_ENABLE(irq)

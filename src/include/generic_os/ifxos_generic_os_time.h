@@ -18,7 +18,7 @@
 
 /** \defgroup IFXOS_TIME_GENERIC_OS Time and Wait (Generic OS).
 
-   This Group contains the Generic OS time and wait definitions. 
+   This Group contains the Generic OS time and wait definitions.
 
 \ingroup IFXOS_LAYER_GENERIC_OS
 */

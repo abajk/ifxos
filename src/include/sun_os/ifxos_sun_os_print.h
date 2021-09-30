@@ -44,7 +44,7 @@
 \par Implementation
    Printout from kernel space is done via the printk funciton
 
-   For enable kernel printouts on the console you have to make sure that the 
+   For enable kernel printouts on the console you have to make sure that the
    printout is enabled on system level. For enable use the following command:
    # echo 8 > /proc/sys/kernel/printk
 

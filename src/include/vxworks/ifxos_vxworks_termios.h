@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_VXWORKS_APPL Terminal IO System (VxWorks)
 
-   This Group contains the VxWorks "Terminal IO System" definitions and function. 
+   This Group contains the VxWorks "Terminal IO System" definitions and function.
 
 
 \ingroup IFXOS_LAYER_VXWORKS

@@ -12,27 +12,27 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for Event Synchronisation and Signalisation.
+   This file contains definitions for Event Synchronization and Signalization.
 */
 
-/** \defgroup IFXOS_IF_SYNC Synchronisation.
+/** \defgroup IFXOS_IF_SYNC Synchronization.
 
-   This Group collect the synchronisation and signaling mechanism used within 
+   This Group collect the synchronization and signaling mechanism used within
    IFXOS.
 
-   The IFX OS differs between the synchronisation on processes level 
+   The IFX OS differs between the synchronization on processes level
    (threads / tasks) and between user and driver space.
 
-\par processes level Syncronisation
-   For synchronisation on thread / task level a "Event feature" is provided.
+\par processes level Synchronization
+   For synchronization on thread / task level a "Event feature" is provided.
 \note
    The intention of these signaling feature is to communicate between different
    threads / tasks on the same level.
-   Here you should take care to keep the split between driver and user space and 
-   so do not use this for signalisation between driver and user code.
+   Here you should take care to keep the split between driver and user space and
+   so do not use this for signalization between driver and user code.
 
-\par User-Driver Syncronisation
-   Therefore the poll/select mechanism is prepared. 
+\par User-Driver Synchronization
+   Therefore the poll/select mechanism is prepared.
 
 \attention
    For the select feature the underlaying OS have corresponding support this.
@@ -41,23 +41,23 @@
 \ingroup IFXOS_INTERFACE
 */
 
-/** \defgroup IFXOS_IF_EVENT Event Synchronisation.
+/** \defgroup IFXOS_IF_EVENT Event Synchronization.
 
-   This Group contains the synchronisation and signalisation definitions and function
+   This Group contains the synchronization and signalization definitions and function
    for communication of threads and tasks
 
 \note
    The intention of these signaling feature is to communicate between different
    threads / tasks on the same level.
-   Here you should take care to keep the split between driver and user space and 
-   so do not use this for signalisation between driver and user code.
+   Here you should take care to keep the split between driver and user space and
+   so do not use this for signalization between driver and user code.
 
 \remarks
-   For synchronisation between user and driver space please have a look for the 
+   For synchronization between user and driver space please have a look for the
    "select" feature.
 
 \remarks
-   Because of the above explation and on the underlaying OS (Linux) the 
+   Because of the above explanation and on the underlaying OS (Linux) the
    implementation of this feature may exist for driver and user space twice.
 
 \ingroup IFXOS_IF_SYNC
@@ -130,12 +130,12 @@
    (((P_EVENT_ID)) ? (((P_EVENT_ID)->bValid == IFX_TRUE) ? IFX_TRUE : IFX_FALSE) : IFX_FALSE)
 
 /**
-   Initialize a Event Object for synchronisation.
+   Initialize a Event Object for synchronization.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -146,7 +146,7 @@ IFX_int_t IFXOS_EventInit(
    Delete the given Event Object.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -156,11 +156,11 @@ IFX_int_t IFXOS_EventDelete(
                IFXOS_event_t  *pEventId);
 
 /**
-   Wakeup a Event Object to signal the occurance of the "event" to 
+   Wakeup a Event Object to signal the occurrence of the "event" to
    the waiting processes.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if wakeup was successful, else
@@ -168,12 +168,12 @@ IFX_int_t IFXOS_EventDelete(
 */
 IFX_int_t IFXOS_EventWakeUp(
                IFXOS_event_t  *pEventId);
-               
+
 /**
-   Wait for the occurance of an "event" with timeout.
+   Wait for the occurrence of an "event" with timeout.
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 
@@ -188,7 +188,7 @@ IFX_int_t IFXOS_EventWakeUp(
    IFX_ERROR   on error or timeout.
 
 \remark
-   This functions signals the return reason ("event occured" or "timeout") via the
+   This functions signals the return reason ("event occurred" or "timeout") via the
    pRetCode variable. To differ between error or timeout the value is set to 1.
 */
 IFX_int_t IFXOS_EventWait(

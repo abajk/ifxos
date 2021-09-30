@@ -19,9 +19,9 @@
 
 /** \defgroup IFXOS_DEVICE_ACCESS_WIN32_APPL Device Access (Win32)
 
-   This Group contains the Win32 Device Access definitions and function. 
+   This Group contains the Win32 Device Access definitions and function.
 
-   The standard system calles (open, close, etc) are mapped to devcie specific
+   The standard system calls (open, close, etc) are mapped to device specific
    functions.
 
    The poll/select mechanism is supported. This requires OS support and a

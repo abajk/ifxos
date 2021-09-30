@@ -60,7 +60,7 @@
 \param
    pEventId    Prointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -96,7 +96,7 @@ IFX_int_t IFXOS_EventInit(
       {
          if ((pEventId->object = semget(nsemkey, 1, 0666|IPC_CREAT|IPC_EXCL)) < 0)
          {
-            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
                ("IFXOS ERROR - create event object - semget(0x%X,0), errno=%d" IFXOS_CRLF,
                  nsemkey, errno));
 
@@ -107,14 +107,14 @@ IFX_int_t IFXOS_EventInit(
          arg.val = 0;
          if (semctl(pEventId->object, 0, SETVAL, arg) < 0 )
          {
-            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
                ("IFXOS ERROR - create event object - semctl(0x%X,0,SETVAL,1), errno=%d" IFXOS_CRLF,
                  (IFX_uint32_t)pEventId->object, errno));
 
             return IFX_ERROR;
          }
 
-         IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW, 
+         IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
             ("IFXOS - create event object - nsemkey=0x%X, semid=0x%X" IFXOS_CRLF,
               nsemkey, (IFX_uint32_t)pEventId->object));
 
@@ -122,7 +122,7 @@ IFX_int_t IFXOS_EventInit(
          IFXOS_SYS_EVENT_INIT_COUNT_INC(pEventId->pSysObject);
 
          pEventId->bValid = IFX_TRUE;
-      
+
          return IFX_SUCCESS;
       }
    }
@@ -135,7 +135,7 @@ IFX_int_t IFXOS_EventInit(
    Linux Appl - Delete the given Event Object.
 
 \par Implementation
-   - Clear the event through cyg_flag_maskbits() call and destroy through 
+   - Clear the event through cyg_flag_maskbits() call and destroy through
      the cyg_flag_destroy() call.
 
 \param
@@ -185,7 +185,7 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   Linux Appl - Wakeup a Event Object to signal the occurance of the "event" to 
+   Linux Appl - Wakeup a Event Object to signal the occurance of the "event" to
    the waiting processes.
 
 \par Implementation
@@ -233,7 +233,7 @@ IFX_int_t IFXOS_EventWakeUp(
       }
    }
 
-   IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+   IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
       ("IFXOS ERROR - release event object failed - semop(0x%X,0,..,..), errno=%d" IFXOS_CRLF,
          pEventId ? pEventId->object : 0, errno));
 #endif
@@ -245,7 +245,7 @@ IFX_int_t IFXOS_EventWakeUp(
    Linux Appl - Wait for the occurance of an "event" with timeout.
 
 \par Implementation
-   - The cyg_flag_timed_wait() function is called with CYG_FLAG_WAITMODE_AND 
+   - The cyg_flag_timed_wait() function is called with CYG_FLAG_WAITMODE_AND
      and CYG_FLAG_WAITMODE_CLR set.
 
 \param
@@ -284,7 +284,7 @@ IFX_int_t IFXOS_EventWait(
                ret = sem_wait(&pEventId->object);
                if(ret != 0)
                {
-                  if (pRetCode) 
+                  if (pRetCode)
                   {
                      *pRetCode = 0;
                   }
@@ -295,12 +295,12 @@ IFX_int_t IFXOS_EventWait(
                break;
 
             case 0:
-               /* just try to get the semaphore without waiting, 
+               /* just try to get the semaphore without waiting,
                   if not available return to calling thread */
                ret = sem_trywait(&pEventId->object);
                if(ret != 0)
                {
-                  if (pRetCode) 
+                  if (pRetCode)
                   {
                      *pRetCode = 0;
                   }
@@ -380,7 +380,7 @@ IFX_int_t IFXOS_EventWait(
 
             memset(&sa, 0x00, sizeof(sa));
             sa.sa_handler = IFXOSL_SemAlarm;
-      
+
             sigaction(SIGALRM, &sa, NULL);
             alarm(timeout.tv_sec + 1);
 

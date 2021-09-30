@@ -1,16 +1,14 @@
 #ifndef _IFXOS_LINUX_SOCKET_H
 #define _IFXOS_LINUX_SOCKET_H
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
-
+*****************************************************************************/
 #ifdef LINUX
 
 /** \file
@@ -84,11 +82,11 @@
 /** wrap address family define AF_INET */
 #define IFXOS_SOC_AF_INET                 AF_INET
 
-/** wrap socket shutdone define SHUT_RD */
+/** wrap socket shutdown define SHUT_RD */
 #define IFXOS_SOCKET_SHUTDOWN_RD          SHUT_RD
-/** wrap socket shutdone define SHUT_WR */
+/** wrap socket shutdown define SHUT_WR */
 #define IFXOS_SOCKET_SHUTDOWN_WR          SHUT_WR
-/** wrap socket shutdone define SHUT_RDWR */
+/** wrap socket shutdown define SHUT_RDWR */
 #define IFXOS_SOCKET_SHUTDOWN_RDWR        SHUT_RDWR
 
 /** Return the 'Port' - value of the IFXOS_sockAddr_t parameter */
@@ -113,9 +111,6 @@ typedef enum
    IFXOS_SOC_TYPE_DGRAM  = SOCK_DGRAM
 } IFXOS_socketType_t;
 
-/** Wrap the socket fd */
-typedef int                   IFXOS_socket_t;
-
 /** Wrap the socket address type */
 typedef struct sockaddr_in    IFXOS_sockAddr_t;
 
@@ -124,6 +119,16 @@ typedef fd_set                IFXOS_socFd_set_t;
 
 /** Wrap max fd for sockets */
 typedef int                   IFXOS_socFd_t;
+
+#ifdef __KERNEL__
+/** Wrap the socket fd for internal kernel handling */
+typedef struct socket*        IFXOS_socket_t;
+
+#else
+/** Wrap the socket fd */
+typedef int                   IFXOS_socket_t;
+
+#endif
 
 #ifdef __cplusplus
 }

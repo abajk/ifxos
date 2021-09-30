@@ -35,15 +35,15 @@
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 
 /**
-   eCos - Initialize a Event Object for synchronisation.
+   eCos - Initialize a Event Object for synchronization.
 
 \par Implementation
-   - the event is intialized through cyg_flag_init() call
+   - the event is initialized through cyg_flag_init() call
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -60,7 +60,7 @@ IFX_int_t IFXOS_EventInit(
          return IFX_SUCCESS;
       }
    }
-   
+
    return IFX_ERROR;
 }
 
@@ -68,11 +68,11 @@ IFX_int_t IFXOS_EventInit(
    eCos - Delete the given Event Object.
 
 \par Implementation
-   - Clear the event through cyg_flag_maskbits() call and destroy through 
+   - Clear the event through cyg_flag_maskbits() call and destroy through
      the cyg_flag_destroy() call.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -97,14 +97,14 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   eCos - Wakeup a Event Object to signal the occurance of the "event" to 
+   eCos - Wakeup a Event Object to signal the occurrence of the "event" to
    the waiting processes.
 
 \par Implementation
    - The cyg_flag_setbits() function is used to signal a event.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS on success.
@@ -127,14 +127,14 @@ IFX_int_t IFXOS_EventWakeUp(
 }
 
 /**
-   eCos - Wait for the occurance of an "event" with timeout.
+   eCos - Wait for the occurrence of an "event" with timeout.
 
 \par Implementation
-   - The cyg_flag_timed_wait() function is called with CYG_FLAG_WAITMODE_AND 
+   - The cyg_flag_timed_wait() function is called with CYG_FLAG_WAITMODE_AND
      and CYG_FLAG_WAITMODE_CLR set.
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 \param
@@ -174,7 +174,7 @@ IFX_int_t IFXOS_EventWait(
    {
       *pRetCode = (ret == 0 ) ? 1 : 0;
    }
-  
+
    return IFX_ERROR;
 }
 

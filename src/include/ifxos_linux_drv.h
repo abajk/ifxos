@@ -18,17 +18,17 @@
    This file contains common definitions used for the Linux OS adaptation for Kernel Space
 */
 
-/** \defgroup IFXOS_IF_DRV_LINUX Defines for Linux Kernel Adaptaion
+/** \defgroup IFXOS_IF_DRV_LINUX Defines for Linux Kernel Adaptation
 
    This Group contains the Linux specific definitions and function.
 
 \par Linux Kernel Endianess
    Under Linux in Kernel space the Endianess is defined within the corresponding
-   architetcture header files.
-   The plattform endianess is mapped to the internal used IFXOS endianess definitons.
+   architecture header files.
+   The platform endianess is mapped to the internal used IFXOS endianess definitions.
 
 \attention
-   Under Linux only the _LITTLE_ENDIAN or the __BIG_ENDIAN is set, so avoid 
+   Under Linux only the _LITTLE_ENDIAN or the __BIG_ENDIAN is set, so avoid
    to use this settings directly !!!
 
 \par Linux Kernel Printouts
@@ -60,7 +60,7 @@
 @{ */
 
 #ifndef KERNEL_VERSION
-   /** Macro do interprete the Linux Kernel version. */
+   /** Macro to interpret the Linux Kernel version. */
 #  define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))
 #endif
 

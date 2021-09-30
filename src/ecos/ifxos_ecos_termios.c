@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos Application 
+   This file contains the IFXOS Layer implementation for eCos Application
    "Terminal IO System".
 */
 
@@ -41,7 +41,7 @@ static struct termios stored_stdin_settings,
 
 /**
    Disable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOff (void)
 {
    struct termios new_settings;
@@ -53,7 +53,7 @@ IFX_void_t IFXOS_EchoOff (void)
 
 /**
    Enable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOn (void)
 {
    tcsetattr(fileno(stdout),TCSANOW,&stored_stdout_settings);
@@ -61,9 +61,9 @@ IFX_void_t IFXOS_EchoOn (void)
 
 /**
    Enable the console line mode.
-   In this mode the input from the device is available only after receiving NEWLINE . 
+   In this mode the input from the device is available only after receiving NEWLINE .
    This allows to modify the command line until the Enter key is pressed.
-*/   
+*/
 IFX_void_t IFXOS_KeypressSet (void)
 {
    struct termios new_settings;
@@ -82,9 +82,9 @@ IFX_void_t IFXOS_KeypressSet (void)
 }
 
 /**
-   Disable the console line mode. 
-   Plesae refer to \ref IFXOS_KeypressSet .
-*/   
+   Disable the console line mode.
+   Please refer to \ref IFXOS_KeypressSet .
+*/
 IFX_void_t IFXOS_KeypressReset (void)
 {
    tcsetattr(fileno(stdin),TCSANOW,&stored_stdin_settings);

@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Print Handling.
 */
 
@@ -109,9 +109,6 @@ IFXOS_STATIC IFX_int_t IFXOS_LocalErrPrintout(const IFX_char_t *format, ...)
 
 \param
    fctExtDbg   - function pointer to the user debug print function
-
-\return      
-   NONE
 */
 IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg)
 {
@@ -123,7 +120,6 @@ IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg)
    {
       IFXOS_fctDbgPrintf = IFXOS_FCT_DBG_PRINTF_GET;
    }
-   return;
 }
 #endif
 
@@ -133,9 +129,6 @@ IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg)
 
 \param
    fctExtErr   - function pointer to the user error print function
-
-\return      
-   NONE
 */
 IFX_void_t IFXOS_PrintErrFctSet(IFXOS_FCT_ErrPrintf fctExtErr)
 {
@@ -147,7 +140,6 @@ IFX_void_t IFXOS_PrintErrFctSet(IFXOS_FCT_ErrPrintf fctExtErr)
    {
       IFXOS_fctErrPrintf = IFXOS_FCT_ERR_PRINTF_GET;
    }
-   return;
 }
 #endif
 

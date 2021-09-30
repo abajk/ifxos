@@ -19,7 +19,7 @@
    extern "C" {
 #endif
 /* ============================================================================
-   inlcudes
+   includes
    ========================================================================= */
 #include "ifx_types.h"
 
@@ -69,7 +69,7 @@
 typedef struct IFXOS_sys_object_s   IFXOS_sys_object_t;
 
 /* ============================================================================
-   Macros to get the system object form the corresponding IFXOS opject
+   Macros to get the system object form the corresponding IFXOS object
    ========================================================================= */
 
 #if defined(HAVE_IFXOS_SYSOBJ_SUPPORT) && (HAVE_IFXOS_SYSOBJ_SUPPORT == 1)

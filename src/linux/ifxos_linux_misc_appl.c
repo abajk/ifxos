@@ -12,7 +12,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application 
+   This file contains the IFXOS Layer implementation for LINUX Application
    "Miscellaneous functions".
 */
 
@@ -34,11 +34,10 @@
 #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) )
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void)
 {
    kill(1, SIGTERM);
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

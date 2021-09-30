@@ -39,7 +39,7 @@
    The plattform endianess is mapped to the internal used IFXOS endianess definitons.
 
 \attention
-   Under Sun OS only the _LITTLE_ENDIAN or the __BIG_ENDIAN is set, so avoid 
+   Under Sun OS only the _LITTLE_ENDIAN or the __BIG_ENDIAN is set, so avoid
    to use this settings directly !!!
 
 \ingroup IFXOS_INTERFACE
@@ -150,7 +150,7 @@
 #  endif
 #  if defined (__GNUC__) || defined (__GNUG__)
 #     warning "missing endian definiton"
-#  endif 
+#  endif
 
    /** set the common IFXOS byte order for BIG endian */
 #  define IFXOS_BYTE_ORDER                   IFXOS_BIG_ENDIAN

@@ -59,7 +59,7 @@
 /** \addtogroup IFXOS_MUTEX_VXWORKS
 @{ */
 
-/** VxWorks - MUTEX, type for synchronisation. */
+/** VxWorks - MUTEX, type for synchronization. */
 typedef struct
 {
    /** mutex identifier */

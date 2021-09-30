@@ -12,7 +12,7 @@
 ******************************************************************************/
 
 /** \file
-   Extention to the getopt library.
+   Extension to the getopt library.
 */
 
 #ifdef __cplusplus
@@ -31,7 +31,7 @@ extern "C"
    ========================================================================== */
 
 #define GET_OPT_EXT_MAX_INT_PARAMS           8
-#define GET_OPT_EXT_MAX_STR_PARAMS           5 
+#define GET_OPT_EXT_MAX_STR_PARAMS           5
 #define GET_OPT_EXT_MAX_STR_LEN              80
 
 /* ==========================================================================
@@ -64,7 +64,7 @@ typedef struct GetOptExt_StrArg_s
 
 
 extern IFX_void_t GetOptExt_RequiredDigit(
-                              IFX_char_t           *pOptArg, 
+                              IFX_char_t           *pOptArg,
                               GetOptExt_IntArg_t   *pUserIntArg,
                               IFX_char_t           *pDesc);
 
@@ -74,7 +74,7 @@ extern IFX_void_t GetOptExt_RequiredStr(
                               IFX_char_t           *pDesc);
 
 extern IFX_void_t GetOptExt_OptionalDigit(
-                              IFX_char_t           *pOptArg, 
+                              IFX_char_t           *pOptArg,
                               GetOptExt_IntArg_t   *pUserIntArg,
                               IFX_char_t           *pDesc);
 

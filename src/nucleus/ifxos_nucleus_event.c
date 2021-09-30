@@ -12,7 +12,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus
+   This file contains the IFXOS Layer implementation for Nucleus
    Event Handling.
 */
 
@@ -37,16 +37,16 @@
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 
 /**
-   Nucleus - Initialize a Event Object for synchronisation.
+   Nucleus - Initialize a Event Object for synchronization.
 
 \par Implementation
    - the binary semaphore is created (see "NU_Create_Event_Group").
    - init state is "EMPTY" - unlocked.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the initialization was successful, else
    IFX_ERROR in case of error.
 */
@@ -75,7 +75,7 @@ IFX_int_t IFXOS_EventInit(
    - delete the semaphore object (see "NU_Delete_Event_Group").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -99,14 +99,14 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   Nucleus - Wakeup a Event Object to signal the occurance of the "event" to 
+   Nucleus - Wakeup a Event Object to signal the occurrence of the "event" to
    the waiting processes.
 
 \par Implementation
    - set the event with the mask 1 and the NU_OR mode (see "NU_Set_Events").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS on success.
@@ -129,13 +129,13 @@ IFX_int_t IFXOS_EventWakeUp(
 }
 
 /**
-   Nucleus - Wait for the occurance of an "event" with timeout.
+   Nucleus - Wait for the occurrence of an "event" with timeout.
 
 \par Implementation
    - Retrieve the event 0x01 with timeout [ms] and the mode NU_OR_CONSUME (see "NU_Retrieve_Events").
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 \param
@@ -167,7 +167,7 @@ IFX_int_t IFXOS_EventWait(
                   *pRetCode = 0;
                }
                return IFX_SUCCESS;
-         
+
             case NU_TIMEOUT:
                if(pRetCode)
                {

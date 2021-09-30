@@ -17,7 +17,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Memory Allocation.
 */
 
@@ -63,11 +63,11 @@
 #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) )
 
 /**
-   LINUX Kernel - Allocate a continious memory block of the given size [byte]
+   LINUX Kernel - Allocate a continuous memory block of the given size [byte]
 \par Implementation
-   - Allocates a continious memory block with the kernel function "kmalloc"
+   - Allocates a continuous memory block with the kernel function "kmalloc"
    - The option "GFP_KERNEL" is used for normal kernel allocation (may sleep)
-   - This implementaion is not allowded on interrupt level (may sleep)
+   - This implementation is not allowed on interrupt level (may sleep)
 
 \param
    memSize_byte   Size of the requested memory block [byte]
@@ -84,7 +84,7 @@ IFX_void_t *IFXOS_BlockAlloc(
 #if (IFXOS_LOCAL_CHECK == 1)
    if (in_interrupt())
    {
-      IFXOS_PRN_INT_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+      IFXOS_PRN_INT_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
          ("ERROR - kmalloc call within interrupt" IFXOS_CRLF));
       return (pMemBlock);
    }
@@ -99,13 +99,10 @@ IFX_void_t *IFXOS_BlockAlloc(
 /**
    LINUX Kernel - Free the given memory block.
 \par Implementation
-   Free a continious memory block with the kernel function "kfree"
+   Free a continuous memory block with the kernel function "kfree"
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock)
@@ -113,15 +110,14 @@ IFX_void_t IFXOS_BlockFree(
 
    if (pMemBlock)
    {
-      kfree((void*)pMemBlock);
+      kfree(pMemBlock);
    }
    else
    {
-      IFXOS_PRN_INT_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+      IFXOS_PRN_INT_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
          ("WARNING - Cannot free NULL pointer" IFXOS_CRLF));
    }
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -158,9 +154,6 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock)
@@ -168,15 +161,14 @@ IFX_void_t IFXOS_MemFree(
 
    if (pMemBlock)
    {
-      vfree((void*)pMemBlock);
+      vfree(pMemBlock);
    }
    else
    {
-      IFXOS_PRN_INT_ERR_NL(IFXOS, IFXOS_PRN_LEVEL_WRN, 
+      IFXOS_PRN_INT_ERR_NL(IFXOS, IFXOS_PRN_LEVEL_WRN,
          ("WARNING - Cannot vfree NULL pointer" IFXOS_CRLF));
    }
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */
 

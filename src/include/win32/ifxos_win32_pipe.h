@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_PIPES_WIN32_APPL Pipes (Win32)
 
-   This Group contains the Win32 Pipes definitions and function. 
+   This Group contains the Win32 Pipes definitions and function.
 
 \attention
    For Win32 - The "pipe" feature is currently not implemented yet!

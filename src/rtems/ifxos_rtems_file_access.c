@@ -132,8 +132,8 @@ IFX_int_t IFXOS_FClose(
 */
 IFX_size_t IFXOS_FRead(
                   IFX_void_t     *pDataBuf,
-                  IFX_size_t     elementSize_byte,  
-                  IFX_size_t     elementCount, 
+                  IFX_size_t     elementSize_byte,
+                  IFX_size_t     elementCount,
                   IFXOS_File_t   *stream)
 {
    /*
@@ -170,8 +170,8 @@ IFX_size_t IFXOS_FRead(
 */
 IFX_size_t IFXOS_FWrite(
                   const IFX_void_t  *pDataBuf,
-                  IFX_size_t        elementSize_byte,  
-                  IFX_size_t        elementCount, 
+                  IFX_size_t        elementSize_byte,
+                  IFX_size_t        elementCount,
                   IFXOS_File_t      *stream)
 {
    /*

@@ -11,7 +11,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus User
+   This file contains the IFXOS Layer implementation for Nucleus User
    IP V6 Socket.
 */
 
@@ -63,7 +63,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 {
 #if defined(HAVE_IFXOS_IPV6_SUPPORT) && (HAVE_IFXOS_IPV6_SUPPORT == 1)
 #	if (IFXOS_NUCLEUS_IPV6_TODO == 0)
-	/* arg3 = 0: do not specifiy the protocol */
+	/* arg3 = 0: do not specify the protocol */
 	if((*pSocketFd = socket(AF_INET6, socType, 0)) == -1)
 		{return IFX_ERROR;}
 
@@ -95,7 +95,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -143,7 +143,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -174,7 +174,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   Nucleus - Assignes a local address to a TCP/IP, UDP/IP or raw socket.
+   Nucleus - Assigns a local address to a TCP/IP, UDP/IP or raw socket.
 
 \par Implementation
    -  via "bind"

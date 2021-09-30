@@ -22,7 +22,7 @@
    This Group contains the eCos Mutex definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -59,7 +59,7 @@
 @{ */
 
 
-/** eCos - MUTEX, type for synchronisation. */
+/** eCos - MUTEX, type for synchronization. */
 typedef struct
 {
    /** mutex identifier */

@@ -72,7 +72,7 @@ IFX_void_t *IFXOS_BlockAlloc(
    xt_exitcritical();
    sprintf(name, "%x", memName);
    xm_alloc( name, XM_USER_UNDEF_MEM, (size_t)memSize_byte,&memory_ptr);
-   return (IFX_void_t *) memory_ptr;
+   return memory_ptr;
 
 #endif
 }
@@ -104,7 +104,6 @@ IFX_void_t IFXOS_BlockFree(
    //xfree((void*)pMemBlock);
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pMemBlock, IFX_ERROR);
    xm_dealloc(pMemBlock);
-   return;
 
 #endif
 }
@@ -144,7 +143,7 @@ IFX_void_t *IFXOS_MemAlloc(
    xt_exitcritical();
    sprintf(name, "%x", memName);
    xm_alloc( name, XM_USER_UNDEF_MEM, (size_t)memSize_byte,&memory_ptr);
-   return (IFX_void_t *) memory_ptr;
+   return memory_ptr;
 
 #endif
 
@@ -178,7 +177,6 @@ IFX_void_t IFXOS_MemFree(
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pMemBlock, IFX_ERROR);
     xm_dealloc(pMemBlock);
-   return;
 
 #endif
 }

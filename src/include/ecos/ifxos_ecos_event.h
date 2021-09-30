@@ -14,27 +14,27 @@
 #ifdef ECOS
 
 /** \file
-   This file contains eCos definitions for Event Synchronisation and Signalisation.
+   This file contains eCos definitions for Event Synchronization and Signalization.
 */
 
-/** \defgroup IFXOS_SYNC_ECOS Synchronisation.
+/** \defgroup IFXOS_SYNC_ECOS Synchronization.
 
-   This Group collect the eCos synchronisation and signaling mechanism used within 
+   This Group collect the eCos synchronization and signaling mechanism used within
    IFXOS.
 
-\par Task level Syncronisation
-   For synchronisation on task level a "Event feature" is provided.
+\par Task level Synchronization
+   For synchronization on task level a "Event feature" is provided.
 
 \note
    The intention of these signaling feature is to communicate between different
-   tasks within the driver space or within the applicaton space.
+   tasks within the driver space or within the application space.
 
 \ingroup IFXOS_LAYER_ECOS
 */
 
-/** \defgroup IFXOS_EVENT_ECOS Event Synchronisation (eCos).
+/** \defgroup IFXOS_EVENT_ECOS Event Synchronization (eCos).
 
-   This Group contains the eCos Event definitions and function for 
+   This Group contains the eCos Event definitions and function for
    communication of tasks.
 
 \par Implementation
@@ -69,14 +69,14 @@
 /** \addtogroup IFXOS_EVENT_ECOS
 @{ */
 
-/** eCos - EVENT, type for synchronisation. */
+/** eCos - EVENT, type for synchronization. */
 typedef struct
 {
    /** event object */
    cyg_flag_t object;
    /** valid flag */
    IFX_boolean_t bValid;
-} IFXOS_event_t; 
+} IFXOS_event_t;
 
 /** @} */
 

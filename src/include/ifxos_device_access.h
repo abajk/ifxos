@@ -12,16 +12,16 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for the device access from a application via 
-   corresponding system calles to the driver.
+   This file contains definitions for the device access from a application via
+   corresponding system calls to the driver.
 */
 
 /** \defgroup IFXOS_IF_DEVICE_ACCESS Device Access
 
-   This Group contains the Device Access definitions and function. 
+   This Group contains the Device Access definitions and function.
 
-   To access the driver via standard system calls this calles are mapped.
-   For the poll / select mechanism OS support is required. Furhter the 
+   To access the driver via standard system calls this calls are mapped.
+   For the poll / select mechanism OS support is required. Further the
    implementation on user and also on driver side is required.
 
 \ingroup IFXOS_INTERFACE
@@ -144,12 +144,12 @@ IFX_int32_t IFXOS_DeviceClose(
    nSize_byte     number of bytes to write.
 
 \return
-   Number of writen bytes (0: nothing written).
+   Number of written bytes (0: nothing written).
    negative value in case of error.
 */
 IFX_int32_t IFXOS_DeviceWrite(
-               const IFX_int32_t    devFd, 
-               const IFX_void_t     *pData, 
+               const IFX_int32_t    devFd,
+               const IFX_void_t     *pData,
                const IFX_uint32_t   nSize_byte);
 
 /**
@@ -167,8 +167,8 @@ IFX_int32_t IFXOS_DeviceWrite(
    negative value in case of error.
 */
 IFX_int32_t IFXOS_DeviceRead(
-               const IFX_int32_t    devFd, 
-               IFX_void_t           *pDataBuf, 
+               const IFX_int32_t    devFd,
+               IFX_void_t           *pDataBuf,
                const IFX_uint32_t   nSize_byte);
 
 /**
@@ -183,23 +183,23 @@ IFX_int32_t IFXOS_DeviceRead(
 
 \return
    0 or a positive value (depends on the command) for successful.
-   -1 or a negativ value in case of error.
+   -1 or a negative value in case of error.
 */
 IFX_int32_t IFXOS_DeviceControl(
-               const IFX_int32_t    devFd, 
-               const IFX_uint32_t   devCmd, 
+               const IFX_int32_t    devFd,
+               const IFX_uint32_t   devCmd,
                IFX_ulong_t          param);
 
-#endif /* #if ( defined(IFXOS_HAVE_DEVICE_ACCESS) && (IFXOS_HAVE_DEVICE_ACCESS 
+#endif /* #if ( defined(IFXOS_HAVE_DEVICE_ACCESS) && (IFXOS_HAVE_DEVICE_ACCESS
 == 1) ) */
 
 #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) && (IFXOS_HAVE_DEVICE_ACCESS_SELECT == 1) )
 
 /**
-   Wait for a device wake up. 
+   Wait for a device wake up.
 
 \param
-   max_fd      max devFd number to check.  
+   max_fd      max devFd number to check.
 \param
    read_fd_in  contains the devFd for wakeup.
 \param
@@ -208,13 +208,13 @@ IFX_int32_t IFXOS_DeviceControl(
    timeout_ms  max time to wait [ms].
 
 \return
-   IFX_SUCCESS 
+   IFX_SUCCESS
    IFX_ERROR   in case of error.
 */
 IFX_int32_t IFXOS_DeviceSelect(
-               const IFX_uint32_t      max_fd, 
-               const IFXOS_devFd_set_t *read_fd_in, 
-               IFXOS_devFd_set_t       *read_fd_out, 
+               const IFX_uint32_t      max_fd,
+               const IFXOS_devFd_set_t *read_fd_in,
+               IFXOS_devFd_set_t       *read_fd_out,
                const IFX_uint32_t      timeout_ms);
 
 /**
@@ -224,12 +224,9 @@ IFX_int32_t IFXOS_DeviceSelect(
    devFd       device file descriptor which will be set.
 \param
    pDevFdSet   points to the set mask where the given devFd will be set.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_DevFdSet(
-               IFX_uint32_t      devFd, 
+               IFX_uint32_t      devFd,
                IFXOS_devFd_set_t *pDevFdSet);
 
 /**
@@ -241,11 +238,11 @@ IFX_void_t IFXOS_DevFdSet(
    pDevFdSet   points to the set mask which contains the devFd for check.
 
 \return
-   True if the given descriptor is set witin the mask, else
+   True if the given descriptor is set within the mask, else
    0 if the descriptor is not set.
 */
 IFX_int_t IFXOS_DevFdIsSet(
-               IFX_uint32_t            devFd, 
+               IFX_uint32_t            devFd,
                const IFXOS_devFd_set_t *pDevFdSet);
 
 /**
@@ -257,7 +254,7 @@ IFX_int_t IFXOS_DevFdIsSet(
 IFX_void_t IFXOS_DevFdZero(
                IFXOS_devFd_set_t *pDevFdSet);
 
-#endif /* #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) && 
+#endif /* #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) &&
 (IFXOS_HAVE_DEVICE_ACCESS_SELECT == 1) ) */
 
 

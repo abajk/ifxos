@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for 
+   This file contains the IFXOS Layer implementation for
    GENERIC_OS Memory Allocation.
 */
 
@@ -30,7 +30,7 @@
    IFX GENERIC_OS Adaptation Frame - memory handling, malloc
    ========================================================================= */
 
-/** \addtogroup IFXOS_MEM_ALLOC_GENERIC_OS 
+/** \addtogroup IFXOS_MEM_ALLOC_GENERIC_OS
 @{ */
 
 #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) )
@@ -59,7 +59,7 @@ IFX_void_t *IFXOS_BlockAlloc(
 
 
    IFXOS_RETURN_IF_ARG_LE_ZERO(memSize_byte, IFX_NULL);
-   
+
    return (IFX_NULL);
 }
 
@@ -85,8 +85,6 @@ IFX_void_t IFXOS_BlockFree(
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pMemBlock, IFX_ERROR);
-
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -144,8 +142,6 @@ IFX_void_t IFXOS_MemFree(
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pMemBlock, IFX_ERROR);
    IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
-
-   return;
 }
 
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */

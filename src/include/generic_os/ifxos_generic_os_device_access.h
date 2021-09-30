@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_DEVICE_ACCESS_GENERIC_OS_APPL Device Access (Generic OS)
 
-   This Group contains the Generic OS "Device Access" definitions and function. 
+   This Group contains the Generic OS "Device Access" definitions and function.
 
    The standard system calles (open, close, etc) are mapped to devcie specific
    functions.
@@ -28,8 +28,8 @@
    corresponding implementation on application and driver side.
 
 \remarks
-   The IFX OS "Dev IO" layer provides a generic IO Device Access Layer. 
-   If the "Dev IO" is used the IFX OS Dev IO implementation for Device Access 
+   The IFX OS "Dev IO" layer provides a generic IO Device Access Layer.
+   If the "Dev IO" is used the IFX OS Dev IO implementation for Device Access
    can be used.
 
 \ingroup IFXOS_LAYER_GENERIC_OS
@@ -58,8 +58,8 @@
    ========================================================================= */
 /*
    Customer-ToDo:
-   Fill with your customer os implementation: 
-   - set your own define or 
+   Fill with your customer os implementation:
+   - set your own define or
    - include the corresponding header.
 */
 #define	IFXOS_IOC_VOID	                  0x20000000
@@ -87,9 +87,9 @@ typedef DEVIO_fd_set_t       IFXOS_devFd_set_t;
 #else
 /*
    Customer-ToDo:
-   If DEVIO is not used, fill with your customer os implementation: 
+   If DEVIO is not used, fill with your customer os implementation:
    - include the corresponding header.
-   - set your own define or 
+   - set your own define or
 */
 
 #define GENERIC_OS_MAXFDS       64

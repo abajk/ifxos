@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Memory Allocation.
 */
 
@@ -32,7 +32,7 @@
 
 IFX_ulong_t gAllocs=0;
 IFX_int_t bInit = 0;
-CRITICAL_SECTION CriticalSection; 
+CRITICAL_SECTION CriticalSection;
 
 /* ============================================================================
    IFX Win32 adaptation - memory handling, malloc
@@ -43,7 +43,7 @@ CRITICAL_SECTION CriticalSection;
 
 #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) )
 /**
-   Win32 - Allocate a continious memory block of the given size [byte]
+   Win32 - Allocate a continuous memory block of the given size [byte]
 
 \par Implementation
    - Allocates a memory block with the function "malloc"
@@ -61,18 +61,18 @@ IFX_void_t *IFXOS_BlockAlloc(
 {
    IFX_void_t *pMemBlock = IFX_NULL;
 
-   pMemBlock = (IFX_void_t *)malloc((size_t)memSize_byte + sizeof(IFX_ulong_t));
+   pMemBlock = malloc((size_t)memSize_byte + sizeof(IFX_ulong_t));
    if (pMemBlock == IFX_NULL)
-	   return IFX_NULL;
+      return IFX_NULL;
 
    *((IFX_ulong_t*)(pMemBlock)) = memSize_byte;
-   
+
    if(bInit==0) {
       InitializeCriticalSection(&CriticalSection);
       bInit = 1;
    }
 
-   EnterCriticalSection(&CriticalSection); 
+   EnterCriticalSection(&CriticalSection);
    gAllocs += memSize_byte;
    LeaveCriticalSection(&CriticalSection);
 
@@ -87,23 +87,18 @@ IFX_void_t *IFXOS_BlockAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock)
 {
    if (pMemBlock)
    {
-      EnterCriticalSection(&CriticalSection); 
+      EnterCriticalSection(&CriticalSection);
       gAllocs -= *( (IFX_ulong_t*)(((IFX_uint8_t*)(pMemBlock)) - sizeof(IFX_ulong_t)) );
       LeaveCriticalSection(&CriticalSection);
 
       free((void*)(((IFX_uint8_t*)(pMemBlock)) - sizeof(IFX_ulong_t)));
    }
-
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -127,9 +122,9 @@ IFX_void_t *IFXOS_MemAlloc(
 {
    IFX_void_t *pMemBlock = IFX_NULL;
 
-   pMemBlock = (IFX_void_t*)malloc((size_t)memSize_byte + sizeof(IFX_ulong_t));
+   pMemBlock = malloc((size_t)memSize_byte + sizeof(IFX_ulong_t));
    if (pMemBlock == IFX_NULL)
-	   return IFX_NULL;
+      return IFX_NULL;
 
    *((IFX_ulong_t*)(pMemBlock)) = memSize_byte;
 
@@ -137,8 +132,8 @@ IFX_void_t *IFXOS_MemAlloc(
       InitializeCriticalSection(&CriticalSection);
       bInit = 1;
    }
-   
-   EnterCriticalSection(&CriticalSection); 
+
+   EnterCriticalSection(&CriticalSection);
    IFXOS_SYS_MEM_ALLOC_COUNT_INC(IFX_NULL);
    gAllocs += memSize_byte;
    LeaveCriticalSection(&CriticalSection);
@@ -154,24 +149,19 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock)
 {
    if (pMemBlock)
    {
-      EnterCriticalSection(&CriticalSection); 
+      EnterCriticalSection(&CriticalSection);
       IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
       gAllocs -= *((IFX_ulong_t*)(((IFX_uint8_t*)(pMemBlock)) - sizeof(IFX_ulong_t)));
       LeaveCriticalSection(&CriticalSection);
 
       free((void*)(((IFX_uint8_t*)(pMemBlock)) - sizeof(IFX_ulong_t)));
    }
-
-   return;
 }
 
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */

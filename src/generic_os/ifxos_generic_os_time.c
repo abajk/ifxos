@@ -11,7 +11,7 @@
 
 #ifdef GENERIC_OS
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS 
+   This file contains the IFXOS Layer implementation for GENERIC_OS
    Time and Wait.
 */
 
@@ -65,7 +65,6 @@ IFX_void_t IFXOS_USecSleep(
       Fill with your customer OS implementation
    */
 
-   return;
 }
 #endif
 
@@ -100,7 +99,6 @@ IFX_void_t IFXOS_MSecSleep(
       Fill with your customer OS implementation
    */
 
-   return;
 }
 #endif
 
@@ -140,13 +138,13 @@ IFX_void_t IFXOS_SecSleep(
    GENERIC_OS - Get the elapsed time in [ms].
 
 \par Implementation
-   Based on the "tickGet" and  "sysClkRateGet" function we calculate the 
+   Based on the "tickGet" and  "sysClkRateGet" function we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
@@ -172,13 +170,13 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
    GENERIC_OS - Get the elapsed time since startup in [seconds]
 
 \par Implementation
-   Based on the "tickGet" and  "sysClkRateGet" function we calculate the 
+   Based on the "tickGet" and  "sysClkRateGet" function we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark

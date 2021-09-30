@@ -96,8 +96,6 @@ IFX_void_t IFXOS_DrvSelectQueueWakeUp(
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pDrvSelectQueue, IFX_ERROR);
-
-   return;
 }
 
 /**

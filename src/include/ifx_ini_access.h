@@ -36,10 +36,10 @@
 /* ===========================
    Function Declarations
    =========================== */
-IFX_int32_t GetNextLine(IFX_char_t* pData, IFX_char_t* pRetLine, IFX_int32_t nLine);
-IFX_int32_t GetKeyString(IFX_char_t* pSectionName, IFX_char_t* pKeyName, IFX_char_t* pDefault, IFX_char_t* pRetString, IFX_int32_t nSize, IFX_char_t* pFile);
-IFX_int32_t GetKeyInt(IFX_char_t* pSectionName, IFX_char_t* pKeyName, IFX_int32_t nDefault, IFX_char_t* pFile);
-IFX_int32_t GetSection(IFX_char_t *pSection, IFX_char_t *pBuffer, IFX_int32_t nBufferSize, IFX_char_t* filein);
+IFX_int32_t GetNextLine(const IFX_char_t* pData, IFX_char_t* pRetLine, IFX_int32_t nLine);
+IFX_int32_t GetKeyString(const IFX_char_t* pSectionName, const IFX_char_t* pKeyName, const IFX_char_t* pDefault, IFX_char_t* pRetString, IFX_int32_t nSize, const IFX_char_t* pFile);
+IFX_int32_t GetKeyInt(const IFX_char_t* pSectionName, const IFX_char_t* pKeyName, IFX_int32_t nDefault, const IFX_char_t* pFile);
+IFX_int32_t GetSection(const IFX_char_t *pSection, IFX_char_t *pBuffer, IFX_int32_t nBufferSize, const IFX_char_t* filein);
 
 #ifdef __cplusplus
 }

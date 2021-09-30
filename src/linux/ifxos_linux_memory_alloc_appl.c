@@ -16,7 +16,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application 
+   This file contains the IFXOS Layer implementation for LINUX Application
    Memory Allocation.
 */
 
@@ -60,7 +60,7 @@ IFX_void_t *IFXOS_MemAlloc(
 
    if(memSize_byte)
    {
-      pMemBlock = (IFX_void_t*)malloc((size_t)memSize_byte);
+      pMemBlock = malloc((size_t)memSize_byte);
       IFXOS_SYS_MEM_ALLOC_COUNT_INC(IFX_NULL);
    }
 
@@ -75,9 +75,6 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock)
@@ -85,16 +82,15 @@ IFX_void_t IFXOS_MemFree(
 
    if (pMemBlock)
    {
-      free((void*)pMemBlock);
+      free(pMemBlock);
       IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
    }
    else
    {
-      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN, 
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
          ("WARNING - Cannot <free> NULL pointer" IFXOS_CRLF));
    }
 
-   return;
 }
 
 /**
@@ -117,7 +113,7 @@ IFX_void_t *IFXOS_BlockAlloc(
 
    if(memSize_byte)
    {
-      pMemBlock = (IFX_void_t*)malloc((size_t)memSize_byte);
+      pMemBlock = malloc((size_t)memSize_byte);
       IFXOS_SYS_MEM_ALLOC_COUNT_INC(IFX_NULL);
    }
 
@@ -132,9 +128,6 @@ IFX_void_t *IFXOS_BlockAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock)
@@ -142,16 +135,15 @@ IFX_void_t IFXOS_BlockFree(
 
    if (pMemBlock)
    {
-      free((void*)pMemBlock);
+      free(pMemBlock);
       IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
    }
    else
    {
-      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN, 
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
          ("WARNING - Cannot <free> NULL pointer" IFXOS_CRLF));
    }
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */
 

@@ -11,7 +11,7 @@
 
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application 
+   This file contains the IFXOS Layer implementation for LINUX Application
    Device Access.
 */
 
@@ -92,12 +92,12 @@ IFX_int32_t IFXOS_DeviceClose(
    nSize_byte     number of bytes to write.
 
 \return
-   Number of writen bytes (0: nothing written)
+   Number of written bytes (0: nothing written)
    -1 in case of error
 */
 IFX_int32_t IFXOS_DeviceWrite(
-               const IFX_int32_t    devFd, 
-               const IFX_void_t     *pData, 
+               const IFX_int32_t    devFd,
+               const IFX_void_t     *pData,
                const IFX_uint32_t   nSize_byte)
 {
    IFXOS_RETURN_IF_DEVFD_INVALID(devFd, -1);
@@ -121,8 +121,8 @@ IFX_int32_t IFXOS_DeviceWrite(
    -1 in case of error
 */
 IFX_int32_t IFXOS_DeviceRead(
-               const IFX_int32_t    devFd, 
-               IFX_void_t           *pDataBuf, 
+               const IFX_int32_t    devFd,
+               IFX_void_t           *pDataBuf,
                const IFX_uint32_t   nSize_byte)
 {
    IFXOS_RETURN_IF_DEVFD_INVALID(devFd, -1);
@@ -146,8 +146,8 @@ IFX_int32_t IFXOS_DeviceRead(
    -1  in case of error.
 */
 IFX_int32_t IFXOS_DeviceControl(
-               const IFX_int32_t    devFd, 
-               const IFX_uint32_t   devCmd, 
+               const IFX_int32_t    devFd,
+               const IFX_uint32_t   devCmd,
                IFX_ulong_t          param)
 {
    IFXOS_RETURN_IF_DEVFD_INVALID(devFd, -1);
@@ -160,10 +160,10 @@ IFX_int32_t IFXOS_DeviceControl(
 #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) && (IFXOS_HAVE_DEVICE_ACCESS_SELECT == 1) )
 
 /**
-   LINUX Application - Wait for a device wake up. 
+   LINUX Application - Wait for a device wake up.
 
 \param
-   max_fd      max devFd number to check.  
+   max_fd      max devFd number to check.
 \param
    read_fd_in  contains the devFd for wakeup.
 \param
@@ -176,9 +176,9 @@ IFX_int32_t IFXOS_DeviceControl(
    -1 in case of error.
 */
 IFX_int32_t IFXOS_DeviceSelect(
-               const IFX_uint32_t      max_fd, 
-               const IFXOS_devFd_set_t *read_fd_in, 
-               IFXOS_devFd_set_t       *read_fd_out, 
+               const IFX_uint32_t      max_fd,
+               const IFXOS_devFd_set_t *read_fd_in,
+               IFXOS_devFd_set_t       *read_fd_out,
                const IFX_uint32_t      timeout_ms)
 {
    IFXOS_devFd_set_t tmp;
@@ -194,7 +194,7 @@ IFX_int32_t IFXOS_DeviceSelect(
          break;
       default:
          tv.tv_sec = timeout_ms / 1000;
-         tv.tv_usec = (timeout_ms % 1000) * 1000; 
+         tv.tv_usec = (timeout_ms % 1000) * 1000;
    }
 
    if(read_fd_in)
@@ -231,12 +231,9 @@ IFX_int32_t IFXOS_DeviceSelect(
    devfd       descriptor which will be set.
 \param
    pDevFdSet   points to the set mask where the given descriptors will be set.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_DevFdSet(
-               IFX_uint32_t      devfd, 
+               IFX_uint32_t      devfd,
                IFXOS_devFd_set_t *pDevFdSet)
 {
    IFXOS_RETURN_VOID_IF_DEVFD_INVALID(devFd, IFX_NULL);
@@ -254,12 +251,12 @@ IFX_void_t IFXOS_DevFdSet(
    pDevFdSet   points to the set mask which contains the devFd for check.
 
 \return
-   True if the given descriptor is set witin the mask, else
+   True if the given descriptor is set within the mask, else
    0 if the descriptor is not set.
 
 */
 IFX_int_t IFXOS_DevFdIsSet(
-               IFX_uint32_t            devFd, 
+               IFX_uint32_t            devFd,
                const IFXOS_devFd_set_t *pDevFdSet)
 {
    IFXOS_RETURN_IF_DEVFD_INVALID(devFd, 0);
@@ -273,9 +270,6 @@ IFX_int_t IFXOS_DevFdIsSet(
 
 \param
    pDevFdSet   points to the descriptor mask.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_DevFdZero(
                IFXOS_devFd_set_t *pDevFdSet)
@@ -283,7 +277,6 @@ IFX_void_t IFXOS_DevFdZero(
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pDevFdSet, IFX_NULL);
 
    FD_ZERO(pDevFdSet);
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) && (IFXOS_HAVE_DEVICE_ACCESS_SELECT == 1) ) */
 

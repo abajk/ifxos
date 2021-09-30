@@ -23,11 +23,11 @@
    on driver side for communication between driver and user code.
 
 \note
-   The intention of these signaling feature is to communicate between driver and 
+   The intention of these signaling feature is to communicate between driver and
    user parts.
 
 \attention
-   The driver part of the poll / select mechanism makes only sence for Driver Space. 
+   The driver part of the poll / select mechanism makes only sence for Driver Space.
    So do not use these functions and defines in application space.
 
 \ingroup IFXOS_SYNC_GENERIC_OS

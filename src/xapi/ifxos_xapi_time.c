@@ -68,7 +68,7 @@ IFX_void_t IFXOS_USecSleep(
    unsigned int ix;
    unsigned int iy;
 
-   if (delayLoop == 0 || sleepTime_us == (unsigned int)0xffffffff)      /* need calibration?          */
+   if (delayLoop == 0 || sleepTime_us == 0xffffffff)      /* need calibration?          */
    {
        unsigned int maxLoop;
        unsigned int start = 0;

@@ -67,7 +67,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 #if defined(HAVE_IFXOS_IPV6_SUPPORT) && (HAVE_IFXOS_IPV6_SUPPORT == 1)
    IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
-   /* arg3 = 0: do not specifiy the protocol */
+   /* arg3 = 0: do not specify the protocol */
    if (sock_create(PF_INET6, socType, 0, (struct socket **)pSocketFd) == -1)
       {return IFX_ERROR;}
 
@@ -97,7 +97,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
    IFXOS_socket_t socFd,
@@ -135,7 +135,11 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
    old_fs = get_fs();
    set_fs(KERNEL_DS);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
    ret = sock_recvmsg ((struct socket *) socFd, &msg, bufSize_byte, 0);
+#else
+   ret = sock_recvmsg ((struct socket *) socFd, &msg, 0);
+#endif
    set_fs(old_fs);
 
    return ret;
@@ -157,17 +161,17 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 \param
    bufSize_byte specifies the size in byte of the buffer 'pBuffer'
 \param
-   pSocAddr     specifies a pointer to the IFXOS_sockAddr_t structure
+   pSocAddr6    specifies a pointer to the IFXOS_sockAddr_t structure
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
    IFXOS_socket_t socFd,
    IFX_char_t *pBuffer,
    IFX_int_t bufSize_byte,
-   IFXOS_sockAddr6_t *pSocAddr)
+   IFXOS_sockAddr6_t *pSocAddr6)
    {
 #if defined(HAVE_IFXOS_IPV6_SUPPORT) && (HAVE_IFXOS_IPV6_SUPPORT == 1)
    struct msghdr msg;
@@ -181,7 +185,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
    iov.iov_base = pBuffer;
    iov.iov_len = (unsigned int) bufSize_byte;
 
-   msg.msg_name = (void *) pSocAddr;
+   msg.msg_name = (void *) pSocAddr6;
    msg.msg_namelen = sizeof(IFXOS_sockAddr6_t);
    msg.msg_control = IFX_NULL;
    msg.msg_controllen = 0;
@@ -212,7 +216,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   LINUX Kernel - Assignes a local address to a TCP/IPv6, UDP/IPv6 or raw socket.
+   LINUX Kernel - Assigns a local address to a TCP/IPv6, UDP/IPv6 or raw socket.
 
 \par Implementation
    -  via "bind"
@@ -221,7 +225,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
    socFd     specifies the socket should be bind to the address
              Value has to be greater or equal zero
 \param
-   pSocAddr  specifies a pointer to the IFXOS_sockAddr6_t structure
+   pSocAddr6  specifies a pointer to the IFXOS_sockAddr6_t structure
 
 \return
    - IFX_SUCCESS in case of success
@@ -229,16 +233,16 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 */
 IFX_int_t IFXOS_SocketBindIpV6(
    IFXOS_socket_t socFd,
-   IFXOS_sockAddr6_t *pSocAddr)
+   IFXOS_sockAddr6_t *pSocAddr6)
 {
 #if defined(HAVE_IFXOS_IPV6_SUPPORT) && (HAVE_IFXOS_IPV6_SUPPORT == 1)
    IFX_int_t ret;
 
-   IFXOS_RETURN_IF_POINTER_NULL(pSocAddr, IFX_ERROR);
+   IFXOS_RETURN_IF_POINTER_NULL(pSocAddr6, IFX_ERROR);
 
    ret = ((struct socket *)socFd)->ops->bind(
          (struct socket *)socFd,
-         (struct sockaddr*) pSocAddr,
+         (struct sockaddr*) pSocAddr6,
          sizeof(IFXOS_sockAddr6_t));
    if (ret != 0)
       {return IFX_ERROR;}

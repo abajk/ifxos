@@ -18,7 +18,7 @@
 
 /** \defgroup IFXOS_TIME_ECOS Time and Wait (eCos).
 
-   This Group contains the eCos time and wait definitions. 
+   This Group contains the eCos time and wait definitions.
 
 \ingroup IFXOS_LAYER_ECOS
 */
@@ -50,12 +50,12 @@
 #  define IFXOS_HAVE_TIME_SLEEP_SEC               1
 #endif
 
-/** IFX eCos adaptation - support "get elapesed time in ms" */
+/** IFX eCos adaptation - support "get elapsed time in ms" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #endif
 
-/** IFX eCos adaptation - support "get elapesed time in sec" */
+/** IFX eCos adaptation - support "get elapsed time in sec" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    1
 #endif

@@ -19,8 +19,8 @@
 
 /** \defgroup IFXOS_MEMORY_GENERIC_OS Memory Handling (Generic OS)
 
-   This Group contains the Generic OS memory allocation and mapping definitions and  
-   function. 
+   This Group contains the Generic OS memory allocation and mapping definitions and
+   function.
 
    Here we have to differ between:\n
    - memory handling on application space.
@@ -34,8 +34,8 @@
    - Data exchange between user and driver space (copy from/to user).
 
 \note
-   This split comes up with the LINUX OS. Under LINUX the user and Kernel space are 
-   independant. 
+   This split comes up with the LINUX OS. Under LINUX the user and Kernel space are
+   independant.
    Further it makes sence to handle driver related fucntions seperatly.
 
 \ingroup IFXOS_LAYER_GENERIC_OS
@@ -46,7 +46,7 @@
    This Group contains the Generic OS Memory Allocation definitions.
 
 \par Implementation - Memory allocation
-   Within Generic OS there is no special handling for allocation a continious 
+   Within Generic OS there is no special handling for allocation a continious
    memory block. So the standard malloc function is used for all adaptations.
 
 \ingroup IFXOS_MEMORY_GENERIC_OS
@@ -55,12 +55,12 @@
 
 /** \defgroup IFXOS_CPY_USER_SPACE_GENERIC_OS_DRV Data Exchange, Driver and User Space (Generic OS).
 
-   This Group contains the Generic OS definitions for data exchange between 
+   This Group contains the Generic OS definitions for data exchange between
    driver and application.
 
 \par Implementation
    Under Generic OS no special handling for Data Exchange between driver and user
-   space is required. But such a border makes sence we provide the corresponding 
+   space is required. But such a border makes sence we provide the corresponding
    IFXOS Layer functions for compatibility.
 
    For data exchange the standard memcpy function is used.
@@ -70,13 +70,13 @@
 
 /** \defgroup IFXOS_MEMORY_MAP_GENERIC_OS_DRV Physical to Virtual Address Mapping (Generic OS).
 
-   This Group contains the Generic OS definitions for Physical to 
+   This Group contains the Generic OS definitions for Physical to
    Virtual Address Mapping.
 
 \par Implementation
-   Under Generic OS no special handling for Physical to Virtual Address Mapping is 
+   Under Generic OS no special handling for Physical to Virtual Address Mapping is
    required (no Virtual Memory Management).
-   To keep the compatibility wihtin the driver code we provide the corresponding 
+   To keep the compatibility wihtin the driver code we provide the corresponding
    IFXOS Layer functions.
    For the mapping the phsyical address is simply assigned.
 

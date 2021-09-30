@@ -17,7 +17,7 @@
 
 /** \defgroup IFXOS_INTERRUPT Interrupt Sub System.
 
-   This Group contains the interrupt sub system definitions and function. 
+   This Group contains the interrupt sub system definitions and function.
 
    The functions are available for driver code.
 

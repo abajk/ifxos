@@ -22,7 +22,7 @@
    This Group contains the VxWorks Lock and Protection definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -83,7 +83,7 @@
 @{ */
 
 
-/** VxWorks - LOCK, type for synchronisation. */
+/** VxWorks - LOCK, type for synchronization. */
 typedef struct
 {
    /** lock id */

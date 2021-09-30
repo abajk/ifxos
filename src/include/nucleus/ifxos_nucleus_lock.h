@@ -22,7 +22,7 @@
    This Group contains the Nucleus Lock and Protection definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -85,7 +85,7 @@
 /** Nucleus - Identifier for not initialized lock object */
 #define IFXOS_LOCK_NOT_INIT         IFX_NULL
 
-/** Nucleus - LOCK, type for synchronisation. */
+/** Nucleus - LOCK, type for synchronization. */
 typedef struct
 {
    /** lock id */

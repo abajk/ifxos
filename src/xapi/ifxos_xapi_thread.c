@@ -192,11 +192,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -285,11 +282,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {
@@ -369,11 +363,8 @@ IFX_int32_t IFXOS_ThreadShutdown(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Thread Shutdown, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - Thread Shutdown, invalid object" IFXOS_CRLF));
    }
    else
    {

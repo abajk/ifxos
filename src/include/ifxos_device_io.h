@@ -89,38 +89,41 @@ typedef IFX_int_t ( *DEVIO_device_poll ) ( void *pprivate );
 @{ */
 
 /**
-   Install a driver with given callbacks. 
-   
+   Install a driver with given callbacks.
+
    \return
    - -1 in case of error
    - positive value less then DEVIO_MAXDRIVERS
 */
-IFX_uint_t DEVIO_driver_install ( DEVIO_device_open,
-                                   DEVIO_device_close,
-                                   DEVIO_device_read, DEVIO_device_write, DEVIO_device_ioctl,
-                                   DEVIO_device_poll );
+unsigned int DEVIO_driver_install(
+	DEVIO_device_open   device_open,
+	DEVIO_device_close  device_close,
+	DEVIO_device_read   device_read,
+	DEVIO_device_write  device_write,
+	DEVIO_device_ioctl  device_ioctl,
+	DEVIO_device_poll   device_poll);
 
 /**
-   Remove a driver from the sub system. 
+   Remove a driver from the sub system.
 
-   \param driver_num    driver number   
+   \param driver_num    driver number
    \param force         force operation even if the driver is used
 */
 void DEVIO_driver_remove ( unsigned int driver_num, int force );
 
 /**
-   Add a device to the IO sub system. 
+   Add a device to the IO sub system.
 
-   \param device        device pointer   
+   \param device        device pointer
    \param name          device name
-   \param mode          not used
+   \param driver_number driver number
 */
-IFX_uint_t DEVIO_device_add ( void *device, const char *name, unsigned int mode );
+IFX_uint_t DEVIO_device_add ( void *device, const char *name, unsigned int driver_number);
 
 /**
-   Remove a device from the IO sub system. 
+   Remove a device from the IO sub system.
 
-   \param device        device pointer   
+   \param device        device pointer
 */
 void DEVIO_device_delete ( void *device );
 
@@ -134,9 +137,9 @@ void DEVIO_device_delete ( void *device );
 
 /**
    Open a device
-   
+
    \param name    device name
-   
+
    \return
    - -1 in case of a failure
    - any other positive value less then DEVIO_MAXDEVICES
@@ -145,43 +148,43 @@ IFX_int_t DEVIO_open ( const char *name );
 
 /**
    Close the device.
-   
+
    \param fd   device descriptor, returned by DEVIO_open() call
 */
 IFX_int_t DEVIO_close ( const IFX_int_t fd );
 
 /**
    Write to the device.
-   
+
    \param fd      device descriptor, returned by DEVIO_open() call
    \param pData   data pointer
    \param nSize   data size
 
-   \return 
+   \return
    device specific
 */
 IFX_int_t DEVIO_write ( const IFX_int_t fd, const void *pData, const unsigned int nSize );
 
 /**
    Read from the specified device.
-   
+
    \param fd   device descriptor, returned by DEVIO_open() call
    \param pData   data pointer
    \param nSize   maximum data size
-   
-   \return 
+
+   \return
    - device specific
 */
 IFX_int_t DEVIO_read ( const IFX_int_t fd, void *pData, const unsigned int nSize );
 
 /**
    Control the specified device.
-   
+
    \param fd      device descriptor, returned by DEVIO_open() call
    \param cmd     command to be executed
    \param param   optional parameter
 
-   \return 
+   \return
    - device specific
 */
 IFX_int_t DEVIO_ioctl ( const IFX_int_t fd, const unsigned int cmd, IFX_ulong_t param );
@@ -208,29 +211,28 @@ typedef struct
 
 /**
    Set the descriptor in the set structure indicated by the fd parameter.
-   
+
    \param fd   descriptor, returned by \ref DEVIO_open [I]
    \param set  pointer to the descriptor set [IO]
 */
 void DEVIO_fd_set(const unsigned int  fd, DEVIO_fd_set_t *set);
 
 /**
-   Check if the descriptor in the set structure is enabled.   
+   Check if the descriptor in the set structure is enabled.
    \param fd   descriptor, returned by \ref DEVIO_open [I]
    \param set  pointer to the descriptor set [I]
 */
 int DEVIO_fd_isset(const unsigned int  fd, const DEVIO_fd_set_t *set);
 
 /**
-   Clear the descriptor in the set structure.   
+   Clear the descriptor in the set structure.
    \param fd   descriptor, returned by \ref DEVIO_open [I]
    \param set  pointer to the descriptor set [IO]
 */
 void DEVIO_fd_clear(const unsigned int  fd, DEVIO_fd_set_t *set);
 
 /**
-   Zero the descriptor set structure.   
-   \param fd   descriptor, returned by \ref DEVIO_open [I]
+   Zero the descriptor set structure.
    \param set  pointer to the descriptor set [IO]
 */
 void DEVIO_fd_zero(DEVIO_fd_set_t *set);

@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_FILE_ACCESS_LINUX_APPL File Access (Linux User Space)
 
-   This Group contains the LINUX File Access definitions and function. 
+   This Group contains the LINUX File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -31,7 +31,7 @@
 
 /** \defgroup IFXOS_MEM_FILE_LINUX_APPL Memory File (Linux User Space)
 
-   This Group contains the LINUX Memory File definitions and function. 
+   This Group contains the LINUX Memory File definitions and function.
 
    The memory file feature provides the possibility to map a memory to a file.
    This allows to use the standard file operation on the memory block.
@@ -79,10 +79,10 @@
 /** LINUX User - map to stdin */
 #define IFXOS_STDIN                       stdin
 
-/** LINUX User - Open  text  file  for  reading.  
+/** LINUX User - Open  text  file  for  reading.
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ              "r"
-/** LINUX User - Open  text  file  for  reading (binary).  
+/** LINUX User - Open  text  file  for  reading (binary).
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ_BIN          "rb"
 
@@ -93,13 +93,13 @@
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_WRITE_BIN         "wb"
 
-/** LINUX User - Open for appending (writing at end of file).  
-         The file  is  created  if it does not exist.  The stream is positioned 
+/** LINUX User - Open for appending (writing at end of file).
+         The file  is  created  if it does not exist.  The stream is positioned
          at the end of the file. */
 #define IFXOS_OPEN_MODE_APPEND            "a"
-/** LINUX User - Open for reading and appending (writing at end  of  file).   
-         The file is created if it does not exist.  The initial file position 
-         for reading is at the beginning  of  the  file,  but  output  is always 
+/** LINUX User - Open for reading and appending (writing at end  of  file).
+         The file is created if it does not exist.  The initial file position
+         for reading is at the beginning  of  the  file,  but  output  is always
          appended to the end of the file */
 #define IFXOS_OPEN_MODE_READ_APPEND       "a+"
 

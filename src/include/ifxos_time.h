@@ -12,13 +12,13 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for timer and wait handling within driver and 
+   This file contains definitions for timer and wait handling within driver and
    user (application) space.
 */
 
 /** \defgroup IFXOS_TIME Time and Wait.
 
-   This Group contains the time and wait definitions and function. 
+   This Group contains the time and wait definitions and function.
 
    Depending on the environment dedicated functions are available for driver
    and / or user (application) code.
@@ -104,11 +104,8 @@ typedef IFX_uint32_t    IFX_timeMS_t;
 \param
    sleepTime_us   Time to sleep [us]
 
-\return
-   None.
-
 \remarks
-   Available in Driver and Application Space space
+   Available in Driver and Application Space
 */
 IFX_void_t IFXOS_USecSleep(
                IFX_time_t sleepTime_us);
@@ -121,13 +118,10 @@ IFX_void_t IFXOS_USecSleep(
 \param
    sleepTime_ms   Time to sleep [ms]
 
-\return
-   None.
-
 \remarks
-   Available in Driver and Application Space space
+   Available in Driver and Application Space
 
-   Note that depending on the system tick setting the actual sleep time can be 
+   Note that depending on the system tick setting the actual sleep time can be
    equal to or longer then the specified one, but never be shorter.
 */
 IFX_void_t IFXOS_MSecSleep(
@@ -140,9 +134,6 @@ IFX_void_t IFXOS_MSecSleep(
 
 \param
    sleepTime_sec  Time to sleep [sec]
-
-\return
-   None.
 
 \remarks
    Available in Application Space.
@@ -158,15 +149,15 @@ IFX_void_t IFXOS_SecSleep(
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
-   Provide refTime_ms = 0 to get the current elapsed time. For messurement provide
+   Provide refTime_ms = 0 to get the current elapsed time. For measurement provide
    the current time as reference.
 
 \remarks
-   Available in Driver and Application Space space
+   Available in Driver and Application Space
 */
 IFX_time_t IFXOS_ElapsedTimeMSecGet(
                IFX_time_t refTime_ms);
@@ -179,7 +170,7 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark
@@ -208,7 +199,7 @@ IFX_time_t IFXOS_SysTimeGet(void);
 }
 #endif
 
-  
+
 #endif      /* #ifndef _IFXOS_TIME_H */
 
 

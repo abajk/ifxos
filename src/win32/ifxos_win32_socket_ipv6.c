@@ -62,7 +62,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 #if defined(HAVE_IFXOS_IPV6_SUPPORT) && (HAVE_IFXOS_IPV6_SUPPORT == 1)
 	IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
-	/* arg3 = 0: do not specifiy the protocol */
+	/* arg3 = 0: do not specify the protocol */
 	if((*pSocketFd = socket(AF_INET6, socType, 0)) == INVALID_SOCKET)
 		{return IFX_ERROR;}
 
@@ -74,7 +74,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 }
 
 /**
-   Win32 - Receives data from a datagramm socket IP V6.
+   Win32 - Receives data from a datagram socket IP V6.
 
 \par Implementation
    -  via "recv_from"
@@ -90,7 +90,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -133,7 +133,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -159,7 +159,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   Win32 - Assignes a local address to a socket IP V6.
+   Win32 - Assigns a local address to a socket IP V6.
 
 \par Implementation
    -  via "bind"

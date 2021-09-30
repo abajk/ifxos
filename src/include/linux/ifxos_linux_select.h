@@ -18,16 +18,16 @@
 
 /** \defgroup IFXOS_DRV_SELECT_LINUX_KERNEL Poll/Select, Driver Side (Linux Kernel).
 
-   This Group contains the LINUX Synchronisation definitions and function
+   This Group contains the LINUX Synchronization definitions and function
    on driver side for communication between driver and user code.
 
 \note
-   The intention of these signaling feature is to communicate between driver and 
+   The intention of these signaling feature is to communicate between driver and
    user parts.
 
 \attention
    Under LINUX the driver part of the poll / select mechanism is only available
-   in Kernel Space. 
+   in Kernel Space.
    For User Space (Simulation) see below.
 
 \ingroup IFXOS_SYNC_LINUX
@@ -36,11 +36,11 @@
 
 /** \defgroup IFXOS_DRV_SELECT_LINUX_APPL Poll/Select, Driver Side.
 
-   This Group contains the LINUX Synchronisation definitions and function
+   This Group contains the LINUX Synchronization definitions and function
    on driver side for communication between driver and user code.
 
 \note
-   The intention of these signaling feature is to communicate between driver and 
+   The intention of these signaling feature is to communicate between driver and
    user parts.
 
 \attention

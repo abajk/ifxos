@@ -57,7 +57,7 @@
 /** \addtogroup IFXOS_MUTEX_WIN32
 @{ */
 
-/** Win32 - MUTEX, type for synchronisation. */
+/** Win32 - MUTEX, type for synchronization. */
 typedef struct
 {
    /** mutex identifier */

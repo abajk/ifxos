@@ -185,8 +185,8 @@ static IFX_uint16_t DoCrc16(IFX_uint16_t data, IFX_uint16_t genpoly, IFX_uint16_
 /*******************************************************************************
 Description:
    Function CalcChecksumCRC16 to calculate a CRC16 as defined by CCITT
-   If crc table has not been initialised, function BuildCrcTable() will
-   initialised crc table.
+   If crc table has not been initialized, function BuildCrcTable() will
+   initialized crc table.
 Arguments:
    src - the address of the buffer
    length - the number of BYTES's in the buffer !!!!
@@ -197,9 +197,9 @@ IFX_uint16_t IFX_CalcChecksumCRC16(const IFX_char_t* buf, IFX_uint_t length)
 {
    IFX_uint16_t crc16;
    IFX_uint32_t i;
-   /* CRC polynominal using a static hash table */
+   /* CRC polynomial using a static hash table */
    #define CRC_16_CCITT_M(c,b)    (c >> 8) ^ crc16_table[(c ^ b) & 0x00FF]
-   /* CRC polynominal without an hash table */
+   /* CRC polynomial without an hash table */
    /* #define CRC_16_CCITT_M(c,b)    (c >> 8) ^ Do_crc(((c ^ (IFX_uint16_t)b) & 0x00FF), 0x8408, 0); */
 
    crc16 = 0xFFFF;

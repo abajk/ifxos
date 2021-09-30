@@ -12,7 +12,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus 
+   This file contains the IFXOS Layer implementation for Nucleus
    Data exchange between driver and application.
 */
 
@@ -22,7 +22,7 @@
 #endif
 
 /* ============================================================================
-   IFX Nucleus adaptation - Global Includes 
+   IFX Nucleus adaptation - Global Includes
    ========================================================================= */
 
 #include <nucleus.h>
@@ -43,8 +43,8 @@
    Nucleus - Copy a block FORM USER space (application) to driver space (kernel).
 
 \par Implementation
-   Copy data from user to driver space. This function is required for 
-   compatibility agains the LINUX concept and als to increase the stability with
+   Copy data from user to driver space. This function is required for
+   compatibility against the LINUX concept and as to increase the stability with
    the split between user and driver code.
    A simple memcpy is used.
 
@@ -56,31 +56,31 @@
    size_byte   Block size to copy [byte].
 
 \return
-   IFX_NULL if an error occured, else pTo
+   IFX_NULL if an error occurred, else pTo
 
 \remark
-   This function is required for the LINUX adaptation where a clear split 
-   between user code (application level) and driver code (kernel level, 
+   This function is required for the LINUX adaptation where a clear split
+   between user code (application level) and driver code (kernel level,
    privileged code) exists.
 */
 IFX_void_t *IFXOS_CpyFromUser(
-                     IFX_void_t        *pTo, 
-                     const IFX_void_t  *pFrom, 
+                     IFX_void_t        *pTo,
+                     const IFX_void_t  *pFrom,
                      IFX_uint32_t      size_byte)
 {
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
 
-   return ((IFX_void_t *)memcpy((void *)pTo, (const void *)pFrom, size_byte));
+   return (memcpy(pTo, pFrom, size_byte));
 }
 
 /**
    Nucleus - Copy a block form driver space (kernel) TO USER space (application).
 
 \par Implementation
-   Copy data from driver to user space. This function is required for 
-   compatibility agains the LINUX concept and als to increase the stability with
+   Copy data from driver to user space. This function is required for
+   compatibility against the LINUX concept and as to increase the stability with
    the split between user and driver code.
    A simple memcpy is used.
 
@@ -92,23 +92,23 @@ IFX_void_t *IFXOS_CpyFromUser(
    size_byte   Block size to copy [byte]
 
 \return
-   IFX_NULL if an error occured, else pTo
+   IFX_NULL if an error occurred, else pTo
 
 \remark
-   This function is required for the LINUX adaptation where a clear split 
-   between user code (application level) and driver code (kernel level, 
+   This function is required for the LINUX adaptation where a clear split
+   between user code (application level) and driver code (kernel level,
    privileged code) exists.
 */
 IFX_void_t *IFXOS_CpyToUser(
-                     IFX_void_t        *pTo, 
-                     const IFX_void_t  *pFrom, 
+                     IFX_void_t        *pTo,
+                     const IFX_void_t  *pFrom,
                      IFX_uint32_t      size_byte)
 {
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
 
-   return ((IFX_void_t *)memcpy((void *)pTo, (const void *)pFrom, size_byte));
+   return (memcpy(pTo, pFrom, size_byte));
 }
 
 /** @} */

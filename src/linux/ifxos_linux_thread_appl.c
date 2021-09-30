@@ -1,13 +1,12 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
 
 /* ============================================================================
    Description : IFX Linux adaptation - thread handling (Application Space)
@@ -79,10 +78,10 @@ IFXOS_STATIC IFX_int32_t IFXOS_UserThreadStartup(
    us the possibility to add checks etc.
 
 \par Implementation
-   Before the stub function enters the user thread routin the following setup will
+   Before the stub function enters the user thread routine the following setup will
    be done:
    - make the kernel thread to a daemon
-   - asign the parent to the init process (avoid termination if the parent thread dies).
+   - assign the parent to the init process (avoid termination if the parent thread dies).
    - setup thread name, and signal handling (if required).
    After this the user thread routine will be entered.
 
@@ -97,6 +96,7 @@ IFXOS_STATIC IFX_int32_t IFXOS_UserThreadStartup(
                               IFXOS_ThreadCtrl_t *pThrCntrl)
 {
    IFX_int32_t retVal     = IFX_ERROR;
+   int err;
 
    if(pThrCntrl)
    {
@@ -105,13 +105,20 @@ IFXOS_STATIC IFX_int32_t IFXOS_UserThreadStartup(
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
             ("IFXOS ERROR - User Thread startup <%s>, missing THR function" IFXOS_CRLF,
               pThrCntrl->thrParams.pName));
+         err = sem_post(&pThrCntrl->thread_active);
+         if (err) {
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+               ("IFXOS - User Thread Startup <%s> - sem_post = %d" IFXOS_CRLF,
+                 pThrCntrl->thrParams.pName, err ));
+            return IFX_ERROR;
+         }
 
          return IFX_ERROR;
       }
 
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_NORMAL,
-         ("IFXOS - User Thread Startup <%s>, TID %d (PID %d) - ENTER" IFXOS_CRLF,
-           pThrCntrl->thrParams.pName, (IFX_int_t)pthread_self(), (IFX_int_t)getpid()));
+         ("IFXOS - User Thread Startup <%s>, TID %ld (PID %d) - ENTER" IFXOS_CRLF,
+           pThrCntrl->thrParams.pName, (IFX_long_t)pthread_self(), (IFX_int_t)getpid()));
 
 #ifdef PR_SET_NAME
       if (pThrCntrl->thrParams.pName != NULL)
@@ -119,12 +126,19 @@ IFXOS_STATIC IFX_int32_t IFXOS_UserThreadStartup(
 #endif
 
       pThrCntrl->thrParams.bRunning = IFX_TRUE;
+      err = sem_post(&pThrCntrl->thread_active);
+      if (err) {
+         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+            ("IFXOS - User Thread Startup <%s> - sem_post = %d" IFXOS_CRLF,
+              pThrCntrl->thrParams.pName, err ));
+         return IFX_ERROR;
+      }
       retVal = pThrCntrl->pThrFct(&pThrCntrl->thrParams);
       pThrCntrl->thrParams.bRunning = IFX_FALSE;
 
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_NORMAL,
-         ("IFXOS - User Thread Startup <%s>, TID %d (PID %d) - EXIT" IFXOS_CRLF,
-           pThrCntrl->thrParams.pName, (IFX_int_t)pthread_self(), (IFX_int_t)getpid()));
+         ("IFXOS - User Thread Startup <%s>, TID %ld (PID %d) - EXIT" IFXOS_CRLF,
+           pThrCntrl->thrParams.pName, (IFX_long_t)pthread_self(), (IFX_int_t)getpid()));
    }
    else
    {
@@ -176,6 +190,7 @@ IFX_int32_t IFXOS_ThreadInit(
    IFX_int32_t          retVal=0;
    pthread_t            tid;
    pthread_attr_t       attr;
+   int err;
 
    if(pThreadFunction == IFX_NULL) return IFX_ERROR;
    if(pName == IFX_NULL) return IFX_ERROR;
@@ -196,6 +211,14 @@ IFX_int32_t IFXOS_ThreadInit(
          pThrCntrl->thrParams.nArg1 = nArg1;
          pThrCntrl->thrParams.nArg2 = nArg2;
          pThrCntrl->thrParams.bShutDown = IFX_FALSE;
+
+         err = sem_init(&pThrCntrl->thread_active, 0, 0);
+         if (err) {
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+               ("IFXOS ERROR - User Thread create <%s> - pthread_mutex_init = %d" IFXOS_CRLF,
+                 (pName ? (pName) : "noname"), err ));
+            return IFX_ERROR;
+         }
 
          /* set thread control settings */
          pThrCntrl->pThrFct = pThreadFunction;
@@ -228,7 +251,15 @@ IFX_int32_t IFXOS_ThreadInit(
             return IFX_ERROR;
          }
 
-         /* use pthread_detach() so all resources are realesed upon thread termination  */
+         err = sem_wait(&pThrCntrl->thread_active);
+         if (err) {
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+               ("IFXOS ERROR - User Thread create <%s> - sem_wait = %d" IFXOS_CRLF,
+                 (pName ? (pName) : "noname"), err ));
+            return IFX_ERROR;
+         }
+
+         /* use pthread_detach() so all resources are released upon thread termination  */
          pthread_detach(tid);
 
          pThrCntrl->tid = tid;
@@ -236,11 +267,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -255,7 +283,7 @@ IFX_int32_t IFXOS_ThreadInit(
 /**
    LINUX Application - Shutdown and terminate a given thread.
    Therefore the thread delete functions triggers the user thread function
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
 \par Implementation
    - force a shutdown via the shutdown flag.
@@ -276,6 +304,7 @@ IFX_int32_t IFXOS_ThreadDelete(
                IFX_uint32_t       waitTime_ms)
 {
    IFX_uint32_t   waitCnt = 1;
+   int err;
 
    if(pThrCntrl)
    {
@@ -309,7 +338,7 @@ IFX_int32_t IFXOS_ThreadDelete(
          if (pThrCntrl->thrParams.bRunning == 1)
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-               ("IFXOS WRN - User Thread Delete <%s> TID %d - kill, no shutdown responce" IFXOS_CRLF,
+               ("IFXOS WRN - User Thread Delete <%s> TID %d - kill, no shutdown response" IFXOS_CRLF,
                  pThrCntrl->thrParams.pName, pThrCntrl->tid));
 
             /** still running --> kill */
@@ -333,6 +362,13 @@ IFX_int32_t IFXOS_ThreadDelete(
                        pThrCntrl->thrParams.pName, pThrCntrl->tid));
 
                   pThrCntrl->bValid = IFX_FALSE;
+                  err = sem_destroy(&pThrCntrl->thread_active);
+                  if (err) {
+                     IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+                        ("IFXOS ERROR - User Thread Delete <%s> TID %d - sem_destroy = %d" IFXOS_CRLF,
+                          pThrCntrl->thrParams.pName, pThrCntrl->tid, err));
+                     return IFX_ERROR;
+                  }
                   IFXOS_SYS_OBJECT_RELEASE(pThrCntrl->thrParams.pSysObject);
 
                   return IFX_ERROR;
@@ -340,15 +376,19 @@ IFX_int32_t IFXOS_ThreadDelete(
          }
 
          pThrCntrl->bValid = IFX_FALSE;
+         err = sem_destroy(&pThrCntrl->thread_active);
+         if (err) {
+            IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+               ("IFXOS ERROR - User Thread Delete <%s> TID %d - sem_destroy = %d" IFXOS_CRLF,
+                 pThrCntrl->thrParams.pName, pThrCntrl->tid, err));
+            return IFX_ERROR;
+         }
          IFXOS_SYS_OBJECT_RELEASE(pThrCntrl->thrParams.pSysObject);
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {
@@ -385,6 +425,7 @@ IFX_int32_t IFXOS_ThreadShutdown(
                IFX_uint32_t       waitTime_ms)
 {
    IFX_uint32_t   waitCnt = 1;
+   int err;
 
    if(pThrCntrl)
    {
@@ -418,13 +459,20 @@ IFX_int32_t IFXOS_ThreadShutdown(
          if (pThrCntrl->thrParams.bRunning == 0)
          {
             pThrCntrl->bValid = IFX_FALSE;
+            err = sem_destroy(&pThrCntrl->thread_active);
+            if (err) {
+               IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+                  ("IFXOS WRN - User Thread Shutdown <%s> - sem_destroy = %d" IFXOS_CRLF,
+                    pThrCntrl->thrParams.pName, err));
+               return IFX_ERROR;
+            }
             IFXOS_SYS_OBJECT_RELEASE(pThrCntrl->thrParams.pSysObject);
 
             return IFX_SUCCESS;
          }
 
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - User Thread Shutdown <%s> - no responce" IFXOS_CRLF,
+            ("IFXOS ERROR - User Thread Shutdown <%s> - no response" IFXOS_CRLF,
               pThrCntrl->thrParams.pName));
       }
       else
@@ -515,18 +563,15 @@ IFX_int32_t IFXOS_ThreadPriorityModify(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Thread, Set of new priority %d failed (pid %d / thread %d)" IFXOS_CRLF,
-              param.sched_priority, (int)getpid(), (int)pthread_self()));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - Thread, Set of new priority %d failed (pid %d / thread %ld)" IFXOS_CRLF,
+           param.sched_priority, (IFX_int_t)getpid(), (IFX_long_t)pthread_self()));
    }
    else
    {
       IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-         ("IFXOS ERROR - Thread, Get of priority failed (pid %d / thread %d)" IFXOS_CRLF,
-           (int)getpid(), (int)pthread_self()));
+         ("IFXOS ERROR - Thread, Get of priority failed (pid %d / thread %ld)" IFXOS_CRLF,
+           (IFX_int_t)getpid(), (IFX_long_t)pthread_self()));
    }
 
    switch(ret)
@@ -545,7 +590,7 @@ IFX_int32_t IFXOS_ThreadPriorityModify(
       case EINVAL:
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
             ("IFXOS - Thread, The value specified by policy or one of the scheduling parameters "
-             "associated with the scheduling policy policy is invalid." IFXOS_CRLF));
+             "associated with the scheduling policy is invalid." IFXOS_CRLF));
          break;
 
       case ENOTSUP:

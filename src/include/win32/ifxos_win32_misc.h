@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_WIN32_APPL Miscellaneous functions (Win32)
 
-   This Group contains the Win32 "Miscellaneous" definitions and function. 
+   This Group contains the Win32 "Miscellaneous" definitions and function.
 
 \ingroup IFXOS_LAYER_WIN32
 */

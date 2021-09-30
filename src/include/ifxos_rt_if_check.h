@@ -12,7 +12,7 @@
 ******************************************************************************/
 
 /** \file
-   This file contains macros to check and verify the arguments 
+   This file contains macros to check and verify the arguments
    of the IFX OS functions.
 */
 

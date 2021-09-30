@@ -1,4 +1,43 @@
 NEXT VERSION
+Interface Changes:
+-
+ADD:
+-
+CHANGE(S):
+-
+FIX:
+-
+
+V1.7.1 - 2020-11-25
+FIX:
+- Add locking to ensure thread started in IFXOS_ThreadInit()
+- Add missing include to support new types used
+- Spelling fixes in comments and strings
+- Fix warnings of llvm with "[-Wdocumentation]". Remove trailing spaces.
+- Cleanup code with suggestions from clang-tidy
+
+V1.7.0 - 2019-08-30
+ADD:
+- Change to use libtool to support static and dynamic libraries for Linux
+- Use const for input data in ini parser
+CHANGE(S):
+- WIN32 Layer:
+  - Map strtok_r to a compatible function
+  - Rewrite win32_time functions by using GetTickCount64()
+  - win32_thread: Add function to set the thread name
+- Linux Layer:
+  Socket (Drv): change IFXOS_socket_t type from int to struct socket*
+  (pointer for 64 bit support)
+- Ignore LDFLAGS for kernel module to avoid build errors
+FIX:
+- add V1.6.9 patches
+  300-compilefix-linux4-4.patch: Compile fix for kernel V4.4, missing linux/fs.h.
+  400-fix-uaccess-includes.patch: Compile fix for kernel V4.12.0, uaccess.h moved.
+- Add support for kernel 4.9, sock_recvmsg() does not take size argument any more
+- WIN32 Layer:
+  - Fix 64bit compilation (IFX_uint64_t definition)
+  - Windows time get function (IFXOS_SysTimeGet) corrected to no longer return system ticks
+
 V1.6.9 - 2016-09-28
 FIX:
 - VAR_Fifo_peekElement gave up if the element had max size
@@ -6,7 +45,7 @@ FIX:
 V1.6.8 - 2016-04-29
 FIX:
 - Use system up time for retrieving the elapsed time (IFXOS_ElapsedTimeSecGet/IFXOS_ElapsedTimeMSecGet)
-  in linux user space instead of the system time from EPOH. 
+  in linux user space instead of the system time from EPOH.
   The implemented solution is only compilable for the linux kernel versions > 2.6.0
 
 V1.6.7 - 2015-12-17

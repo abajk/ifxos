@@ -184,11 +184,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -210,11 +207,11 @@ IFXOS_THREADCREATE_ERROR:
 /**
    Nucleus - Shutdown and terminate a given thread.
    Therefore the thread delete functions triggers the user thread function
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
 \par Implementation
    - force a shutdown via the shutdown flag and wait for task end with timeout.
-   - kill in case of no shutdown responce.
+   - kill in case of no shutdown response.
    - free previous allocated internal data.
 
 \param
@@ -266,7 +263,7 @@ IFX_int32_t IFXOS_ThreadDelete(
          if (pThrCntrl->thrParams.bRunning == 1)
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown responce" IFXOS_CRLF,
+               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown response" IFXOS_CRLF,
                  pThrCntrl->thrParams.pName, pThrCntrl->tid));
 
             if (NU_Delete_Task(&pThrCntrl->tid) != NU_SUCCESS)
@@ -294,11 +291,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {
@@ -370,7 +364,7 @@ IFX_int32_t IFXOS_ThreadShutdown(
          }
 
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Thread Shutdown <%s> - no responce" IFXOS_CRLF,
+            ("IFXOS ERROR - Thread Shutdown <%s> - no response" IFXOS_CRLF,
               pThrCntrl->thrParams.pName));
       }
       else

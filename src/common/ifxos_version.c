@@ -27,18 +27,18 @@
    Return IFX OS version information.
 
    \param
-    revisionNum   - revision number to be checked
+    pRevision   - revision number to be checked
 \param
-    featureNum    - feature number to be checked
+    pFeature    - feature number to be checked
 \param
-    stepNum       - step number to be checked
+    pStep       - step number to be checked
 
    \remark
    Called by the kernel.
 */
 IFX_void_t IFXOS_versionGet(
-                     IFX_uint8_t *pRevision, 
-                     IFX_uint8_t *pFeature, 
+                     IFX_uint8_t *pRevision,
+                     IFX_uint8_t *pFeature,
                      IFX_uint8_t *pStep)
 {
    if (pRevision)
@@ -49,13 +49,11 @@ IFX_void_t IFXOS_versionGet(
 
    if (pStep)
       *pStep = IFXOS_VERSION_STEP;
-
-   return;
 }
 
 /**
    This function checks if the IFXOS Version is the same like the given version.
-   
+
 \param
     revisionNum   - revision number to be checked
 \param
@@ -84,7 +82,7 @@ IFX_boolean_t  IFXOS_versionCheck_equal(
 
 /**
    This function checks if the IFXOS Version is the equal/greater than the given version.
-   
+
 \param
     revisionNum   - revision number to be checked
 \param
@@ -102,7 +100,7 @@ IFX_boolean_t  IFXOS_versionCheck_egThan(
                      IFX_uint8_t stepNum)
 {
    if (    (IFXOS_VERSION_REVISION == revisionNum)
-        && (    (IFXOS_VERSION_FEATURE >  featureNum) 
+        && (    (IFXOS_VERSION_FEATURE >  featureNum)
              || ((IFXOS_VERSION_FEATURE == featureNum) && (IFXOS_VERSION_STEP >= stepNum)) ))
    {
       return IFX_TRUE;
@@ -113,7 +111,7 @@ IFX_boolean_t  IFXOS_versionCheck_egThan(
 
 /**
    This function checks if the IFXOS Version is less than the given version.
-   
+
 \param
     revisionNum   - revision number to be checked
 \param
@@ -131,7 +129,7 @@ IFX_boolean_t  IFXOS_versionCheck_lessThan(
                      IFX_uint8_t stepNum)
 {
    if (    (IFXOS_VERSION_REVISION <= revisionNum)
-        && (    (IFXOS_VERSION_FEATURE <  featureNum) 
+        && (    (IFXOS_VERSION_FEATURE <  featureNum)
              || ((IFXOS_VERSION_FEATURE == featureNum) && (IFXOS_VERSION_STEP < stepNum)) ))
    {
       return IFX_TRUE;

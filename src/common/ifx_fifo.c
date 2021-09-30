@@ -1,13 +1,12 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
 
 /** \file
       Initialize with Fifo_Init with previously allocated memory.
@@ -95,9 +94,9 @@ IFXOS_PRN_USR_MODULE_CREATE(FIFO_MODULE, IFXOS_PRN_LEVEL_HIGH);
 
 /**
    Initializes the fifo structure
-   \param *pFifo - Pointer to the Fifo structure
-   \param *pStart - Pointer to the fifo first element (IFX_ulong_t aligned)
-   \param *pEnd - Pointer to the fifo last element (IFX_ulong_t aligned)
+   \param pFifo - Pointer to the Fifo structure
+   \param pStart - Pointer to the fifo first element (IFX_ulong_t aligned)
+   \param pEnd - Pointer to the fifo last element (IFX_ulong_t aligned)
    \param elSizeB - size of each element in bytes (the same for all elements)
    \return
    Always zero, otherwise error
@@ -134,14 +133,14 @@ IFX_return_t IFX_Fifo_Init (IFX_FIFO* pFifo, IFX_ulong_t* pStart, IFX_ulong_t* p
       /* element size must be a multiple of fifo memory */
       return IFX_ERROR;
    }
-   pFifo->max_size = 1 + (pFifo->pEnd - pFifo->pStart) / pFifo->size;
+   pFifo->max_size = (IFX_uint32_t)(1 + (pFifo->pEnd - pFifo->pStart) / pFifo->size);
 
    return IFX_SUCCESS;
 }
 
 /**
    Clear the fifo
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
 */
 IFX_void_t IFX_Fifo_Clear (IFX_FIFO *pFifo)
 {
@@ -152,9 +151,9 @@ IFX_void_t IFX_Fifo_Clear (IFX_FIFO *pFifo)
 
 /**
    Get the next element to read from
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return Returns the element address to read from (IFX_ulong_t aligned),
-           or IFX_NULL if no element available or an error occured
+           or IFX_NULL if no element available or an error occurred
    \remark
    Error occurs if fifo is empty
 */
@@ -176,7 +175,7 @@ IFX_ulong_t* IFX_Fifo_readElement (IFX_FIFO *pFifo)
 
 /**
    Delivers empty status
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return
    Returns TRUE if empty (no data available)
    \remark
@@ -189,7 +188,7 @@ IFX_int8_t IFX_Fifo_isEmpty (IFX_FIFO *pFifo)
 
 /**
    Get the next element to write to
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return
    Returns the element address (IFX_ulong_t aligned) to write to, or IFX_NULL in case of error
    \remark
@@ -202,20 +201,18 @@ IFX_ulong_t* IFX_Fifo_writeElement (IFX_FIFO *pFifo)
 
    if (IFX_Fifo_isFull(pFifo))
       return IFX_NULL;
-   else
-   {
-      /* get the next entry of the Fifo */
-      ret = pFifo->pWrite;
-      INCREMENT_INDEX(pFifo->pWrite);
-      pFifo->count++;
 
-      return ret;
-   }
+   /* get the next entry of the Fifo */
+   ret = pFifo->pWrite;
+   INCREMENT_INDEX(pFifo->pWrite);
+   pFifo->count++;
+
+   return ret;
 }
 
 /**
    Delivers full status
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return
    TRUE if full (overflow on next write)
    \remark
@@ -228,9 +225,9 @@ IFX_int8_t IFX_Fifo_isFull (IFX_FIFO *pFifo)
 
 /**
    Returns the last element taken back to the fifo
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \remark
-   Makes an undo to a previosly Fifo_writeElement
+   Makes an undo to a previously Fifo_writeElement
 */
 IFX_void_t IFX_Fifo_returnElement (IFX_FIFO *pFifo)
 {
@@ -240,7 +237,7 @@ IFX_void_t IFX_Fifo_returnElement (IFX_FIFO *pFifo)
 
 /**
    Get the number of stored elements
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return
    Number of containing elements
 */
@@ -282,9 +279,9 @@ IFX_void_t IFX_FifoTest(IFX_void_t)
 
 /**
    Initializes the variable-sized fifo structure
-   \param *pFifo - Pointer to the IFX_VFIFO structure
-   \param *pStart - Pointer to the fifo first element (IFX_ulong_t aligned)
-   \param *pEnd - Pointer to the first address beyond the last fifo element (IFX_ulong_t aligned)
+   \param pFifo - Pointer to the IFX_VFIFO structure
+   \param pStart - Pointer to the fifo first element (IFX_ulong_t aligned)
+   \param pEnd - Pointer to the first address beyond the last fifo element (IFX_ulong_t aligned)
    \param maxElSize - maximum allowed size of an element in bytes
    \return
    Always zero, otherwise error
@@ -330,7 +327,7 @@ IFX_return_t IFX_Var_Fifo_Init (IFX_VFIFO* pFifo, IFX_ulong_t* pStart,
 
 /**
    Clears the variable-sized fifo
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
 */
 IFX_void_t IFX_Var_Fifo_Clear (IFX_VFIFO *pFifo)
 {
@@ -341,9 +338,9 @@ IFX_void_t IFX_Var_Fifo_Clear (IFX_VFIFO *pFifo)
 
 /**
    Get the next element to read from variable-sized fifo
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return Returns the element address (IFX_ulong_t aligned) to read from,
-           or IFX_NULL if no element available or an error occured
+           or IFX_NULL if no element available or an error occurred
    \remark Error occurs if fifo is empty
 */
 IFX_ulong_t* IFX_Var_Fifo_readElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
@@ -393,7 +390,7 @@ IFX_ulong_t* IFX_Var_Fifo_readElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
    if (pFifo->pRead[elSizeUL + SIZE_HEADER] != SIZE_TRAILER_VALUE)
    {
       IFXOS_PRN_USR_ERR_NL(FIFO_MODULE, IFXOS_PRN_LEVEL_ERR,
-            (IFX_FIFO_PREFIX "ERROR - var read: overwrite occured: 0x%lX, pEnd: 0x%lX, elSize: 0x%08lX (+ 0x%X) !!" IFXOS_CRLF,
+            (IFX_FIFO_PREFIX "ERROR - var read: overwrite occurred: 0x%lX, pEnd: 0x%lX, elSize: 0x%08lX (+ 0x%X) !!" IFXOS_CRLF,
             (IFX_ulong_t)pFifo->pRead, (IFX_ulong_t)pFifo->pEnd, elSizeUL, (SIZE_HEADER + SIZE_TRAILER)));
 
       pFifo->pRead[elSizeUL + SIZE_HEADER] = (IFX_ulong_t)~0;
@@ -426,9 +423,9 @@ IFX_ulong_t* IFX_Var_Fifo_readElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
    Peek the next element to read from variable-sized fifo
    \remark To free the element use the corresponding read function.
 
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return Returns the element address (IFX_ulong_t aligned) to read from,
-           or IFX_NULL if no element available or an error occured
+           or IFX_NULL if no element available or an error occurred
    \remark Error occurs if fifo is empty
 */
 IFX_ulong_t* IFX_Var_Fifo_peekElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
@@ -468,7 +465,7 @@ IFX_ulong_t* IFX_Var_Fifo_peekElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
       IFXOS_PRN_USR_ERR_NL(FIFO_MODULE, IFXOS_PRN_LEVEL_ERR,
             (IFX_FIFO_PREFIX "ERROR - var peek: incorrect size, "
             "pRead: 0x%lX, pEnd: 0x%lX, FifoSize:  0x%08lX, elSize: 0x%08lX (+ 0x%X) !!" IFXOS_CRLF,
-            (IFX_ulong_t)pPeekRead, (IFX_ulong_t)pFifo->pEnd, pFifo->size, 
+            (IFX_ulong_t)pPeekRead, (IFX_ulong_t)pFifo->pEnd, pFifo->size,
             elSizeUL, (SIZE_HEADER + SIZE_TRAILER)));
 
       IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
@@ -489,7 +486,7 @@ IFX_ulong_t* IFX_Var_Fifo_peekElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
    if (pPeekRead[elSizeUL + SIZE_HEADER] != SIZE_TRAILER_VALUE)
    {
       IFXOS_PRN_USR_ERR_NL(FIFO_MODULE, IFXOS_PRN_LEVEL_ERR,
-            (IFX_FIFO_PREFIX "ERROR - var peek: overwrite occured: 0x%lX, pEnd: 0x%lX, elSize: 0x%08lX (+ 0x%X) !!" IFXOS_CRLF,
+            (IFX_FIFO_PREFIX "ERROR - var peek: overwrite occurred: 0x%lX, pEnd: 0x%lX, elSize: 0x%08lX (+ 0x%X) !!" IFXOS_CRLF,
             (IFX_ulong_t)pPeekRead, (IFX_ulong_t)pFifo->pEnd, elSizeUL, (SIZE_HEADER + SIZE_TRAILER)));
 
       pPeekRead[elSizeUL + SIZE_HEADER] = (IFX_ulong_t)~0;
@@ -517,7 +514,7 @@ IFX_ulong_t* IFX_Var_Fifo_peekElement (IFX_VFIFO *pFifo, IFX_uint32_t *elSizeB)
 
 /**
    Delivers empty status
-   \param *pFifo - Pointer to the IFX_VFIFO structure
+   \param pFifo - Pointer to the IFX_VFIFO structure
    \return Returns TRUE if empty (no data available)
    \remark No change on fifo!
 */
@@ -528,7 +525,7 @@ IFX_int8_t IFX_Var_Fifo_isEmpty (IFX_VFIFO *pFifo)
 
 /**
  * Returns size of free room in the variable-sized IFX_FIFO.
- *    \param *pFifo - Pointer to the Fifo structure
+ *    \param pFifo - Pointer to the Fifo structure
  *    \return
  *    The size of free room in the IFX_FIFO, in IFX_ulong_t integers.
  */
@@ -541,31 +538,26 @@ IFX_uint32_t IFX_Var_Fifo_getRoom (IFX_VFIFO *pFifo)
    {
       if (pFifo->count)
          return 0;
-      else
-      {
-         return (pFifo->pEnd - pFifo->pStart - (SIZE_HEADER + SIZE_TRAILER));
-      }
+
+      return (IFX_uint32_t)(pFifo->pEnd - pFifo->pStart - (SIZE_HEADER + SIZE_TRAILER));
    }
    if (diff > 0)
    {
       tailRoom = pFifo->pEnd  - pFifo->pWrite - (SIZE_HEADER + SIZE_TRAILER);
       headRoom = pFifo->pRead - pFifo->pStart - (SIZE_HEADER + SIZE_TRAILER);
 
-      return (headRoom > tailRoom) ? headRoom : tailRoom;
+      return (headRoom > tailRoom) ? (IFX_uint32_t)headRoom : (IFX_uint32_t)tailRoom;
    }
-   else
-   {
-      if ((-diff) <= (SIZE_HEADER + SIZE_TRAILER) )
-         return 0;
-      else
-         return ((-diff) - (SIZE_HEADER + SIZE_TRAILER) );
-   }
+   if ((-diff) <= (SIZE_HEADER + SIZE_TRAILER) )
+      return 0;
+
+   return (IFX_uint32_t)((-diff) - (SIZE_HEADER + SIZE_TRAILER) );
 }
 
 /**
    Get the next element to write to
-   \param *pFifo - Pointer to the Fifo structure
-   \param size - Size of a new element to be written in bytes
+   \param pFifo - Pointer to the Fifo structure
+   \param elSizeB - Size of a new element to be written in bytes
    \return
    Returns the element address to write to (IFX_ulong_t aligned), or IFX_NULL in case of error
    \remark
@@ -594,61 +586,58 @@ IFX_ulong_t* IFX_Var_Fifo_writeElement (IFX_VFIFO *pFifo, IFX_uint32_t elSizeB)
       IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
       return IFX_NULL;
    }
-   else
+   if (pFifo->pWrite >= pFifo->pRead &&
+      (elSizeUL + SIZE_HEADER + SIZE_TRAILER) > (IFX_ulong_t)(pFifo->pEnd - pFifo->pWrite))
    {
-      if (pFifo->pWrite >= pFifo->pRead &&
-         (elSizeUL + SIZE_HEADER + SIZE_TRAILER) > (IFX_ulong_t)(pFifo->pEnd - pFifo->pWrite))
+      /* There is not enough free space at the end of buffer (pWrite--XXX--pEnd) */
+      /* Check free space at the beginning of the buffer (pStart--XXX--pRead) */
+      if ((IFX_long_t)(elSizeUL + SIZE_HEADER + SIZE_TRAILER) > pFifo->pRead - pFifo->pStart)
       {
-         /* There is not enough free space at the end of buffer (pWrite--XXX--pEnd) */
-         /* Check free space at the beginning of the buffer (pStart--XXX--pRead) */
-         if ((elSizeUL + SIZE_HEADER + SIZE_TRAILER) > pFifo->pRead - pFifo->pStart)
-         {
-             /* There is not enough free space at the beginning of the buffer (pStart--XXX--pRead) also */
-             /* Return 0 */
-             IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
-             return IFX_NULL;
-         }
-
-         if ((pFifo->pEnd - pFifo->pWrite) >= SIZE_HEADER)
-         {
-            pFifo->pWrite[0] = (IFX_ulong_t)~0;
-         }
-         pFifo->pWrite = pFifo->pStart;
+          /* There is not enough free space at the beginning of the buffer (pStart--XXX--pRead) also */
+          /* Return 0 */
+          IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
+          return IFX_NULL;
       }
 
-      pFifo->pWrite[0] = elSizeB;
+      if ((pFifo->pEnd - pFifo->pWrite) >= SIZE_HEADER)
+      {
+         pFifo->pWrite[0] = (IFX_ulong_t)~0;
+      }
+      pFifo->pWrite = pFifo->pStart;
+   }
+
+   pFifo->pWrite[0] = elSizeB;
 #if (SIZE_TRAILER == 1)
-      pFifo->pWrite[elSizeUL + SIZE_HEADER] = SIZE_TRAILER_VALUE;
+   pFifo->pWrite[elSizeUL + SIZE_HEADER] = SIZE_TRAILER_VALUE;
 #endif
 
-      ret              = pFifo->pWrite + SIZE_HEADER;
+   ret = pFifo->pWrite + SIZE_HEADER;
 
-      pFifo->pWrite   += elSizeUL + (SIZE_HEADER + SIZE_TRAILER);
-      if (pFifo->pWrite == pFifo->pEnd)
-         pFifo->pWrite = pFifo->pStart;
+   pFifo->pWrite   += elSizeUL + (SIZE_HEADER + SIZE_TRAILER);
+   if (pFifo->pWrite == pFifo->pEnd)
+      pFifo->pWrite = pFifo->pStart;
 
 
-      if ( (pFifo->pWrite < pFifo->pStart) || (pFifo->pWrite >= pFifo->pEnd))
-      {
-         IFXOS_PRN_USR_ERR_NL(FIFO_MODULE, IFXOS_PRN_LEVEL_ERR,
-               (IFX_FIFO_PREFIX "ERROR - leave var write: pWrite: 0x%lX out of range pStart: 0x%lX, pEnd: 0x%lX, !!" IFXOS_CRLF,
-               (IFX_ulong_t)pFifo->pWrite, (IFX_ulong_t)pFifo->pStart, (IFX_ulong_t)pFifo->pEnd ));
+   if ( (pFifo->pWrite < pFifo->pStart) || (pFifo->pWrite >= pFifo->pEnd))
+   {
+      IFXOS_PRN_USR_ERR_NL(FIFO_MODULE, IFXOS_PRN_LEVEL_ERR,
+            (IFX_FIFO_PREFIX "ERROR - leave var write: pWrite: 0x%lX out of range pStart: 0x%lX, pEnd: 0x%lX, !!" IFXOS_CRLF,
+            (IFX_ulong_t)pFifo->pWrite, (IFX_ulong_t)pFifo->pStart, (IFX_ulong_t)pFifo->pEnd ));
 
-         return IFX_NULL;
-      }
-
-      pFifo->count++;
-      IFXOS_SYS_FIFO_WR_ELEM_COUNT_INC(pFifo->pSysObject);
-      IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
-      return ret;
+      return IFX_NULL;
    }
+
+   pFifo->count++;
+   IFXOS_SYS_FIFO_WR_ELEM_COUNT_INC(pFifo->pSysObject);
+   IFXOS_SYSOBJECT_CLEAR_OWNER_THR_INFO(pFifo->pSysObject);
+   return ret;
 }
 
 /**
    Delivers full status
    The IFX_FIFO is full if there is not enough space
-   for one element of maxiumum size defined in Var_Fifo_Init() call.
-   \param *pFifo - Pointer to the Fifo structure
+   for one element of maximum size defined in Var_Fifo_Init() call.
+   \param pFifo - Pointer to the Fifo structure
    \return
    TRUE if full (overflow on next write)
    \remark
@@ -661,7 +650,7 @@ IFX_int8_t IFX_Var_Fifo_isFull (IFX_VFIFO *pFifo)
 
 /**
    Get the number of stored elements
-   \param *pFifo - Pointer to the Fifo structure
+   \param pFifo - Pointer to the Fifo structure
    \return
    Number of containing elements
 */
@@ -680,7 +669,7 @@ IFX_void_t IFX_Var_Fifo_Test(IFX_void_t)
    IFX_VFIFO testFifo;
    IFX_int32_t i;
 
-   /* 1. Allocate FIFO memoery */
+   /* 1. Allocate FIFO memory */
    fifoMem = IFXOS_MemAlloc(VFIFOSIZE * sizeof(*fifoMem));
    if (fifoMem == IFX_NULL)
    {

@@ -18,7 +18,7 @@
    This Group contains the VxWorks Lock and Protection definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -39,7 +39,7 @@
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#include <windows.h>
+#include <Windows.h>
 
 #include "ifx_types.h"
 #include "ifxos_thread.h"
@@ -81,7 +81,7 @@
 /** \addtogroup IFXOS_LOCK_WIN32
 @{ */
 
-/** Win32 - LOCK, type for synchronisation. */
+/** Win32 - LOCK, type for synchronization. */
 typedef struct
 {
    /** lock id */

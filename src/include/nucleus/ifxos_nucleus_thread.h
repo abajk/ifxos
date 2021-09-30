@@ -15,7 +15,7 @@
 
 /** \defgroup IFXOS_THREAD_NUCLEUS Task  (Nucleus).
 
-   This Group contains the Nucleus Task definitions and function. 
+   This Group contains the Nucleus Task definitions and function.
 
 \ingroup IFXOS_LAYER_NUCLEUS
 */
@@ -60,7 +60,7 @@
 #define IFXOS_THREAD_PRIO_HIGH                     55
 /** Nucleus Task - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  10
-/** Nucleus Task - priority - TIME_CRITICAL 
+/** Nucleus Task - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -111,14 +111,14 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
 
 } IFXOS_ThreadCtrl_t;
 
 /** Nucleus Task - lock scheduling */
-#define IFXOS_ThreadLock()      NU_Change_Preemption(NU_NO_PREEMPT)                           
+#define IFXOS_ThreadLock()      NU_Change_Preemption(NU_NO_PREEMPT)
 /** Nucleus Task - unlock scheduling */
 #define IFXOS_ThreadUnlock()    NU_Change_Preemption(NU_PREEMPT)
 

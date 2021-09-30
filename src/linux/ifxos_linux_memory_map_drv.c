@@ -17,7 +17,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Physical to Virtual Memory Mapping.
 */
 
@@ -55,7 +55,7 @@
    - map the given physical memory region - no cache (see "ioremap_nocache")
 
 \attention
-   This sequence will reserve the requested memory region, so no following user 
+   This sequence will reserve the requested memory region, so no following user
    can remap the same area after this.
 \attention
    Other users (driver) which have map the area before (without reservation)
@@ -89,7 +89,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
 
    if ( request_mem_region(physicalAddr, addrRangeSize_byte, pName) == IFX_NULL )
    {
-      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
          ("IFXOS: ERROR Phy2Virt map, region check - addr 0x%08lX (size 0x%lX) not free" IFXOS_CRLF,
            physicalAddr, addrRangeSize_byte));
 
@@ -101,7 +101,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                                                addrRangeSize_byte );
    if (pVirtAddr == IFX_NULL)
    {
-      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
          ("IFXOS: ERROR Phy2Virt map failed - addr 0x%08lX (size 0x%lX)" IFXOS_CRLF,
            physicalAddr, addrRangeSize_byte));
 
@@ -111,7 +111,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
 
 
    IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-      ("IFXOS: Phy2Virt map - phy 0x%08lX --> virt 0x%p, size = 0x%lX" IFXOS_CRLF, 
+      ("IFXOS: Phy2Virt map - phy 0x%08lX --> virt 0x%p, size = 0x%lX" IFXOS_CRLF,
         physicalAddr, pVirtAddr, addrRangeSize_byte ));
 
    *ppVirtAddr = pVirtAddr;
@@ -137,7 +137,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                         (Cleared if success)
 
 \return
-   IFX_SUCCESS if the release was successful. The physicalAddr and the ppVirtAddr 
+   IFX_SUCCESS if the release was successful. The physicalAddr and the ppVirtAddr
                pointer is cleared, else
    IFX_ERROR   if something was wrong.
 */
@@ -150,7 +150,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if ( (ppVirtAddr != IFX_NULL) && (*ppVirtAddr != IFX_NULL) )
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%p, size = 0x%lX" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%p, size = 0x%lX" IFXOS_CRLF,
            (*ppVirtAddr), addrRangeSize_byte ));
 
       iounmap((void *)(*ppVirtAddr));
@@ -161,7 +161,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if ( (pPhysicalAddr != IFX_NULL)  && (*pPhysicalAddr != 0) )
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - release region 0x%08lX size = 0x%lX" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - release region 0x%08lX size = 0x%lX" IFXOS_CRLF,
            (*pPhysicalAddr), addrRangeSize_byte ));
 
       release_mem_region( (unsigned long)(*pPhysicalAddr), addrRangeSize_byte );

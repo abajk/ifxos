@@ -19,12 +19,12 @@
 
 /** \defgroup IFXOS_DEVICE_ACCESS_LINUX_APPL Device Access (Linux User Space)
 
-   This Group contains the LINUX Device Access definitions and function. 
+   This Group contains the LINUX Device Access definitions and function.
 
-   The standard system calles (open, close, etc) are mapped to devcie specific
+   The standard system calls (open, close, etc) are mapped to device specific
    functions.
 
-   The poll/select mechanisme is supported. This requires OS support and a
+   The poll/select mechanism is supported. This requires OS support and a
    corresponding implementation on user and driver side.
 
 \ingroup IFXOS_LAYER_LINUX
@@ -50,12 +50,12 @@
    ========================================================================= */
 
 /** IFX LINUX adaptation - User support "device access" */
-#ifndef IFXOS_HAVE_DEVICE_ACCESS                  
+#ifndef IFXOS_HAVE_DEVICE_ACCESS
 #  define IFXOS_HAVE_DEVICE_ACCESS                 1
 #endif
 
 /** IFX LINUX adaptation - User support "device access - select" */
-#ifndef IFXOS_HAVE_DEVICE_ACCESS_SELECT           
+#ifndef IFXOS_HAVE_DEVICE_ACCESS_SELECT
 #  define IFXOS_HAVE_DEVICE_ACCESS_SELECT          1
 #endif
 
@@ -65,7 +65,7 @@
 
 #ifndef _IO
    /** required form OS headers */
-#  error "missing _IO definiton"
+#  error "missing _IO definition"
 #endif
 
 #if (defined(IFXOS_USE_DEV_IO) && (IFXOS_USE_DEV_IO == 1))

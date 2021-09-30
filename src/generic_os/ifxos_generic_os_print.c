@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS User 
+   This file contains the IFXOS Layer implementation for GENERIC_OS User
    Print Handling.
 */
 
@@ -105,7 +105,7 @@ IFXOS_FCT_ErrPrintf IFXOS_fctErrPrintf = IFXOS_FCT_ERR_PRINTF_GET;
 \param
    fctExtDbg   - function pointer to the user debug print function
 
-\return      
+\return
    NONE
 */
 IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg)
@@ -129,7 +129,7 @@ IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg)
 \param
    fctExtErr   - function pointer to the user error print function
 
-\return      
+\return
    NONE
 */
 IFX_void_t IFXOS_PrintErrFctSet(IFXOS_FCT_ErrPrintf fctExtErr)

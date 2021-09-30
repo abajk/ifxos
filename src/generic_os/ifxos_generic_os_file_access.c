@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for 
+   This file contains the IFXOS Layer implementation for
    GENERIC_OS File Access.
 */
 
@@ -70,7 +70,7 @@
    No Success  - IFX_NULL
 */
 IFXOS_File_t *IFXOS_FOpen(
-                  const IFX_char_t *pName,  
+                  const IFX_char_t *pName,
                   const IFX_char_t *pMode)
 {
    /*
@@ -115,7 +115,7 @@ IFX_int_t IFXOS_FClose(
 
 
 /**
-   GENERIC_OS User - Read from a stream (file, stdin) number of elements with the 
+   GENERIC_OS User - Read from a stream (file, stdin) number of elements with the
    given element size.
 
 \par Implementation
@@ -135,9 +135,9 @@ IFX_int_t IFXOS_FClose(
 
 */
 IFX_size_t IFXOS_FRead(
-                  IFX_void_t     *pDataBuf, 
-                  IFX_size_t     elementSize_byte,  
-                  IFX_size_t     elementCount, 
+                  IFX_void_t     *pDataBuf,
+                  IFX_size_t     elementSize_byte,
+                  IFX_size_t     elementCount,
                   IFXOS_File_t   *stream)
 {
    /*
@@ -153,7 +153,7 @@ IFX_size_t IFXOS_FRead(
 }
 
 /**
-   GENERIC_OS User - Write to a stream (file, pipe, stdout) number of elements with 
+   GENERIC_OS User - Write to a stream (file, pipe, stdout) number of elements with
    the given element size.
 
 \par Implementation
@@ -166,16 +166,16 @@ IFX_size_t IFXOS_FRead(
 \param
    elementCount      - Number of elements to read
 \param
-   stream            - Stream handle (file, pipe, stdout) which identify 
+   stream            - Stream handle (file, pipe, stdout) which identify
                        the destination.
 
 \return
    Number of written elements.
 */
 IFX_size_t IFXOS_FWrite(
-                  const IFX_void_t  *pDataBuf, 
-                  IFX_size_t        elementSize_byte,  
-                  IFX_size_t        elementCount, 
+                  const IFX_void_t  *pDataBuf,
+                  IFX_size_t        elementSize_byte,
+                  IFX_size_t        elementCount,
                   IFXOS_File_t      *stream)
 {
    /*
@@ -254,7 +254,7 @@ IFX_int_t IFXOS_FEof(IFXOS_File_t *stream)
    No Success  - neg. value (-1)
 */
 IFX_int_t IFXOS_Stat(
-                  IFX_char_t     *pName, 
+                  IFX_char_t     *pName,
                   IFXOS_stat_t   *pStatInfo)
 {
    /*
@@ -274,7 +274,7 @@ IFX_int_t IFXOS_Stat(
   Read a file from the OS specific medium.
 
 \remarks
-  The required data buffer is allocated and it is in the responsibility of the 
+  The required data buffer is allocated and it is in the responsibility of the
   user to free the buffer in a later step.
 
 \remarks
@@ -293,8 +293,8 @@ IFX_int_t IFXOS_Stat(
    - IFX_ERROR in case of errors
 */
 IFX_return_t IFXOS_FileLoad (
-                  IFX_char_t const  *pName, 
-                  IFX_uint8_t       **ppDataBuf, 
+                  IFX_char_t const  *pName,
+                  IFX_uint8_t       **ppDataBuf,
                   IFX_size_t        *pBufSize_byte)
 {
 #if (IFXOS_HAVE_FILESYSTEM == 1)
@@ -342,8 +342,8 @@ IFX_return_t IFXOS_FileLoad (
    - IFX_ERROR in case of errors
 */
 IFX_return_t IFXOS_FileWrite (
-                  IFX_char_t const  *pName, 
-                  IFX_uint8_t       *pDataBuf, 
+                  IFX_char_t const  *pName,
+                  IFX_uint8_t       *pDataBuf,
                   IFX_size_t        bufSize_byte)
 {
 #if (IFXOS_HAVE_FILESYSTEM == 1)
@@ -408,26 +408,26 @@ IFX_return_t IFXOS_FileWrite (
 
 
 IFXOS_STATIC IFXOS_File_t *fmemopen (
-                        void        *pMemBuf, 
-                        int         bufSize_byte, 
+                        void        *pMemBuf,
+                        int         bufSize_byte,
                         const char  *pMode);
 
 
-/** 
+/**
    GENERIC_OS user - Implementation of the missing function "fmemopen".
 
-\param 
+\param
    pMemBuf        - temporary buffer for for fprintf operation.
-\param 
+\param
    bufSize_byte   - size of the memory buffer
-\param 
-   pMode          - Points to the open mode string. 
+\param
+   pMode          - Points to the open mode string.
                     Not used for mem files !
 
 */
 IFXOS_STATIC IFXOS_File_t *fmemopen (
-                        void        *pMemBuf, 
-                        int         bufSize_byte, 
+                        void        *pMemBuf,
+                        int         bufSize_byte,
                         const char  *pMode)
 {
    /*
@@ -451,17 +451,17 @@ IFXOS_STATIC IFXOS_File_t *fmemopen (
 #if ( defined(IFXOS_HAVE_MEMORY_FILE) && (IFXOS_HAVE_MEMORY_FILE == 1) )
 
 /**
-   GENERIC_OS User - Open a given memory buffer as stream (file). 
+   GENERIC_OS User - Open a given memory buffer as stream (file).
    - The size is limited to 32 kBytes.
-   - The intention is to have a buffer where we can use the standard file 
+   - The intention is to have a buffer where we can use the standard file
      (stream) operations like fprintf etc.
 
-\param 
+\param
    pMemBuf        - temporary buffer for for fprintf operation.
-\param 
+\param
    bufSize_byte   - size of the memory buffer
-\param 
-   pMode          - Points to the open mode string. 
+\param
+   pMode          - Points to the open mode string.
                     Not used for mem files !
 
 \return
@@ -469,8 +469,8 @@ IFXOS_STATIC IFXOS_File_t *fmemopen (
    - in case of error the return value is NULL
 */
 IFXOS_File_t *IFXOS_FMemOpen (
-                  IFX_char_t        *pMemBuf, 
-                  const IFX_uint_t  bufSize_byte, 
+                  IFX_char_t        *pMemBuf,
+                  const IFX_uint_t  bufSize_byte,
                   const IFX_char_t  *pMode)
 {
    return fmemopen(pMemBuf, bufSize_byte, pMode);

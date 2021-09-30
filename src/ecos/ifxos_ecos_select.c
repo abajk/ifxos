@@ -12,8 +12,8 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos 
-   Syncronistation Poll / Select.
+   This file contains the IFXOS Layer implementation for eCos
+   Synchronization Poll / Select.
 */
 
 
@@ -37,7 +37,7 @@
 #if ( defined(IFXOS_HAVE_DRV_SELECT) && (IFXOS_HAVE_DRV_SELECT == 1) )
 
 /**
-   eCos - Initialize a Select Queue Object for synchronisation between 
+   eCos - Initialize a Select Queue Object for synchronization between
    user and driver space via the select / poll mechanism.
 
 \attention
@@ -46,7 +46,7 @@
 \param
    pDrvSelectQueue   Points to a Driver Select Queue object.
 
-\return      
+\return
    IFX_SUCCESS if the initialization was successful, else
    IFX_ERROR in case of error.
 */
@@ -59,8 +59,8 @@ IFX_int32_t IFXOS_DrvSelectQueueInit(
 }
 
 /**
-   eCos - Wakeup all the task added from the Select Queue. 
-   This function is used from driver space to signal the occurance of an event 
+   eCos - Wakeup all the task added from the Select Queue.
+   This function is used from driver space to signal the occurrence of an event
    from driver space to one or several waiting user (poll / select mechanism).
 
 \attention
@@ -74,23 +74,18 @@ IFX_int32_t IFXOS_DrvSelectQueueInit(
    pDrvSelectQueue   Points to used Select Queue object.
 \param
    drvSelType        OS specific parameter.
-
-\return
-   None
 */
 IFX_void_t IFXOS_DrvSelectQueueWakeUp(
                IFXOS_drvSelectQueue_t  *pDrvSelectQueue,
                IFX_uint32_t            drvSelType)
 {
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pDrvSelectQueue, IFX_ERROR);
-
-   return;
 }
 
 /**
    eCos - Add an user task to a Select Queue.
    This function is used from user space to add a thread / task to a corresponding
-   Select Queue. The task will be waked up if the event occures or if
+   Select Queue. The task will be waked up if the event occurs or if
    the time expires.
 
 \attention

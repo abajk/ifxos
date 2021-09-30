@@ -18,8 +18,8 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
-   Syncronistation Event.
+   This file contains the IFXOS Layer implementation for LINUX Kernel
+   Synchronization Event.
 */
 
 /* ============================================================================
@@ -48,15 +48,15 @@
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 
 /**
-   LINUX Kernel - Create an Event Object for synchronisation.
+   LINUX Kernel - Create an Event Object for synchronization.
 
 \par Implementation
    - setup a LINUX wait queue (see "init_waitqueue_head").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -85,7 +85,7 @@ IFX_int_t IFXOS_EventInit(
    - nothing to do under LINUX.
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -101,7 +101,7 @@ IFX_int_t IFXOS_EventDelete(
          /*remove_wait_queue(&pEventId->object); fixme */
          pEventId->bValid         = IFX_FALSE;
          pEventId->bConditionFlag = 0;
-         
+
          return IFX_SUCCESS;
       }
    }
@@ -110,14 +110,14 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   LINUX Kernel - Wakeup a Event Object to signal the occurance of 
+   LINUX Kernel - Wakeup a Event Object to signal the occurrence of
    the "event" to the waiting processes.
 
 \par Implementation
    - signal a wakeup for the given wait queue (see "wake_up_interruptible").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS on success.
@@ -142,14 +142,14 @@ IFX_int_t IFXOS_EventWakeUp(
 }
 
 /**
-   LINUX Kernel - Wait for the occurance of an "event" with timeout.
+   LINUX Kernel - Wait for the occurrence of an "event" with timeout.
 
 \par Implementation
    - sleep on the given wait queue with timeout [ms] (see "interruptible_sleep_on_timeout").
    - timeout signaling currently not supported.
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 \param
@@ -174,7 +174,7 @@ IFX_int_t IFXOS_EventWait(
 #  if (LINUX_VERSION_CODE < KERNEL_VERSION(2,6,0))
          if (interruptible_sleep_on_timeout(&pEventId->object, (HZ * (waitTime_ms)) / 1000) == 0)
          {
-            if(pRetCode) 
+            if(pRetCode)
                *pRetCode = 1;
 
             pEventId->bConditionFlag = 0;
@@ -186,8 +186,8 @@ IFX_int_t IFXOS_EventWait(
 #  else
          int ret;
          ret = wait_event_interruptible_timeout(
-                     pEventId->object, 
-                     (pEventId->bConditionFlag == 1), 
+                     pEventId->object,
+                     (pEventId->bConditionFlag == 1),
                      ((HZ * (waitTime_ms)) / 1000));
          if (ret <= 0)
          {

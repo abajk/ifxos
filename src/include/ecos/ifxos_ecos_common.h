@@ -20,7 +20,7 @@
    IFX eCos adaptation
    ========================================================================= */
 
-/** \defgroup IFXOS_IF_ECOS Defines for eCos Adaptaion
+/** \defgroup IFXOS_IF_ECOS Defines for eCos Adaptation
 
    This Group contains the eCos specific definitions and function.
 
@@ -68,7 +68,7 @@
 #endif
 
 #define IFXOS_TICKS_PER_SECOND   100
-#define IFXOS_TICK_TO_MSEC(tick)	(((tick)*10)) 
+#define IFXOS_TICK_TO_MSEC(tick)	(((tick)*10))
 #define IFXOS_MSEC_TO_TICK(msec)	((msec)/10)
 
 /** @} */

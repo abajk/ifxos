@@ -80,7 +80,7 @@ IFX_void_t *IFXOS_CpyFromUser(
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
 
-   return ((IFX_void_t *)memcpy((void *)pTo, (const void *)pFrom, size_byte));
+   return (memcpy(pTo, pFrom, size_byte));
 }
 
 /**
@@ -116,7 +116,7 @@ IFX_void_t *IFXOS_CpyToUser(
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
 
-   return ((IFX_void_t *)memcpy((void *)pTo, (const void *)pFrom, size_byte));
+   return (memcpy(pTo, pFrom, size_byte));
 }
 
 /** @} */

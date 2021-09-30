@@ -58,7 +58,7 @@
 /** \addtogroup IFXOS_MUTEX_NUCLEUS
 @{ */
 
-/** Nucleus - MUTEX, type for synchronisation. */
+/** Nucleus - MUTEX, type for synchronization. */
 typedef struct
 {
    /** mutex identifier */

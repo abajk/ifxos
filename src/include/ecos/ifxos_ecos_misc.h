@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_ECOS_APPL Miscellaneous functions (eCos)
 
-   This Group contains the eCos "Miscellaneous" definitions and function. 
+   This Group contains the eCos "Miscellaneous" definitions and function.
 
 
 \ingroup IFXOS_LAYER_ECOS

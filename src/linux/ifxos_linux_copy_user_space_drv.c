@@ -1,13 +1,12 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
 
 /* ============================================================================
    Description : IFX OS adaptation, Linux Kernel copy form and to user
@@ -17,7 +16,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Data exchange between driver and application.
 */
 
@@ -29,7 +28,12 @@
 #ifdef MODULE
    #include <linux/module.h>
 #endif
+#include <linux/version.h>
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
 #include <asm/uaccess.h>
+#else
+#include <linux/uaccess.h>
+#endif
 
 #include "ifx_types.h"
 #include "ifxos_rt_if_check.h"
@@ -56,20 +60,20 @@
    size_byte   Block size to copy [byte].
 
 \return
-   IFX_NULL if an error occured, else pTo
+   IFX_NULL if an error occurred, else pTo
 */
 IFX_void_t *IFXOS_CpyFromUser(
-               IFX_void_t        *pTo, 
-               const IFX_void_t  *pFrom, 
+               IFX_void_t        *pTo,
+               const IFX_void_t  *pFrom,
                IFX_uint32_t      size_byte)
 {
    IFX_uint32_t remainBytes;
-   
+
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
- 
-   remainBytes = (IFX_uint32_t)copy_from_user( (void *)pTo, (const void *)pFrom,
+
+   remainBytes = (IFX_uint32_t)copy_from_user( pTo, pFrom,
       (unsigned long)size_byte);
 
    return (remainBytes) ? IFX_NULL : pTo;
@@ -89,20 +93,20 @@ IFX_void_t *IFXOS_CpyFromUser(
    size_byte   Block size to copy [byte]
 
 \return
-   IFX_NULL if an error occured, else pTo
+   IFX_NULL if an error occurred, else pTo
 */
 IFX_void_t *IFXOS_CpyToUser(
-               IFX_void_t *pTo, 
-               const IFX_void_t *pFrom, 
+               IFX_void_t *pTo,
+               const IFX_void_t *pFrom,
                IFX_uint32_t size_byte)
 {
    IFX_uint32_t remainBytes;
-   
+
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);
    IFXOS_RETURN_IF_POINTER_NULL(pFrom, IFX_NULL);
    IFXOS_RETURN_IF_ARG_LE_ZERO(size_byte, IFX_NULL);
 
-   remainBytes = (IFX_uint32_t)copy_to_user( (void *)pTo, (const void *)pFrom,
+   remainBytes = (IFX_uint32_t)copy_to_user( pTo, pFrom,
       (unsigned long)size_byte);
 
    return (remainBytes) ? IFX_NULL : pTo;

@@ -19,8 +19,8 @@
 
 /** \defgroup IFXOS_MEMORY_SUN_OS Memory Handling (Sun OS)
 
-   This Group contains the Sun OS memory allocation and mapping definitions and  
-   function. 
+   This Group contains the Sun OS memory allocation and mapping definitions and
+   function.
 
    Here we have to differ between:\n
    - memory handling on user space (application code).
@@ -51,7 +51,7 @@
    This Group contains the Sun OS Kernel Memory Allocation definitions.
 
    Within the kernel we differ between kmalloc and vmalloc.
-   The important difference between vmalloc and kmalloc is that kmalloc 
+   The important difference between vmalloc and kmalloc is that kmalloc
    returns a continious memory space (important for HW interfaces).
 
 \par Implementation - Standard memory allocation
@@ -67,7 +67,7 @@
 
 /** \defgroup IFXOS_DRV_CPY_USER_SPACE_SUN_OS Data Exchange, Driver and User Space (Sun OS Kernel).
 
-   This Group contains the Sun OS Kernel definitions for data exchange between 
+   This Group contains the Sun OS Kernel definitions for data exchange between
    driver and application.
 
 \par Implementation
@@ -82,7 +82,7 @@
 
 /** \defgroup IFXOS_DRV_CPY_USER_SPACE_SUN_OS_APPL Data Exchange, Driver and User Space.
 
-   This Group contains the Sun OS function definitions for data exchange between 
+   This Group contains the Sun OS function definitions for data exchange between
    driver and application.
 
 \par Implementation
@@ -97,11 +97,11 @@
 
 /** \defgroup IIFXOS_DRV_MEMORY_MAP_SUN_OS Physical to Virtual Address Mapping (Sun OS Kernel).
 
-   This Group contains the Sun OS Kernel definitions for Physical and 
+   This Group contains the Sun OS Kernel definitions for Physical and
    Virtual Address Mapping.
 
 \par Implementation
-   For Physical to Virtual Address Mapping the corresponding Sun OS Kernel functions 
+   For Physical to Virtual Address Mapping the corresponding Sun OS Kernel functions
    are used.
    For detail, please have a look the to Sun OS Implementation Doc.
 

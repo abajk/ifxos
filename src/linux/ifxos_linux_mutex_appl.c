@@ -16,7 +16,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application Space 
+   This file contains the IFXOS Layer implementation for LINUX Application Space
    Mutex.
 */
 
@@ -55,7 +55,7 @@
 
 \param
    mutexId   Pointer to the Mutex Object.
-   
+
 \return
    IFX_SUCCESS on success.
    IFX_ERROR   on error or timeout.
@@ -139,17 +139,17 @@ IFX_int32_t IFXOS_MutexRelease(
 
 /**
    eCos - Delete the Mutex Object.
-   
+
 \par Implementation
       - Delete the mutex --> UNLOCKED (see "cyg_mutex_destroy, cyg_mutex_release").
-      
+
 \param
    mutexId   Pointer to the Mutex Object.
-	 
+
 \return
    IFX_SUCCESS on success.
    IFX_ERROR on failure
-	       
+
 */
 IFX_int32_t IFXOS_MutexDelete(
                IFXOS_mutex_t *mutexId)

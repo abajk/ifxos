@@ -14,33 +14,33 @@
 #ifdef WIN32
 
 /** \file
-   This file contains Win32 definitions for Event Synchronisation and Signalisation.
+   This file contains Win32 definitions for Event Synchronization and Signalization.
 */
 
-/** \defgroup IFXOS_SYNC_WIN32 Synchronisation.
+/** \defgroup IFXOS_SYNC_WIN32 Synchronization.
 
-   This Group collect the Win32 synchronisation and signaling mechanism used within 
+   This Group collect the Win32 synchronization and signaling mechanism used within
    IFXOS.
 
-   The IFX OS differs between the synchronisation on processes level 
+   The IFX OS differs between the synchronization on processes level
    (threads / tasks) and between user and driver space.
 
-\par Task level Syncronisation
-   For synchronisation on task level a "Event feature" is provided.
+\par Task level Synchronization
+   For synchronization on task level a "Event feature" is provided.
 
 \note
    The intention of these signaling feature is to communicate between different
-   tasks within the driver space or within the applicaton space.
+   tasks within the driver space or within the application space.
 
-\par Application-Driver Syncronisation
-   Therefore the poll/select mechanism is prepared. 
+\par Application-Driver Synchronization
+   Therefore the poll/select mechanism is prepared.
 
 \ingroup IFXOS_LAYER_WIN32
 */
 
-/** \defgroup IFXOS_EVENT_WIN32 Event Synchronisation (Win32).
+/** \defgroup IFXOS_EVENT_WIN32 Event Synchronization (Win32).
 
-   This Group contains the VxWorks Event definitions and function for 
+   This Group contains the VxWorks Event definitions and function for
    communication of tasks.
 
 \par Implementation
@@ -59,7 +59,7 @@
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#include <windows.h>
+#include <Windows.h>
 
 /* ============================================================================
    IFX Win32 adaptation - supported features
@@ -76,7 +76,7 @@
 /** \addtogroup IFXOS_EVENT_WIN32
 @{ */
 
-/** Win32 - EVENT, type for synchronisation. */
+/** Win32 - EVENT, type for synchronization. */
 typedef struct
 {
    /** event object */

@@ -30,7 +30,7 @@
    _LITTLE_ENDIAN,  _BIG_ENDIAN, _BYTE_ORDER
 
 \attention
-   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used 
+   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used
    within some external header files.
 
 \ingroup IFXOS_INTERFACE

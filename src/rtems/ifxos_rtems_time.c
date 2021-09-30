@@ -58,7 +58,6 @@ IFX_void_t IFXOS_USecSleep(
                IFX_time_t sleepTime_us)
 {
    xtm_wkafter( sleepTime_us / 1000  );
-   return;
 }
 #endif
 
@@ -89,7 +88,6 @@ IFX_void_t IFXOS_MSecSleep(
                IFX_time_t sleepTime_ms)
 {
    xtm_wkafter(sleepTime_ms);
-   return;
 }
 #endif
 

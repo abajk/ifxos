@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_LINUX_APPL Terminal IO System (Linux User Space)
 
-   This Group contains the LINUX "Terminal IO System" definitions and function. 
+   This Group contains the LINUX "Terminal IO System" definitions and function.
 
 
 \ingroup IFXOS_LAYER_LINUX

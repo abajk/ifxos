@@ -275,10 +275,10 @@ IFX_int_t IFXOS_SocketSend(
 \return
    Returns the number of received bytes. Returns a negative value if an error
    occured
-*/ 
+*/
 IFX_int_t IFXOS_SocketSendTo(
-                  IFXOS_socket_t socFd, 
-                  IFX_char_t     *pBuffer, 
+                  IFXOS_socket_t socFd,
+                  IFX_char_t     *pBuffer,
                   IFX_int_t      bufSize_byte,
                   IFXOS_sockAddr_t  *pSocAddr)
 {
@@ -289,7 +289,7 @@ IFX_int_t IFXOS_SocketSendTo(
       Fill with your customer OS implementation - like
    ret = (IFX_int_t)sendto((SOCKET)socFd, (const char*)pBuffer, (int)bufSize_byte, 0, pSocAddr, sizeof(IFXOS_sockAddr_t));
    */
-   
+
    IFXOS_RETURN_IF_POINTER_NULL(pBuffer, IFX_ERROR);
    IFXOS_RETURN_IF_ARG_LE_ZERO(bufSize_byte, IFX_ERROR);
 
@@ -424,8 +424,6 @@ IFX_void_t IFXOS_SocketNtoa(
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocAddr, IFX_ERROR);
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pBuffer, IFX_ERROR);
-
-   return;
 }
 
 /**
@@ -440,7 +438,7 @@ IFX_void_t IFXOS_SocketNtoa(
    NONE
 */
 IFX_void_t IFXOS_SocFdSet(
-               IFXOS_socket_t    socFd, 
+               IFXOS_socket_t    socFd,
                IFXOS_socFd_set_t *pSocFdSet)
 {
    /*
@@ -450,8 +448,6 @@ IFX_void_t IFXOS_SocFdSet(
    */
 
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pSocFdSet, IFX_ERROR);
-
-   return;
 }
 
 /**
@@ -467,7 +463,7 @@ IFX_void_t IFXOS_SocFdSet(
    0 if the descriptor is not set.
 */
 IFX_int_t IFXOS_SocFdIsSet(
-               IFXOS_socket_t          socFd, 
+               IFXOS_socket_t          socFd,
                const IFXOS_socFd_set_t *pSocFdSet)
 {
    /*

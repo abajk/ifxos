@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_PIPES_NUCLEUS_APPL Pipes (Nucleus)
 
-   This Group contains the Nucleus Pipes definitions and function. 
+   This Group contains the Nucleus Pipes definitions and function.
 
 \attention
    For Nucleus - The "pipe" feature is currently not implemented yet!

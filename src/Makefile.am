@@ -13,7 +13,7 @@ endif
 
 endif
 
-lib_LIBRARIES = libifxos.a
+lib_LTLIBRARIES = libifxos.la
 
 AM_CPPFLAGS = \
 	-I@srcdir@\
@@ -31,6 +31,9 @@ lauterbach_cflags = -DLAUTERBACH_COMPILE -Wall -Wstrict-prototypes -Wno-trigraph
 	-fno-schedule-insns -fno-schedule-insns2 -fno-strict-aliasing -fno-common -DIFXOS_DEBUG
 # AM_CFLAGS += $(lauterbach_cflags)
 
+if ENABLE_LINUX
+AM_LDFLAGS = -Wl,--no-undefined
+endif
 
 else !HAVE_GCC
 
@@ -64,6 +67,8 @@ libifxos_additional_cflags+=\
 endif ENABLE_ECOS
 
 if ENABLE_LINUX
+
+libifxos_la_LIBADD = -lpthread -lrt
 
 libifxos_additional_cflags+=\
 	-DLINUX \
@@ -604,11 +609,11 @@ lib_ifxos_specific=\
 	$(lib_ifxos_ini_file_access_specific)
 endif
 
-libifxos_a_CFLAGS = \
+libifxos_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(libifxos_additional_cflags)
 
-libifxos_a_SOURCES = \
+libifxos_la_SOURCES = \
 	$(lib_ifxos_specific) \
 	$(lib_ifxos_common)\
 	$(lib_ifxos_extra_libraries)
@@ -639,6 +644,9 @@ drv_ifxos.ko$(EXEEXT): $(drv_ifxos_SOURCES)
 	@echo "obj-m := $(subst .ko,.o,$@)"			>> $(PWD)/Kbuild
 	@echo "$(subst .ko,,$@)-y := $(drv_ifxos_OBJS)"	>> $(PWD)/Kbuild
 	@echo "EXTRA_CFLAGS := -DHAVE_CONFIG_H $(drv_ifxos_CFLAGS) $(DSL_DRIVER_INCL_PATH) -I@abs_srcdir@/include -I$(PWD)/include"	>> $(PWD)/Kbuild
+
+#	Kernel Makefile exports LDFLAGS, which might pull-in wrong settings
+	LDFLAGS= \
 	$(MAKE) ARCH=@KERNEL_ARCH@ -C @KERNEL_BUILD_PATH@ O=@KERNEL_BUILD_PATH@ M=$(PWD) modules
 
 clean-local:

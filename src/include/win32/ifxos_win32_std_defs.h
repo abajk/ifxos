@@ -26,7 +26,8 @@ extern "C"
 #include <ctype.h>      /* isspace */
 #include <errno.h>      /* errno */
 
-#define strtok_r(a,b,c) strtok(a,b)
+/* Windows has not strtok_r, but strtok_s uses the same arguments */
+#define strtok_r(a,b,c) strtok_s(a,b,c)
 
 /* mapping for non-standard function declarations by Microsoft */
 #define snprintf _snprintf

@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_FILE_ACCESS_VXWORKS_APPL File Access (VxWorks)
 
-   This Group contains the VxWorks File Access definitions and function. 
+   This Group contains the VxWorks File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -31,7 +31,7 @@
 
 /** \defgroup IFXOS_MEM_FILE_VXWORKS Memory File (VxWorks)
 
-   This Group contains the VxWorks Memory File definitions and function. 
+   This Group contains the VxWorks Memory File definitions and function.
 
    The memory file feature provides the possibility to map a memory to a file.
    This allows to use the standard file operation on the memory block.
@@ -79,10 +79,10 @@
 #  define IFXOS_ADD_LOCAL_FMEMOPEN                 1
 #endif
 
-/** IFX VxWorks adaptation - User support "static memory file" 
+/** IFX VxWorks adaptation - User support "static memory file"
    No standard file system calls are required.
 
-\attention 
+\attention
    For private memory file support you have to use the corresponding
    IFXOS_FMemClose function.
 */
@@ -100,10 +100,10 @@
 /** VxWorks User - map to stdin */
 #define IFXOS_STDIN           stdin
 
-/** VxWorks User - Open  text  file  for  reading.  
+/** VxWorks User - Open  text  file  for  reading.
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ              "r"
-/** VxWorks User - Open  text  file  for  reading (binary).  
+/** VxWorks User - Open  text  file  for  reading (binary).
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ_BIN          "rb"
 
@@ -114,13 +114,13 @@
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_WRITE_BIN         "wb"
 
-/** VxWorks User - Open for appending (writing at end of file).  
-         The file  is  created  if it does not exist.  The stream is positioned 
+/** VxWorks User - Open for appending (writing at end of file).
+         The file  is  created  if it does not exist.  The stream is positioned
          at the end of the file. */
 #define IFXOS_OPEN_MODE_APPEND            "a"
-/** VxWorks User - Open for reading and appending (writing at end  of  file).   
-         The file is created if it does not exist.  The initial file position 
-         for reading is at the beginning  of  the  file,  but  output  is always 
+/** VxWorks User - Open for reading and appending (writing at end  of  file).
+         The file is created if it does not exist.  The initial file position
+         for reading is at the beginning  of  the  file,  but  output  is always
          appended to the end of the file */
 #define IFXOS_OPEN_MODE_READ_APPEND       "a+"
 

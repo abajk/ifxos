@@ -15,7 +15,7 @@
 
 /** \defgroup IFXOS_THREAD_ECOS Task  (eCos).
 
-   This Group contains the eCos Task definitions and function. 
+   This Group contains the eCos Task definitions and function.
 
 \ingroup IFXOS_LAYER_ECOS
 */
@@ -59,7 +59,7 @@
 #define IFXOS_THREAD_PRIO_HIGH                     10
 /** eCos Task - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  5
-/** eCos Task - priority - TIME_CRITICAL 
+/** eCos Task - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -105,7 +105,7 @@ typedef struct
    /** eCos specific for internal - keep the task eCos ID */
    IFXOS_thread_t          tid;
 
-   /** thread object */  
+   /** thread object */
    cyg_thread              threadObject;
 
    /** stack */
@@ -113,7 +113,7 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
 

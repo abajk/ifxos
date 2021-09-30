@@ -18,7 +18,7 @@
 
 /** \defgroup IFXOS_TIME_NUCLEUS Time and Wait (Nucleus).
 
-   This Group contains the Nucleus time and wait definitions. 
+   This Group contains the Nucleus time and wait definitions.
 
 \ingroup IFXOS_LAYER_NUCLEUS
 */
@@ -51,12 +51,12 @@
 #  define IFXOS_HAVE_TIME_SLEEP_SEC               1
 #endif
 
-/** IFX Nucleus adaptation - support "get elapesed time in ms" */
+/** IFX Nucleus adaptation - support "get elapsed time in ms" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #endif
 
-/** IFX Nucleus adaptation - support "get elapesed time in sec" */
+/** IFX Nucleus adaptation - support "get elapsed time in sec" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    1
 #endif

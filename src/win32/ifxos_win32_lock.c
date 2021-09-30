@@ -39,7 +39,7 @@
 #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) )
 /**
    Win32 - Initialize a Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \return
    IFX_SUCCESS if initialization was successful, else
@@ -109,9 +109,6 @@ IFX_int32_t IFXOS_LockDelete(
 
 \param
    lockId   Provides the pointer to the Lock Object.
-
-\return
-   None
 
 \remarks
    Cannot be used on interrupt level.

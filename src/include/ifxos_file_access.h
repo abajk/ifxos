@@ -17,7 +17,7 @@
 
 /** \defgroup IFXOS_IF_FILE_ACCESS File Access
 
-   This Group contains the File Access definitions and function. 
+   This Group contains the File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -94,7 +94,7 @@
 \param
    pName    - Points to the file name.
 \param
-   pMode    - Points to the open mode string. 
+   pMode    - Points to the open mode string.
               Open Mode for "read" / "write" (binary), append.
 
 \return
@@ -102,7 +102,7 @@
    No Success  - IFX_NULL
 */
 IFXOS_File_t *IFXOS_FOpen(
-                  const IFX_char_t *pName,  
+                  const IFX_char_t *pName,
                   const IFX_char_t *pMode);
 
 /**
@@ -138,9 +138,9 @@ IFX_int_t IFXOS_FClose(
    must use IFXOS_FEof and IFXOS_FError to determine which occurred.
 */
 IFX_size_t IFXOS_FRead(
-                  IFX_void_t     *pDataBuf, 
-                  IFX_size_t     elementSize_byte,  
-                  IFX_size_t     elementCount, 
+                  IFX_void_t     *pDataBuf,
+                  IFX_size_t     elementSize_byte,
+                  IFX_size_t     elementCount,
                   IFXOS_File_t   *stream);
 
 /**
@@ -159,9 +159,9 @@ IFX_size_t IFXOS_FRead(
    Number of written elements.
 */
 IFX_size_t IFXOS_FWrite(
-                  const IFX_void_t  *pDataBuf, 
-                  IFX_size_t        elementSize_byte,  
-                  IFX_size_t        elementCount, 
+                  const IFX_void_t  *pDataBuf,
+                  IFX_size_t        elementSize_byte,
+                  IFX_size_t        elementCount,
                   IFXOS_File_t      *stream);
 
 /**
@@ -203,14 +203,14 @@ IFX_int_t IFXOS_FEof(
    No Success  - neg. value (-1)
 */
 IFX_int_t IFXOS_Stat(
-                  IFX_char_t     *pName, 
+                  IFX_char_t     *pName,
                   IFXOS_stat_t   *pStatInfo);
 
 /**
   Read a file from the OS specific medium.
 
 \remarks
-  The required data buffer is allocated and it is in the responsibility of the 
+  The required data buffer is allocated and it is in the responsibility of the
   user to free the buffer in a later step.
 
 \param
@@ -225,8 +225,8 @@ IFX_int_t IFXOS_Stat(
    - IFX_ERROR in case of errors
 */
 IFX_return_t IFXOS_FileLoad (
-                  IFX_char_t const  *pName, 
-                  IFX_uint8_t       **ppDataBuf, 
+                  IFX_char_t const  *pName,
+                  IFX_uint8_t       **ppDataBuf,
                   IFX_size_t        *pBufSize_byte);
 
 /**
@@ -245,8 +245,8 @@ IFX_return_t IFXOS_FileLoad (
    - IFX_ERROR in case of errors
 */
 IFX_return_t IFXOS_FileWrite (
-                  IFX_char_t const  *pName, 
-                  IFX_uint8_t       *pDataBuf, 
+                  IFX_char_t const  *pName,
+                  IFX_uint8_t       *pDataBuf,
                   IFX_size_t        bufSize_byte);
 
 #endif      /* #if ( defined(IFXOS_HAVE_FILE_ACCESS) && (IFXOS_HAVE_FILE_ACCESS == 1) ) */
@@ -255,17 +255,17 @@ IFX_return_t IFXOS_FileWrite (
 #if ( defined(IFXOS_HAVE_MEMORY_FILE) && (IFXOS_HAVE_MEMORY_FILE == 1) )
 
 /**
-   Open a given memory buffer as stream (file). 
+   Open a given memory buffer as stream (file).
    - The size is limited to 32 kBytes.
-   - The intention is to have a buffer where we can use the standard file 
+   - The intention is to have a buffer where we can use the standard file
      (stream) operations like fprintf etc.
 
-\param 
+\param
    pMemBuf        - temporary buffer for fprintf operation.
-\param 
+\param
    bufSize_byte   - size of the memory buffer
-\param 
-   pMode          - Points to the open mode string. 
+\param
+   pMode          - Points to the open mode string.
                     Not used for mem files !
 
 \return
@@ -273,8 +273,8 @@ IFX_return_t IFXOS_FileWrite (
    - in case of error the return value is NULL
 */
 IFXOS_File_t *IFXOS_FMemOpen (
-                  IFX_char_t        *pMemBuf, 
-                  const IFX_uint_t  bufSize_byte, 
+                  IFX_char_t        *pMemBuf,
+                  const IFX_uint_t  bufSize_byte,
                   const IFX_char_t  *pMode);
 
 /**

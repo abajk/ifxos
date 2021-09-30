@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS Application 
+   This file contains the IFXOS Layer implementation for GENERIC_OS Application
    "Terminal IO System".
 */
 
@@ -38,7 +38,7 @@
 #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) )
 /**
    Disable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOff (void)
 {
    /*
@@ -46,26 +46,24 @@ IFX_void_t IFXOS_EchoOff (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 
 /**
    Enable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOn (void)
 {
    /*
       Customer-ToDo:
       Fill with your customer OS implementation
    */
-   return;
 }
 
 /**
    Enable the console line mode.
-   In this mode the input from the device is available only after receiving NEWLINE . 
+   In this mode the input from the device is available only after receiving NEWLINE .
    This allows to modify the command line until the Enter key is pressed.
-*/   
+*/
 IFX_void_t IFXOS_KeypressSet (void)
 {
    /*
@@ -73,13 +71,12 @@ IFX_void_t IFXOS_KeypressSet (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 
 /**
-   Disable the console line mode. 
+   Disable the console line mode.
    Plesae refer to \ref IFXOS_KeypressSet .
-*/   
+*/
 IFX_void_t IFXOS_KeypressReset (void)
 {
    /*
@@ -87,7 +84,6 @@ IFX_void_t IFXOS_KeypressReset (void)
       Fill with your customer OS implementation
    */
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) ) */
 

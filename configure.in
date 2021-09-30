@@ -2,15 +2,16 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(lib_ifxos, 1.6.9, www.lantiq.com)
+AC_INIT(lib_ifxos, 1.7.1, www.maxlinear.com)
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([-Wno-portability tar-pax])
+AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 AC_PROG_CC
-AC_PROG_RANLIB
 AM_PROG_CC_C_O
+LT_INIT
 
 # save the configure arguments
 CONFIGURE_OPTIONS="$ac_configure_args"

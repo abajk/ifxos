@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Time and Wait.
 */
 
@@ -44,13 +44,11 @@
    Use the Win32 scheduler to set the caller task into "sleep".
 
 \attention
-   The implementation will sleep mili seconds. u-seconds not supported.
+   The implementation will sleep milli seconds. u-seconds not supported.
 
 \param
    sleepTime_us   Time to sleep [us]
 
-\return
-   None.
 \remarks
    Available Application Space
 */
@@ -58,7 +56,6 @@ IFX_void_t IFXOS_USecSleep(
                IFX_time_t sleepTime_us)
 {
    Sleep(sleepTime_us);
-   return;
 }
 #endif
 
@@ -76,9 +73,6 @@ IFX_void_t IFXOS_USecSleep(
 \param
    sleepTime_ms   Time to sleep [ms]
 
-\return
-   None.
-
 \remarks
    sleepTime_ms = 0 force a rescheduling.
 
@@ -89,23 +83,19 @@ IFX_void_t IFXOS_MSecSleep(
                IFX_time_t sleepTime_ms)
 {
    Sleep(sleepTime_ms);
-   return;
 }
 #endif
 
 
 #if (defined(IFXOS_HAVE_TIME_SLEEP_SEC) && (IFXOS_HAVE_TIME_SLEEP_SEC == 1))
 /**
-   Win32 - Sleep a given time in [seconcds].
+   Win32 - Sleep a given time in [seconds].
 
 \par Implementation
    Use Sleep
 
 \param
    sleepTime_sec  Time to sleep [sec]
-
-\return
-   None.
 
 \remarks
    Available in Application Space
@@ -114,8 +104,6 @@ IFX_void_t IFXOS_SecSleep(
                IFX_time_t sleepTime_sec)
 {
    Sleep ((DWORD)sleepTime_sec * 1000);
-
-   return;
 }
 #endif
 
@@ -125,33 +113,31 @@ IFX_void_t IFXOS_SecSleep(
    Win32 - Get the elapsed time in [ms].
 
 \par Implementation
-   based on time - ms ?
+   Based on "GetTickCount64"
 
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
-   Provide refTime_ms = 0 to get the current elapsed time. For messurement provide
+   Provide refTime_ms = 0 to get the current elapsed time. For measurement provide
    the current time as reference.
 */
 IFX_time_t IFXOS_ElapsedTimeMSecGet(
                IFX_time_t refTime_ms)
 {
-   time_t nTime = 0;
-   
-   time(&nTime);
+   IFX_time_t time_ms;
 
-   nTime *= 1000;
+   time_ms = (IFX_time_t)GetTickCount64();
 
-   if ( (refTime_ms == 0) || ((IFX_int32_t)refTime_ms > nTime) )
+   if ( (refTime_ms == 0) || (refTime_ms > time_ms) )
    {
-      return (IFX_time_t)nTime;
+      return time_ms;
    }
 
-   return (IFX_time_t)(nTime - refTime_ms);
+   return (time_ms - refTime_ms);
 }
 #endif
 
@@ -160,13 +146,12 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
    Win32 - Get the elapsed time since startup in [seconds]
 
 \par Implementation
-   Based on the "tickGet" and  "sysClkRateGet" function we calculate the 
-   elapsed time since startup or based on the given ref-time.
+   Based on "GetTickCount64"
 
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark
@@ -178,16 +163,16 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
 IFX_time_t IFXOS_ElapsedTimeSecGet(
                IFX_time_t refTime_sec)
 {
-   time_t nTime = 0;
-   
-   time(&nTime);
+   IFX_time_t time_s;
 
-   if ( (refTime_sec == 0) || ((IFX_int32_t)refTime_sec > nTime) )
+   time_s = (IFX_time_t)(GetTickCount64() / 1000) ;
+
+   if ((refTime_sec == 0) || (refTime_sec > time_s))
    {
-      return (IFX_time_t)nTime;
+      return time_s;
    }
 
-   return (IFX_time_t)(nTime - refTime_sec);
+   return time_s - refTime_sec;
 }
 #endif
 

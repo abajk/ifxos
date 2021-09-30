@@ -12,7 +12,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implementation for Nucleus 
+   This file contains the IFXOS Layer implementation for Nucleus
    Mutex.
 */
 
@@ -67,7 +67,7 @@ IFX_int32_t IFXOS_MutexInit(
 \return
    IFX_SUCCESS on success.
    IFX_ERROR   on error.
-   
+
 \remarks
    Cannot be used on interrupt level.
 */

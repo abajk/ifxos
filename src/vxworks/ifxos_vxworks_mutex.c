@@ -12,7 +12,7 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains the IFXOS Layer implementation for VxWorks 
+   This file contains the IFXOS Layer implementation for VxWorks
    Mutex.
 */
 
@@ -98,11 +98,11 @@ IFX_int32_t IFXOS_MutexGet(
             case S_objLib_OBJ_ID_ERROR:
             printf("S_objLib_OBJ_ID_ERROR\n");
             break;
-            
+
             case S_objLib_OBJ_UNAVAILABLE:
             printf("S_objLib_OBJ_UNAVAILABLE\n");
             break;
-            
+
             default:
             break;
          }

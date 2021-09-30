@@ -19,11 +19,11 @@
 
 /** \defgroup IFXOS_PIPES_LINUX_APPL Pipes (Linux User Space)
 
-   This Group contains the LINUX Pipes definitions and function. 
+   This Group contains the LINUX Pipes definitions and function.
 
 \remarks
-   Because the pipe concept for other OS can be different the functions are 
-   splitted in more detail.
+   Because the pipe concept for other OS can be different the functions are
+   split in more detail.
 
 \ingroup IFXOS_LAYER_LINUX
 */

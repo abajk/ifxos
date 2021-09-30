@@ -72,7 +72,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 	IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
-	/* arg3 = 0: do not specifiy the protocol */
+	/* arg3 = 0: do not specify the protocol */
 	if((*pSocketFd = socket(AF_INET6, socType, soc_protocol)) == -1)
 		{return IFX_ERROR;}
 
@@ -100,7 +100,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 }
 
 /**
-   LINUX - Receives data from a datagramm socket.
+   LINUX - Receives data from a datagram socket.
 
 \par Implementation
    -  via "recv_from"
@@ -116,7 +116,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -159,7 +159,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -185,7 +185,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   LINUX Appl - Assignes a local address to a TCP/IPv6, UDP/IPv6 or raw socket.
+   LINUX Appl - Assigns a local address to a TCP/IPv6, UDP/IPv6 or raw socket.
 
 \par Implementation
    -  via "bind"

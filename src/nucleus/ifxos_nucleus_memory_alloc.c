@@ -12,7 +12,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus 
+   This file contains the IFXOS Layer implementation for Nucleus
    Memory Allocation.
 */
 
@@ -36,12 +36,12 @@ NU_MEMORY_POOL IFXOS_System_Memory;
    IFX Nucleus adaptation - memory handling, malloc
    ========================================================================= */
 
-/** \addtogroup IFXOS_MEM_ALLOC_NUCLEUS 
+/** \addtogroup IFXOS_MEM_ALLOC_NUCLEUS
 @{ */
 
 #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) )
 /**
-   Nucleus - Allocate a continious memory block of the given size [byte]
+   Nucleus - Allocate a continuous memory block of the given size [byte]
 
 \par Implementation
    - Allocates a memory block with the function "malloc"
@@ -63,7 +63,7 @@ IFX_void_t *IFXOS_BlockAlloc(
    if(memSize_byte)
    {
       sts = NU_Allocate_Memory(&IFXOS_System_Memory, &pMemBlock, memSize_byte, NU_NO_SUSPEND);
-      if (sts != NU_SUCCESS) 
+      if (sts != NU_SUCCESS)
       {
          return IFX_NULL;
       }
@@ -81,9 +81,6 @@ IFX_void_t *IFXOS_BlockAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock)
@@ -94,7 +91,6 @@ IFX_void_t IFXOS_BlockFree(
       IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
    }
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -120,7 +116,7 @@ IFX_void_t *IFXOS_MemAlloc(
    STATUS sts;
 
    sts = NU_Allocate_Memory(&IFXOS_System_Memory, &pMemBlock, memSize_byte, NU_NO_SUSPEND);
-   if (sts != NU_SUCCESS) 
+   if (sts != NU_SUCCESS)
    {
       return IFX_NULL;
    }
@@ -136,9 +132,6 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock)

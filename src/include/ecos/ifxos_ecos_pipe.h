@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_PIPES_ECOS_APPL Pipes (eCos)
 
-   This Group contains the eCos Pipes definitions and function. 
+   This Group contains the eCos Pipes definitions and function.
 
 \attention
    For eCos - The "pipe" feature is currently not implemented yet!

@@ -14,33 +14,33 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains VxWorks definitions for Event Synchronisation and Signalisation.
+   This file contains VxWorks definitions for Event Synchronization and Signalization.
 */
 
-/** \defgroup IFXOS_SYNC_VXWORKS Synchronisation.
+/** \defgroup IFXOS_SYNC_VXWORKS Synchronization.
 
-   This Group collect the VxWorks synchronisation and signaling mechanism used within 
+   This Group collect the VxWorks synchronization and signaling mechanism used within
    IFXOS.
 
-   The IFX OS differs between the synchronisation on processes level 
+   The IFX OS differs between the synchronization on processes level
    (threads / tasks) and between user and driver space.
 
-\par Task level Syncronisation
-   For synchronisation on task level a "Event feature" is provided.
+\par Task level Synchronization
+   For synchronization on task level a "Event feature" is provided.
 
 \note
    The intention of these signaling feature is to communicate between different
-   tasks within the driver space or within the applicaton space.
+   tasks within the driver space or within the application space.
 
-\par Application-Driver Syncronisation
-   Therefore the poll/select mechanism is prepared. 
+\par Application-Driver Synchronization
+   Therefore the poll/select mechanism is prepared.
 
 \ingroup IFXOS_LAYER_VXWORKS
 */
 
-/** \defgroup IFXOS_EVENT_VXWORKS Event Synchronisation (VxWorks).
+/** \defgroup IFXOS_EVENT_VXWORKS Event Synchronization (VxWorks).
 
-   This Group contains the VxWorks Event definitions and function for 
+   This Group contains the VxWorks Event definitions and function for
    communication of tasks.
 
 \par Implementation
@@ -75,14 +75,14 @@
 /** \addtogroup IFXOS_EVENT_VXWORKS
 @{ */
 
-/** Vxworks - EVENT, type for synchronisation. */
+/** Vxworks - EVENT, type for synchronization. */
 typedef struct
 {
    /** event object */
    SEM_ID object;
    /** valid flag */
    IFX_boolean_t bValid;
-} IFXOS_event_t; 
+} IFXOS_event_t;
 
 /** @} */
 

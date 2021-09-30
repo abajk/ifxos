@@ -17,7 +17,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Mutex.
 */
 

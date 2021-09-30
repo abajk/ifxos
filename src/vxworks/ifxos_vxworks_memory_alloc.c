@@ -12,7 +12,7 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains the IFXOS Layer implementation for VxWorks 
+   This file contains the IFXOS Layer implementation for VxWorks
    Memory Allocation.
 */
 
@@ -32,12 +32,12 @@
    IFX VxWorks adaptation - memory handling, malloc
    ========================================================================= */
 
-/** \addtogroup IFXOS_MEM_ALLOC_VXWORKS 
+/** \addtogroup IFXOS_MEM_ALLOC_VXWORKS
 @{ */
 
 #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) )
 /**
-   VxWorks - Allocate a continious memory block of the given size [byte]
+   VxWorks - Allocate a continuous memory block of the given size [byte]
 
 \par Implementation
    - Allocates a memory block with the function "malloc"
@@ -56,7 +56,7 @@ IFX_void_t *IFXOS_BlockAlloc(
    IFX_void_t *pMemBlock = IFX_NULL;
 
    if(memSize_byte)
-      pMemBlock = (IFX_void_t *)malloc((size_t)memSize_byte);
+      pMemBlock = malloc((size_t)memSize_byte);
 
    return (pMemBlock);
 }
@@ -69,19 +69,15 @@ IFX_void_t *IFXOS_BlockAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_BlockFree(
                IFX_void_t *pMemBlock)
 {
    if (pMemBlock)
    {
-      free((void*)pMemBlock);
+      free(pMemBlock);
    }
 
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -105,7 +101,7 @@ IFX_void_t *IFXOS_MemAlloc(
 {
    IFX_void_t *pMemBlock = IFX_NULL;
 
-   pMemBlock = (IFX_void_t*)malloc((size_t)memSize_byte);
+   pMemBlock = malloc((size_t)memSize_byte);
    IFXOS_SYS_MEM_ALLOC_COUNT_INC(IFX_NULL);
 
    return (pMemBlock);
@@ -119,20 +115,16 @@ IFX_void_t *IFXOS_MemAlloc(
 
 \param
    pMemBlock   Points to the memory block to free.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_MemFree(
                IFX_void_t *pMemBlock)
 {
    if (pMemBlock)
    {
-      free((void*)pMemBlock);
+      free(pMemBlock);
       IFXOS_SYS_MEM_FREE_COUNT_INC(IFX_NULL);
    }
 
-   return;
 }
 
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */

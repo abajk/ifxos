@@ -16,7 +16,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Application 
+   This file contains the IFXOS Layer implementation for LINUX Application
    "Terminal IO System".
 */
 
@@ -53,7 +53,7 @@
 
 /**
    Disable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOff (void)
 {
    struct termios settings;
@@ -65,7 +65,7 @@ IFX_void_t IFXOS_EchoOff (void)
 
 /**
    Enable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOn (void)
 {
    struct termios settings;
@@ -77,9 +77,9 @@ IFX_void_t IFXOS_EchoOn (void)
 
 /**
    Enable the console line mode.
-   In this mode the input from the device is available only after receiving NEWLINE . 
+   In this mode the input from the device is available only after receiving NEWLINE .
    This allows to modify the command line until the Enter key is pressed.
-*/   
+*/
 IFX_void_t IFXOS_KeypressSet (void)
 {
    struct termios settings;
@@ -93,9 +93,9 @@ IFX_void_t IFXOS_KeypressSet (void)
 }
 
 /**
-   Disable the console line mode. 
-   Plesae refer to \ref IFXOS_KeypressSet .
-*/   
+   Disable the console line mode.
+   Please refer to \ref IFXOS_KeypressSet .
+*/
 IFX_void_t IFXOS_KeypressReset (void)
 {
    struct termios settings;

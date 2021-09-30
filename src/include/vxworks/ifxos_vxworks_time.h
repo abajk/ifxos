@@ -18,7 +18,7 @@
 
 /** \defgroup IFXOS_TIME_VXWORKS Time and Wait (VxWorks).
 
-   This Group contains the VxWorks time and wait definitions. 
+   This Group contains the VxWorks time and wait definitions.
 
 \ingroup IFXOS_LAYER_VXWORKS
 */
@@ -51,17 +51,17 @@
 #  define IFXOS_HAVE_TIME_SLEEP_SEC               1
 #endif
 
-/** IFX VxWorks adaptation - support "get elapesed time in us" */
+/** IFX VxWorks adaptation - support "get elapsed time in us" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_US
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_US     1
 #endif
 
-/** IFX VxWorks adaptation - support "get elapesed time in ms" */
+/** IFX VxWorks adaptation - support "get elapsed time in ms" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #endif
 
-/** IFX VxWorks adaptation - support "get elapesed time in sec" */
+/** IFX VxWorks adaptation - support "get elapsed time in sec" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    1
 #endif

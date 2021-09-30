@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS 
+   This file contains the IFXOS Layer implementation for GENERIC_OS
    Lock and Protection.
 */
 
@@ -51,7 +51,7 @@
 \param
    lockId   Provides the pointer to the Lock Object.
 
-\return      
+\return
    IFX_SUCCESS if initialization was successful, else
    IFX_ERROR if something was wrong
 */
@@ -145,7 +145,7 @@ IFX_int32_t IFXOS_LockGet(
    IFXOS_SYSOBJECT_SET_OWNER_THR_INFO(lockId->pSysObject);
    IFXOS_SYS_LOCK_GET_COUNT_INC(lockId->pSysObject);
 
-   /* increment the counter in case of error 
+   /* increment the counter in case of error
    IFXOS_SYS_LOCK_GET_FAILED_COUNT_INC(lockId->pSysObject);
    */
 
@@ -191,7 +191,7 @@ IFX_int32_t IFXOS_LockRelease(
    The lock is based on binary semaphores, recursive calls are not allowded.
 
 \remark
-   The name will be set within the internal lock object. 
+   The name will be set within the internal lock object.
    Currently used for debugging.
 
 \param
@@ -201,7 +201,7 @@ IFX_int32_t IFXOS_LockRelease(
 \param
    lockIdx     additional index which is used to generate the lock name
 
-\return      
+\return
    IFX_SUCCESS if initialization was successful, else
    IFX_ERROR if something was wrong
 */
@@ -214,8 +214,8 @@ IFX_int32_t IFXOS_NamedLockInit(
 
    retVal = IFXOS_LockInit(lockId);
 
-   IFXOS_SYS_OBJECT_USER_DESRC_SET( lockId->pSysObject, 
-                                    (pLockName) ? pLockName : "lock", 
+   IFXOS_SYS_OBJECT_USER_DESRC_SET( lockId->pSysObject,
+                                    (pLockName) ? pLockName : "lock",
                                     lockIdx);
 
    return retVal;
@@ -274,14 +274,14 @@ IFX_int32_t IFXOS_LockTimedGet(
    IFXOS_SYSOBJECT_SET_OWNER_THR_INFO(lockId->pSysObject);
    IFXOS_SYS_LOCK_GET_COUNT_INC(lockId->pSysObject);
 
-   /* increment the counter in case of error 
+   /* increment the counter in case of error
    IFXOS_SYS_LOCK_GET_FAILED_COUNT_INC(lockId->pSysObject);
    IFXOS_SYS_LOCK_GET_TOUT_COUNT_INC(lockId->pSysObject);
    */
 
 
    /*
-      - in case of timeout, signal the timeout via the *pRetCode 
+      - in case of timeout, signal the timeout via the *pRetCode
         (if the variable is given).
    */
 

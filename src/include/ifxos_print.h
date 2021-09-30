@@ -27,16 +27,16 @@
 
 \par VXWORKS Printouts
    Under VxWorks the printout on interrupt and user level has to be done via
-   different functions. But there is no difference between the printouts from 
+   different functions. But there is no difference between the printouts from
    user or driver space
 
 \par Linux Printouts
-   Under Linux the printout from driver code (kernel space) is different form 
+   Under Linux the printout from driver code (kernel space) is different form
    printouts on user space (application). But there is no difference between
    printouts on user or interrupt level.
 
 \par Linux Kernel Printouts
-   For enable kernel printouts on the console you have to make sure that the 
+   For enable kernel printouts on the console you have to make sure that the
    printout is enabled on system level. For enable use the following command:
    # echo 8 > /proc/sys/kernel/printk
 
@@ -143,9 +143,6 @@ extern IFXOS_File_t *pIFXOS_ErrPrintStream;
 
 \param
    fctExtDbg   - function pointer to the user debug function
-
-\return      
-   NONE
 */
 IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg);
 #endif
@@ -156,9 +153,6 @@ IFX_void_t IFXOS_PrintDbgFctSet(IFXOS_FCT_DbgPrintf fctExtDbg);
 
 \param
    fctExtErr   - function pointer to the user debug function
-
-\return      
-   NONE
 */
 IFX_void_t IFXOS_PrintErrFctSet(IFXOS_FCT_ErrPrintf fctExtErr);
 #endif

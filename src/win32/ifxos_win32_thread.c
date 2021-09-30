@@ -60,8 +60,37 @@
 
 #if ( defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1) )
 
+/*
+ * The following function was taken from this page:
+ * https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-set-a-thread-name-in-native-code
+ * and a minimal cleanup done.
+ */
+const DWORD MS_VC_EXCEPTION = 0x406D1388;
+#pragma pack(push,8)
+typedef struct tagTHREADNAME_INFO
+{
+   DWORD dwType; /* Must be 0x1000. */
+   LPCSTR szName; /* Pointer to name (in user addr space). */
+   DWORD dwThreadID; /* Thread ID (-1=caller thread). */
+   DWORD dwFlags; /* Reserved for future use, must be zero. */
+} THREADNAME_INFO;
+#pragma pack(pop)
+static void SetThreadName(DWORD dwThreadID, const char* threadName) {
+   THREADNAME_INFO info;
+   info.dwType = 0x1000;
+   info.szName = threadName;
+   info.dwThreadID = dwThreadID;
+   info.dwFlags = 0;
+   __try {
+      RaiseException(MS_VC_EXCEPTION, 0,
+         sizeof(info) / sizeof(ULONG_PTR), (ULONG_PTR*)&info);
+   }
+   __except (EXCEPTION_EXECUTE_HANDLER) {
+   }
+}
+
 IFXOS_STATIC unsigned int WINAPI IFXOS_ThreadStartup(
-                              void *pThrParams);
+                              void *pThrControl);
 /**
    Win32 - Thread stub function. The stub function will be called
    before calling the user defined thread routine. This gives
@@ -72,7 +101,7 @@ IFXOS_STATIC unsigned int WINAPI IFXOS_ThreadStartup(
    are set and after this the user thread routine will be entered.
 
 \param
-   pThrCntrl Thread information data
+   pThrControl Thread information data
 
 \return
    - IFX_SUCCESS on success
@@ -89,6 +118,7 @@ IFXOS_STATIC unsigned int WINAPI IFXOS_ThreadStartup(
       return retVal;
    }
 
+   SetThreadName((DWORD)-1, pThrCntrl->thrParams.pName);
    IFXOS_ThreadPriorityModify(pThrCntrl->nPriority);
 
    pThrCntrl->thrParams.bRunning = IFX_TRUE;
@@ -187,11 +217,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -205,11 +232,11 @@ IFX_int32_t IFXOS_ThreadInit(
 /**
    Win32 - Shutdown and terminate a given thread.
    Therefore the thread delete functions triggers the user thread function
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
 \par Implementation
    - force a shutdown via the shutdown flag and wait for task end with timeout.
-   - kill in case of no shutdown responce.
+   - kill in case of no shutdown response.
    - free previous allocated internal data.
 
 \param
@@ -260,7 +287,7 @@ IFX_int32_t IFXOS_ThreadDelete(
          if (pThrCntrl->thrParams.bRunning == IFX_TRUE)
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown responce" IFXOS_CRLF,
+               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown response" IFXOS_CRLF,
                  pThrCntrl->thrParams.pName, pThrCntrl->tid));
 
             if (!(CloseHandle((HANDLE)pThrCntrl->tid)))
@@ -289,11 +316,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {
@@ -373,7 +397,7 @@ IFX_int32_t IFXOS_ThreadShutdown(
          }
 
          IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Thread Shutdown <%s> - no responce" IFXOS_CRLF,
+            ("IFXOS ERROR - Thread Shutdown <%s> - no response" IFXOS_CRLF,
               pThrCntrl->thrParams.pName));
       }
       else

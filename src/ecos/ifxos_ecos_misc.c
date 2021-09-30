@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos Application 
+   This file contains the IFXOS Layer implementation for eCos Application
    "Miscellaneous functions".
 */
 
@@ -37,11 +37,10 @@
 
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void)
 {
    HAL_PLATFORM_RESET();
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

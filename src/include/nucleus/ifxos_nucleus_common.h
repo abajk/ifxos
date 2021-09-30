@@ -20,7 +20,7 @@
    IFX Nucleus adaptation
    ========================================================================= */
 
-/** \defgroup IFXOS_IF_NUCLEUS Defines for Nucleus Adaptaion
+/** \defgroup IFXOS_IF_NUCLEUS Defines for Nucleus Adaptation
 
    This Group contains the Nucleus specific definitions and function.
 
@@ -30,7 +30,7 @@
    _LITTLE_ENDIAN,  _BIG_ENDIAN, _BYTE_ORDER
 
 \attention
-   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used 
+   The "__LITTLE_ENDIAN", "__BIG_ENDIAN" and "__BYTE_ORDER" are currently used
    within some external header files.
 
 \ingroup IFXOS_INTERFACE
@@ -76,7 +76,7 @@
 #  define __LITTLE_ENDIAN _LITTLE_ENDIAN
 #else
 #  if (__LITTLE_ENDIAN != _LITTLE_ENDIAN)
-#     error "macro define __LITTLE_ENDIAN missmatch"
+#     error "macro define __LITTLE_ENDIAN mismatch"
 #  endif
 #endif
 
@@ -84,7 +84,7 @@
 #  define __BIG_ENDIAN    _BIG_ENDIAN
 #else
 #  if (__BIG_ENDIAN != _BIG_ENDIAN)
-#     error "macro define __BIG_ENDIAN missmatch"
+#     error "macro define __BIG_ENDIAN mismatch"
 #  endif
 #endif
 
@@ -111,7 +111,7 @@
 #endif
 
 #define IFXOS_TICKS_PER_SECOND   10
-#define IFXOS_TICK_TO_MSEC(tick)	(((tick)*100)) 
+#define IFXOS_TICK_TO_MSEC(tick)	(((tick)*100))
 #define IFXOS_MSEC_TO_TICK(msec)	((msec)/100)
 
 /** @} */

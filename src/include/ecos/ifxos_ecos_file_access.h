@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_FILE_ACCESS_ECOS_APPL File Access (eCos)
 
-   This Group contains the eCos File Access definitions and function. 
+   This Group contains the eCos File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -31,7 +31,7 @@
 
 /** \defgroup IFXOS_MEM_FILE_ECOS Memory File (eCos)
 
-   This Group contains the eCos Memory File definitions and function. 
+   This Group contains the eCos Memory File definitions and function.
 
    The memory file feature provides the possibility to map a memory to a file.
    This allows to use the standard file operation on the memory block.
@@ -102,10 +102,10 @@
 #  define IFXOS_ADD_LOCAL_FMEMOPEN                 0
 #endif
 
-/** IFX eCos adaptation - User support "static memory file" 
+/** IFX eCos adaptation - User support "static memory file"
    No standard file system calls are required.
 
-\attention 
+\attention
    For private memory file support you have to use the corresponding
    IFXOS_FMemClose function.
 */
@@ -119,10 +119,10 @@
 #if ( defined(IFXOS_HAVE_FILE_ACCESS) && (IFXOS_HAVE_FILE_ACCESS == 1) )
 
 
-/** eCos User - Open  text  file  for  reading.  
+/** eCos User - Open  text  file  for  reading.
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ              "r"
-/** eCos User - Open  text  file  for  reading (binary).  
+/** eCos User - Open  text  file  for  reading (binary).
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ_BIN          "rb"
 
@@ -133,13 +133,13 @@
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_WRITE_BIN         "wb"
 
-/** eCos User - Open for appending (writing at end of file).  
-         The file  is  created  if it does not exist.  The stream is positioned 
+/** eCos User - Open for appending (writing at end of file).
+         The file  is  created  if it does not exist.  The stream is positioned
          at the end of the file. */
 #define IFXOS_OPEN_MODE_APPEND            "a"
-/** eCos User - Open for reading and appending (writing at end  of  file).   
-         The file is created if it does not exist.  The initial file position 
-         for reading is at the beginning  of  the  file,  but  output  is always 
+/** eCos User - Open for reading and appending (writing at end  of  file).
+         The file is created if it does not exist.  The initial file position
+         for reading is at the beginning  of  the  file,  but  output  is always
          appended to the end of the file */
 #define IFXOS_OPEN_MODE_READ_APPEND       "a+"
 

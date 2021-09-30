@@ -15,7 +15,7 @@
 
 /** \defgroup IFXOS_THREAD_VXWORKS Task  (VxWorks).
 
-   This Group contains the VxWorks Task definitions and function. 
+   This Group contains the VxWorks Task definitions and function.
 
 \ingroup IFXOS_LAYER_VXWORKS
 */
@@ -63,7 +63,7 @@
 #define IFXOS_THREAD_PRIO_HIGH                     55
 /** VxWorks Task - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  10
-/** VxWorks Task - priority - TIME_CRITICAL 
+/** VxWorks Task - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -116,7 +116,7 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
 

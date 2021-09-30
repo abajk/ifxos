@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_THREAD_LINUX Thread  (Linux).
 
-   This Group contains the LINUX Thread definitions and function. 
+   This Group contains the LINUX Thread definitions and function.
 
    Here we have to differ between:\n
    - user threads on user space (application code).
@@ -30,7 +30,7 @@
 
 /** \defgroup IFXOS_THREAD_LINUX_APPL Thread (Linux User Space).
 
-   This group contains the LINUX Application Thread Definitions and Function. 
+   This group contains the LINUX Application Thread Definitions and Function.
 
 \ingroup IFXOS_THREAD_LINUX
 */
@@ -38,7 +38,7 @@
 
 /** \defgroup IFXOS_THREAD_LINUX_DRV Thread (Linux Kernel).
 
-   This Group contains the LINUX Kernel Thread definitions and function. 
+   This Group contains the LINUX Kernel Thread definitions and function.
 
 \ingroup IFXOS_THREAD_LINUX
 */
@@ -57,7 +57,7 @@
 #include <linux/completion.h>
 #include <linux/version.h>
 #else
-
+#include <semaphore.h>
 #endif
 
 /* ============================================================================
@@ -104,7 +104,7 @@
 #define IFXOS_THREAD_PRIO_HIGH                     60
 /** LINUX Kernel Thread - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  80
-/** LINUX Kernel Thread - priority - TIME_CRITICAL 
+/** LINUX Kernel Thread - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -160,7 +160,7 @@ typedef struct
 #endif
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** LINUX specific internal data - completion handling */
    struct completion       thrCompletion;
 
@@ -184,7 +184,6 @@ typedef struct
 /** set if a option is not used for this OS adaptation */
 #define IFXOS_THREAD_OPTION_NOT_USED_FOR_LINUX     0
 
-#if 0
 /** LINUX Kernel Thread - priority - IDLE */
 #define IFXOS_THREAD_PRIO_IDLE                     1
 /** LINUX User Thread - priority - LOWEST */
@@ -197,7 +196,6 @@ typedef struct
 #define IFXOS_THREAD_PRIO_HIGH                     60
 /** LINUX User Thread - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  80
-#endif
 
 /** LINUX User Thread - internal poll time for check thread end */
 #define IFXOS_THREAD_DOWN_WAIT_POLL_MS             10
@@ -240,9 +238,12 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
+
+   /** locking between root thread and new thread */
+   sem_t                   thread_active;
 
 } IFXOS_ThreadCtrl_t;
 

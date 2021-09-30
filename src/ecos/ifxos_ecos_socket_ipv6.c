@@ -72,7 +72,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 #	if (IFXOS_ECOS_IPV6_TODO == 0)
 	IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
-	/* arg3 = 0: do not specifiy the protocol */
+	/* arg3 = 0: do not specify the protocol */
 	if((*pSocketFd = socket(AF_INET6, socType, 0)) == -1)
 		{return IFX_ERROR;}
 
@@ -88,7 +88,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 }
 
 /**
-   eCos - Receives data from a datagramm socket.
+   eCos - Receives data from a datagram socket.
 
 \par Implementation
    -  via "recv_from"
@@ -104,7 +104,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -157,7 +157,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -188,7 +188,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   eCos - Assignes a local address to a TCP/IP, UDP/IP or raw socket.
+   eCos - Assigns a local address to a TCP/IP, UDP/IP or raw socket.
 
 \par Implementation
    -  via "bind"

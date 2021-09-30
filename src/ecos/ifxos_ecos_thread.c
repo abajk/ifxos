@@ -90,8 +90,6 @@ IFXOS_STATIC void IFXOS_ThreadStartup(cyg_addrword_t data)
    pThrCntrl->thrParams.bRunning = IFX_FALSE;
 
    cyg_thread_exit();
-
-   return;
 }
 
 /**
@@ -185,11 +183,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -214,11 +209,11 @@ IFXOS_THREADCREATE_ERROR:
 /**
    eCos - Shutdown and terminate a given thread.
    Therefore the thread delete functions triggers the user thread function
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
 \par Implementation
    - force a shutdown via the shutdown flag and wait for task end with timeout.
-   - kill in case of no shutdown responce.
+   - kill in case of no shutdown response.
    - free previous allocated internal data.
 
 \param
@@ -269,7 +264,7 @@ IFX_int32_t IFXOS_ThreadDelete(
          if (pThrCntrl->thrParams.bRunning == 1)
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_WRN,
-               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown responce" IFXOS_CRLF,
+               ("IFXOS WRN - Thread Delete <%s> TID %d - kill, no shutdown response" IFXOS_CRLF,
                  pThrCntrl->thrParams.pName, pThrCntrl->tid));
          }
 
@@ -298,11 +293,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {
@@ -326,13 +318,13 @@ IFX_int32_t IFXOS_ThreadDelete(
 
 \attention
    Under eCos: if a thread ends by itself this will correspond to the
-   cyg_thread_exit() api call. But independant of this the thread is still
+   cyg_thread_exit() api call. But independent of this the thread is still
    registered within the eCos scheduler.
    So it is part of the user to keep the thread object valid.
    To remove the thread also from the scheduler you have to call the
    cyg_thread_delete() function.
    The IFXOS shutdown and delete function will behave on this way (a thread is
-   also removed from the scheduler to get the same behaviour like other OS.
+   also removed from the scheduler to get the same behavior like other OS.
 
 
 \param
@@ -382,7 +374,7 @@ IFX_int32_t IFXOS_ThreadShutdown(
          if (pThrCntrl->thrParams.bRunning != 0)
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-               ("IFXOS ERROR - Thread Shutdown <%s> - no responce" IFXOS_CRLF,
+               ("IFXOS ERROR - Thread Shutdown <%s> - no response" IFXOS_CRLF,
                  pThrCntrl->thrParams.pName));
 
             return IFX_ERROR;
@@ -418,11 +410,8 @@ IFX_int32_t IFXOS_ThreadShutdown(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Thread Shutdown, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - Thread Shutdown, invalid object" IFXOS_CRLF));
    }
    else
    {

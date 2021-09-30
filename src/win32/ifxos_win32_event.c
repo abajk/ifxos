@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Event Handling.
 */
 /* ============================================================================
@@ -37,7 +37,7 @@
 #if ( defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1) )
 
 /**
-   Win32 - Initialize a Event Object for synchronisation.
+   Win32 - Initialize a Event Object for synchronization.
 
 \par Implementation
    - the binary semaphore is created (see "semBCreate").
@@ -45,9 +45,9 @@
    - the queuing is FIFO based
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -58,12 +58,12 @@ IFX_int_t IFXOS_EventInit(
    {
       if (IFXOS_EVENT_INIT_VALID(pEventId) == IFX_FALSE)
       {
-         pEventId->object = CreateSemaphore( 
+         pEventId->object = CreateSemaphore(
                                     NULL,    /* no security attributes */
                                     0,       /* initial count - not signaled */
                                     1,       /* maximum count */
                                     NULL /* pName */);  /* named semaphore */
-   
+
          if(pEventId->object != NULL)
          {
             pEventId->bValid = IFX_TRUE;
@@ -93,7 +93,7 @@ IFX_int_t IFXOS_EventInit(
    - delete the semaphore object (see "semDelete").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS if delete was successful, else
@@ -107,7 +107,7 @@ IFX_int_t IFXOS_EventDelete(
       if (IFXOS_EVENT_INIT_VALID(pEventId) == IFX_TRUE)
       {
          pEventId->bValid = IFX_FALSE;
-         if (!(CloseHandle((HANDLE)pEventId->object)))
+         if (!(CloseHandle(pEventId->object)))
          {
             IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
                ("IFXOS ERROR - EventDelete, close handle!" IFXOS_CRLF));
@@ -133,14 +133,14 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   Win32 - Wakeup a Event Object to signal the occurance of the "event" to 
+   Win32 - Wakeup a Event Object to signal the occurrence of the "event" to
    the waiting processes.
 
 \par Implementation
    - Give the semaphore to signal the event (see "ReleaseSemaphore").
 
 \param
-   pEventId    Prointer to the Event Object.
+   pEventId    Pointer to the Event Object.
 
 \return
    IFX_SUCCESS on success.
@@ -160,11 +160,8 @@ IFX_int_t IFXOS_EventWakeUp(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - EventWakeUp, object not valid!" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - EventWakeUp, object not valid!" IFXOS_CRLF));
    }
    else
    {
@@ -176,13 +173,13 @@ IFX_int_t IFXOS_EventWakeUp(
 }
 
 /**
-   Win32 - Wait for the occurance of an "event" with timeout.
+   Win32 - Wait for the occurrence of an "event" with timeout.
 
 \par Implementation
    - Take the semaphore with timeout [ms] for wait for the event (see "WaitForSingleObject").
 
 \param
-   pEventId       Prointer to the Event Object.
+   pEventId       Pointer to the Event Object.
 \param
    waitTime_ms    Max time to wait [ms].
 \param
@@ -232,12 +229,12 @@ IFX_int32_t IFXOS_EventWait(
                   /* Blocking call */
                   DWORD retVal;
                   retVal = WaitForSingleObject(pEventId->object, waitTime_ms);
-                  switch (retVal ) 
-                  { 
-                     case WAIT_OBJECT_0: 
+                  switch (retVal )
+                  {
+                     case WAIT_OBJECT_0:
                         return IFX_SUCCESS;
 
-                     case WAIT_TIMEOUT: 
+                     case WAIT_TIMEOUT:
                         if (pRetCode)
                         {
                            *pRetCode = 1;
@@ -245,7 +242,7 @@ IFX_int32_t IFXOS_EventWait(
                         break;
 
                      default:
-                        IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR, 
+                        IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
                            ("IFXOS ERROR - EventWait - unexpected ret-code 0x%X" IFXOS_CRLF,
                            (IFX_uint32_t)retVal));
                         break;

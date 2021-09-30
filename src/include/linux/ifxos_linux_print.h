@@ -42,9 +42,9 @@
    This Group contains the LINUX Kernel Printout definitions.
 
 \par Implementation
-   Printout from kernel space is done via the printk funciton
+   Printout from kernel space is done via the printk function
 
-   For enable kernel printouts on the console you have to make sure that the 
+   For enable kernel printouts on the console you have to make sure that the
    printout is enabled on system level. For enable use the following command:
    # echo 8 > /proc/sys/kernel/printk
 
@@ -134,9 +134,9 @@
 #define IFXOS_ERR_PRINT_USR(fmt, args...)       printk(KERN_DEBUG fmt "\n", ##args)
 
 
-   /** Kernel - Print on Int-Level (unformated) */
+   /** Kernel - Print on Int-Level (unformatted) */
 #define IFXOS_PRINT_INT_RAW(fmt, args...)       printk(fmt, ##args)
-   /** Kernel - Print on Appl-Level (unformated) */
+   /** Kernel - Print on Appl-Level (unformatted) */
 #define IFXOS_PRINT_USR_RAW(fmt, args...)       printk(fmt, ##args)
 
 /** @} */
@@ -161,9 +161,9 @@
    /** User - Error Print on Appl-Level (formated) */
 #  define IFXOS_ERR_PRINT_USR                   IFXOS_fctErrPrintf
 
-   /** User - Print on Int-Level (unformated) */
+   /** User - Print on Int-Level (unformatted) */
 #  define IFXOS_PRINT_INT_RAW                   IFXOS_fctDbgPrintf
-   /** User - Print on Appl-Level (unformated) */
+   /** User - Print on Appl-Level (unformatted) */
 #  define IFXOS_PRINT_USR_RAW                   IFXOS_fctDbgPrintf
 
 /** @} */

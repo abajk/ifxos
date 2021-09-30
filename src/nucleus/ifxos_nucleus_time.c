@@ -11,7 +11,7 @@
 
 #ifdef NUCLEUS_PLUS
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus 
+   This file contains the IFXOS Layer implementation for Nucleus
    Time and Wait.
 */
 
@@ -48,9 +48,6 @@
 \param
    sleepTime_us   Time to sleep [us]
 
-\return
-   None.
-
 \remarks
    Available in Driver and Application Space
 */
@@ -63,7 +60,7 @@ IFX_void_t IFXOS_USecSleep(
     unsigned int ix;
     unsigned int iy;
 
-    if (delayLoop == 0 || sleepTime_us == (unsigned int)0xffffffff)      /* need calibration?          */
+    if (delayLoop == 0 || sleepTime_us == 0xffffffff)      /* need calibration?          */
     {
         unsigned int maxLoop;
         unsigned int start = 0;
@@ -121,9 +118,6 @@ IFX_void_t IFXOS_USecSleep(
 \param
    sleepTime_ms   Time to sleep [ms]
 
-\return
-   None.
-
 \remarks
    sleepTime_ms = 0 force a rescheduling.
 
@@ -134,8 +128,6 @@ IFX_void_t IFXOS_MSecSleep(
                IFX_time_t sleepTime_ms)
 {
    NU_Sleep(IFXOS_MSEC_TO_TICK(sleepTime_ms));
-
-   return;
 }
 #endif
 
@@ -149,9 +141,6 @@ IFX_void_t IFXOS_MSecSleep(
 
 \param
    sleepTime_sec  Time to sleep [sec]
-
-\return
-   None.
 
 \remarks
    Available in Application Space
@@ -172,17 +161,17 @@ IFX_void_t IFXOS_SecSleep(
    Nucleus - Get the elapsed time in [ms].
 
 \par Implementation
-   Based on the "NU_Retrieve_Clock" and  "IFXOS_TICKS_PER_SECOND" function we calculate the 
+   Based on the "NU_Retrieve_Clock" and  "IFXOS_TICKS_PER_SECOND" function we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
-   Provide refTime_ms = 0 to get the current elapsed time. For messurement provide
+   Provide refTime_ms = 0 to get the current elapsed time. For measurement provide
    the current time as reference.
 */
 IFX_time_t IFXOS_ElapsedTimeMSecGet(
@@ -213,13 +202,13 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
    Nucleus - Get the elapsed time since startup in [seconds]
 
 \par Implementation
-   Based on the "NU_Retrieve_Clock" and  "IFXOS_TICKS_PER_SECOND" function we calculate the 
+   Based on the "NU_Retrieve_Clock" and  "IFXOS_TICKS_PER_SECOND" function we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark

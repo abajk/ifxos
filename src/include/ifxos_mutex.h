@@ -12,15 +12,15 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for Mutex handling for driver and 
+   This file contains definitions for Mutex handling for driver and
    user (application) space.
 */
 
 /** \defgroup IFXOS_IF_MUTEX Mutex / Protection.
 
-   This Group contains the Mutex and Protection definitions and function. 
+   This Group contains the Mutex and Protection definitions and function.
 
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -104,7 +104,7 @@
 
 \param
    mutexId   Pointer to the Mutex Object.
-   
+
 */
 IFX_int32_t IFXOS_MutexInit(
                IFXOS_mutex_t *mutexId);

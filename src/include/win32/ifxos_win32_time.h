@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TIME_WIN32 Time and Wait (Win32).
 
-   This Group contains the Win32 time and wait definitions. 
+   This Group contains the Win32 time and wait definitions.
 
 \ingroup IFXOS_LAYER_WIN32
 */
@@ -52,12 +52,12 @@
 #  define IFXOS_HAVE_TIME_SLEEP_SEC               1
 #endif
 
-/** IFX Win32 adaptation - support "get elapesed time in ms" */
+/** IFX Win32 adaptation - support "get elapsed time in ms" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_MS     1
 #endif
 
-/** IFX Win32 adaptation - support "get elapesed time in sec" */
+/** IFX Win32 adaptation - support "get elapsed time in sec" */
 #ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
 #  define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    1
 #endif

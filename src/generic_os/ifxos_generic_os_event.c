@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer Implementation frame 
+   This file contains the IFXOS Layer Implementation frame
    for GENERIC_OS Event Handling.
 */
 
@@ -49,7 +49,7 @@
 \param
    pEventId    Prointer to the Event Object.
 
-\return      
+\return
    IFX_SUCCESS if the creation was successful, else
    IFX_ERROR in case of error.
 */
@@ -104,7 +104,7 @@ IFX_int_t IFXOS_EventDelete(
 }
 
 /**
-   GENERIC_OS - Wakeup a Event Object to signal the occurance of the "event" to 
+   GENERIC_OS - Wakeup a Event Object to signal the occurance of the "event" to
    the waiting processes.
 
 \par Implementation
@@ -167,7 +167,7 @@ IFX_int_t IFXOS_EventWait(
    IFXOS_RETURN_IF_OBJECT_IS_INVALID(pEventId, IFX_ERROR);
 
    /*
-      - in case of timeout, signal the timeout via the *pRetCode 
+      - in case of timeout, signal the timeout via the *pRetCode
         (if the variable is given).
    */
 

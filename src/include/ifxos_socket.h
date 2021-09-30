@@ -86,7 +86,7 @@
 
 \remark
    This function is available for compatibility reasons. On systems where no
-   seperate setup is required the function will be empty.
+   separate setup is required the function will be empty.
 
 \return
    - IFX_SUCCESS in case of success
@@ -99,7 +99,7 @@ IFX_int_t IFXOS_SocketInit(void);
 
 \remark
    This function is available for compatibility reasons. On systems where no
-   seperate setup is required the function will be empty.
+   separate setup is required the function will be empty.
 
 \return
    - IFX_SUCCESS in case of success
@@ -147,7 +147,7 @@ IFX_int_t IFXOS_SocketClose(
 \param
    socketFd     socket to shutdown
 \param
-   how         identifiy the operation to shutdown
+   how         identify the operation to shutdown
                - IFXOS_SOCKET_SHUTDOWN_RD     shutdown reception
                - IFXOS_SOCKET_SHUTDOWN_WR     shutdown transmission
                - IFXOS_SOCKET_SHUTDOWN_RDWR   shutdown both.
@@ -172,7 +172,7 @@ IFX_int_t IFXOS_SocketShutdown(
 \param
    pSocFdExcept   not used
 \param
-   timeout_ms       specifies behaviour if event is not available:
+   timeout_ms       specifies behavior if event is not available:
                               - IFXOS_SOC_NO_WAIT: do not wait for the event
                               - IFXOS_SOC_WAIT_FOREVER: wait till event is
                               available
@@ -203,7 +203,7 @@ IFX_int_t IFXOS_SocketSelect(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecv(
                   IFXOS_socket_t socFd,
@@ -211,7 +211,7 @@ IFX_int_t IFXOS_SocketRecv(
                   IFX_int_t      bufSize_byte);
 
 /**
-   Receives data from a datagramm socket.
+   Receives data from a datagram socket.
 
 \param
    socFd          specifies the socket. Value has to be greater or equal zero
@@ -225,7 +225,7 @@ IFX_int_t IFXOS_SocketRecv(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFrom(
                   IFXOS_socket_t socFd,
@@ -246,7 +246,7 @@ IFX_int_t IFXOS_SocketRecvFrom(
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSend(
                   IFXOS_socket_t socFd,
@@ -268,7 +268,7 @@ IFX_int_t IFXOS_SocketSend(
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendTo(
                   IFXOS_socket_t socFd,
@@ -277,7 +277,7 @@ IFX_int_t IFXOS_SocketSendTo(
                   IFXOS_sockAddr_t  *pSocAddr);
 
 /**
-   Assignes a local address to a TCP/IP, UDP/IP or raw socket.
+   Assigns a local address to a TCP/IP, UDP/IP or raw socket.
 
 \param
    socFd       specifies the socket should be bind to the address
@@ -329,7 +329,7 @@ IFXOS_socket_t IFXOS_SocketAccept(
                   IFXOS_sockAddr_t  *pSocAddr);
 
 /**
-   Establisch a connection by a TCP client.
+   Establish a connection by a TCP client.
 
 \param
    socFd       specifies the socket. Value has to be greater or equal zero
@@ -340,7 +340,7 @@ IFXOS_socket_t IFXOS_SocketAccept(
 
 
 \return
-   IFX_SUCCESS if the connection has been establieshed, else
+   IFX_SUCCESS if the connection has been established, else
    IFX_ERROR   if the operation fails.
 */
 IFX_int_t IFXOS_SocketConnect(
@@ -356,9 +356,6 @@ IFX_int_t IFXOS_SocketConnect(
 \param
    pBuffer     where to return ASCII string. pBuf must have size
                IFXOS_SOC_ADDR_LEN_BYTE
-
-\return
-   None
 */
 IFX_void_t IFXOS_SocketNtoa(
                   IFXOS_sockAddr_t  *pSocAddr,
@@ -372,9 +369,6 @@ IFX_void_t IFXOS_SocketNtoa(
                IFXOS_SOC_ADDR_LEN_BYTE
 \param
    pSocAddr    where to return the socket address structure
-
-\return
-   None
 */
 IFX_int_t IFXOS_SocketAton(
                   const IFX_char_t  *pBufAddr,
@@ -384,12 +378,9 @@ IFX_int_t IFXOS_SocketAton(
    Mark a descriptor in use.
 
 \param
-   socFd       soccket file descriptor which will be set.
+   socFd       socket file descriptor which will be set.
 \param
    pSocFdSet   points to the set mask where the given socFd will be set.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_SocFdSet(
                IFXOS_socket_t    socFd,
@@ -399,12 +390,9 @@ IFX_void_t IFXOS_SocFdSet(
    Clear a given descriptor.
 
 \param
-   socFd       soccket file descriptor which will be cleared.
+   socFd       socket file descriptor which will be cleared.
 \param
    pSocFdSet   points to the set mask where the given socFd will be cleared.
-
-\return
-   NONE
 */
 IFX_void_t IFXOS_SocFdClr(
                IFXOS_socket_t    socFd,
@@ -414,12 +402,12 @@ IFX_void_t IFXOS_SocFdClr(
    Check if a descriptor is set.
 
 \param
-   socFd       soccket file descriptor which will be checked for set.
+   socFd       socket file descriptor which will be checked for set.
 \param
    pSocFdSet   points to the set mask which contains the socFd for check.
 
 \return
-   True if the given descriptor is set witin the mask, else
+   True if the given descriptor is set within the mask, else
    0 if the descriptor is not set.
 */
 IFX_int_t IFXOS_SocFdIsSet(

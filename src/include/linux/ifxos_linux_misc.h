@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_LINUX_APPL Miscellaneous functions (Linux User Space)
 
-   This Group contains the LINUX "Miscellaneous" definitions and function. 
+   This Group contains the LINUX "Miscellaneous" definitions and function.
 
 
 \ingroup IFXOS_LAYER_LINUX

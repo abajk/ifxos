@@ -14,7 +14,7 @@
 #if defined(SUN_OS)
 
 /** \file
-   This file contains SunOS definitions for timer and wait handling within driver and 
+   This file contains SunOS definitions for timer and wait handling within driver and
    user (application) space.
 */
 
@@ -29,8 +29,8 @@
 
 /** \defgroup IFXOS_TIME_SUN_OS_APPL Time and Wait Functions (SunOS User Space).
 
-   This Group contains the SunOS time and Sleep definitions used on 
-   application level (Application Space). 
+   This Group contains the SunOS time and Sleep definitions used on
+   application level (Application Space).
 
 \ingroup IFXOS_TIME_SUN_OS
 */
@@ -68,11 +68,11 @@
 
    /** IFX SunOS adaptation - Kernel support "get elapesed time in sec" */
 #  ifndef IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC
-#     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    0 
+#     define IFXOS_HAVE_TIME_ELAPSED_TIME_GET_SEC    0
 #  endif
 
    /** IFX SunOS adaptation - support "get system time in sec" */
-#  ifndef IFXOS_HAVE_TIME_SYS_TIME_GET             
+#  ifndef IFXOS_HAVE_TIME_SYS_TIME_GET
 #     define IFXOS_HAVE_TIME_SYS_TIME_GET            0
 #  endif
 

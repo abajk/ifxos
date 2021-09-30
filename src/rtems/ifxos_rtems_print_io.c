@@ -265,7 +265,7 @@ IFX_int_t IFXOS_VSNPrintf (
 */
 IFX_int_t IFXOS_VFPrintf (
                      IFXOS_File_t      *stream,
-                     const IFX_char_t  *format, 
+                     const IFX_char_t  *format,
                      IFXOS_valist_t    vaList)
 {
    IFX_int_t   nRet = 0;

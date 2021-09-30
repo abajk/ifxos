@@ -77,8 +77,6 @@ IFX_void_t IFXOS_BlockFree(
    {
       xm_dealloc(pMemBlock);
    }
-
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_BLOCK_ALLOC) && (IFXOS_HAVE_BLOCK_ALLOC == 1) ) */
 
@@ -126,8 +124,6 @@ IFX_void_t IFXOS_MemFree(
    {
       xm_dealloc(pMemBlock);
    }
-
-   return;
 }
 
 #endif      /* #if ( defined(IFXOS_HAVE_MEM_ALLOC) && (IFXOS_HAVE_MEM_ALLOC == 1) ) */

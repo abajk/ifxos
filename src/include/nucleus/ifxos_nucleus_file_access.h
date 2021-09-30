@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_FILE_ACCESS_NUCLEUS_APPL File Access (Nucleus)
 
-   This Group contains the Nucleus File Access definitions and function. 
+   This Group contains the Nucleus File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -31,7 +31,7 @@
 
 /** \defgroup IFXOS_MEM_FILE_NUCLEUS Memory File (Nucleus)
 
-   This Group contains the Nucleus Memory File definitions and function. 
+   This Group contains the Nucleus Memory File definitions and function.
 
    The memory file feature provides the possibility to map a memory to a file.
    This allows to use the standard file operation on the memory block.
@@ -78,10 +78,10 @@
 #  define IFXOS_ADD_LOCAL_FMEMOPEN                 1
 #endif
 
-/** IFX Nucleus adaptation - User support "static memory file" 
+/** IFX Nucleus adaptation - User support "static memory file"
    No standard file system calls are required.
 
-\attention 
+\attention
    For private memory file support you have to use the corresponding
    IFXOS_FMemClose function.
 */
@@ -100,10 +100,10 @@
 /** Nucleus User - map to stdin */
 #define IFXOS_STDIN           stdin
 
-/** Nucleus User - Open  text  file  for  reading.  
+/** Nucleus User - Open  text  file  for  reading.
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ              "r"
-/** Nucleus User - Open  text  file  for  reading (binary).  
+/** Nucleus User - Open  text  file  for  reading (binary).
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ_BIN          "rb"
 
@@ -114,13 +114,13 @@
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_WRITE_BIN         "wb"
 
-/** Nucleus User - Open for appending (writing at end of file).  
-         The file  is  created  if it does not exist.  The stream is positioned 
+/** Nucleus User - Open for appending (writing at end of file).
+         The file  is  created  if it does not exist.  The stream is positioned
          at the end of the file. */
 #define IFXOS_OPEN_MODE_APPEND            "a"
-/** Nucleus User - Open for reading and appending (writing at end  of  file).   
-         The file is created if it does not exist.  The initial file position 
-         for reading is at the beginning  of  the  file,  but  output  is always 
+/** Nucleus User - Open for reading and appending (writing at end  of  file).
+         The file is created if it does not exist.  The initial file position
+         for reading is at the beginning  of  the  file,  but  output  is always
          appended to the end of the file */
 #define IFXOS_OPEN_MODE_READ_APPEND       "a+"
 

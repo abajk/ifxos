@@ -41,7 +41,7 @@
 #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) )
 /**
    VxWorks - Initialize a Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \par Implementation
    - the semaphore is created (see "semBCreate").
@@ -189,7 +189,7 @@ IFX_int32_t IFXOS_LockRelease(
 #if ( defined(IFXOS_HAVE_NAMED_LOCK) && (IFXOS_HAVE_NAMED_LOCK == 1) )
 /**
    VxWorks - Initialize a Named Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \remark
    The name will be set within the internal lock object.
@@ -250,7 +250,7 @@ IFX_int32_t IFXOS_NamedLockInit(
    IFX_ERROR   on error or timeout.
 
 \note
-   To detect timeouts provide the return code varibale, in case of timeout
+   To detect timeouts provide the return code variable, in case of timeout
    the return code is set to 1.
 */
 IFX_int32_t IFXOS_LockTimedGet(

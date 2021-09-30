@@ -10,7 +10,7 @@
 ******************************************************************************/
 
 /** \file
-   Extention to the getopt library.
+   Extension to the getopt library.
 */
 
 /* ==========================================================================
@@ -38,14 +38,14 @@ static IFXOS_PRN_USR_MODULE_CREATE(GET_OPT_EXT, IFXOS_PRN_LEVEL_OFF);
 
 
 /* ==========================================================================
-   Function Definitons
+   Function Definitions
    ========================================================================== */
 
 /*
    Takeover a required integer argument into the given integer control struct.
 */
 IFX_void_t GetOptExt_RequiredDigit(
-                              IFX_char_t           *pOptArg, 
+                              IFX_char_t           *pOptArg,
                               GetOptExt_IntArg_t   *pUserIntArg,
                               IFX_char_t           *pDesc)
 {
@@ -59,7 +59,7 @@ IFX_void_t GetOptExt_RequiredDigit(
       if (errno)
       {
          IFXOS_PRN_USR_DBG_NL(GET_OPT_EXT, IFXOS_PRN_LEVEL_HIGH,
-            ( "%s: invalid argument = 0x%08X (errno %d)" IFXOS_CRLF, 
+            ( "%s: invalid argument = 0x%08X (errno %d)" IFXOS_CRLF,
               pDesc, (unsigned int)temp, errno));
       }
       else
@@ -76,8 +76,6 @@ IFX_void_t GetOptExt_RequiredDigit(
       IFXOS_PRN_USR_DBG_NL(GET_OPT_EXT, IFXOS_PRN_LEVEL_HIGH,
          ("%s: missing argument" IFXOS_CRLF, pDesc));
    }
-
-   return;
 }
 
 /*
@@ -96,8 +94,8 @@ IFX_void_t GetOptExt_RequiredStr(
       {
          GET_OPT_EXT_MemSet(pUserStrArg->strValue, 0x00, GET_OPT_EXT_MAX_STR_LEN);
          GET_OPT_EXT_StrNCpy(
-            pUserStrArg->strValue, 
-            (char *)pOptArg, 
+            pUserStrArg->strValue,
+            (char *)pOptArg,
             (strLength > (GET_OPT_EXT_MAX_STR_LEN -1)) ? (GET_OPT_EXT_MAX_STR_LEN -1) : strLength);
          pUserStrArg->bSet = IFX_TRUE;
 
@@ -110,15 +108,13 @@ IFX_void_t GetOptExt_RequiredStr(
       IFXOS_PRN_USR_DBG_NL(GET_OPT_EXT, IFXOS_PRN_LEVEL_HIGH,
          ("%s: missing argument" IFXOS_CRLF, pDesc));
    }
-
-   return;
 }
 
 /*
    Takeover an optional integer argument into the given integer control struct.
 */
 IFX_void_t GetOptExt_OptionalDigit(
-                              IFX_char_t           *pOptArg, 
+                              IFX_char_t           *pOptArg,
                               GetOptExt_IntArg_t   *pUserIntArg,
                               IFX_char_t           *pDesc)
 {
@@ -127,7 +123,7 @@ IFX_void_t GetOptExt_OptionalDigit(
 
    /* mark command received */
    pUserIntArg->bSet = IFX_TRUE;
-   
+
    if (pOptArg)
    {
       errno = 0;
@@ -135,7 +131,7 @@ IFX_void_t GetOptExt_OptionalDigit(
       if (errno)
       {
          IFXOS_PRN_USR_DBG_NL(GET_OPT_EXT, IFXOS_PRN_LEVEL_HIGH,
-            ("%s: invalid argument = 0x%08X" IFXOS_CRLF, 
+            ("%s: invalid argument = 0x%08X" IFXOS_CRLF,
              pDesc, (unsigned int)temp));
       }
       else
@@ -150,8 +146,6 @@ IFX_void_t GetOptExt_OptionalDigit(
             ("%s: 0x%08X" IFXOS_CRLF, pDesc, (unsigned int)pUserIntArg->intValue));
       }
    }
-
-   return;
 }
 
 /**
@@ -224,7 +218,7 @@ IFX_int_t GetOptExt_ParseArgString(
 
             pArgArray[argIdx] = pArgStart;
             argIdx++;
-            
+
             while (argStrLen > 0)
             {
                if (*pArgStart == openTag)
@@ -242,14 +236,11 @@ IFX_int_t GetOptExt_ParseArgString(
                pArgStart++;
                argStrLen--;
             }
-            
+
             continue;
          }
-         else
-         {
-            pArgArray[argIdx] = pArgStart;
-            argIdx++;
-         }
+         pArgArray[argIdx] = pArgStart;
+         argIdx++;
 
          while(argStrLen > 0)
          {

@@ -261,7 +261,7 @@ int DEVIO_open ( const char *name )
          continue;
       }
 
-      if ( strncmp ( name, pDevice->name, lenDevTableEntry ) )
+      if ( strncmp ( name, pDevice->name, lenDevTableEntry ) != 0 )
       {
          continue;
       }

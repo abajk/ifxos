@@ -12,7 +12,7 @@
 #if defined(LINUX) && !defined(__KERNEL__)
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX User Space 
+   This file contains the IFXOS Layer implementation for LINUX User Space
    Physical to Virtual Memory Mapping.
 
 \Remark
@@ -69,7 +69,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                IFX_uint8_t    **ppVirtAddr)
 {
    IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-      ("IFXOS: Phy2Virt map - phy 0x%08lX --> virt 0x%08X, size = 0x%X" IFXOS_CRLF, 
+      ("IFXOS: Phy2Virt map - phy 0x%08lX --> virt 0x%08X, size = 0x%X" IFXOS_CRLF,
         physicalAddr, physicalAddr, addrRangeSize_byte ));
 
    IFXOS_RETURN_IF_POINTER_NULL(ppVirtAddr, IFX_ERROR);
@@ -100,7 +100,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                         (Cleared if success)
 
 \return
-   IFX_SUCCESS if the release was successful. 
+   IFX_SUCCESS if the release was successful.
                The physicalAddr and the ppVirtAddr pointer is cleared, else
    IFX_ERROR   if something was wrong.
 */
@@ -114,7 +114,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if (ppVirtAddr != IFX_NULL)
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%08lX, size = 0x%X" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%08lX, size = 0x%X" IFXOS_CRLF,
                          (*ppVirtAddr), addrRangeSize_byte ));
 
       *ppVirtAddr = IFX_NULL;
@@ -124,7 +124,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if (pPhysicalAddr != IFX_NULL)
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - release region 0x%08X size = 0x%X" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - release region 0x%08X size = 0x%X" IFXOS_CRLF,
            (unsigned int)(*pPhysicalAddr), addrRangeSize_byte ));
 
       *pPhysicalAddr = 0;

@@ -1,13 +1,13 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2020 MaxLinear, Inc.
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
 #ifndef _IFXOS_VERSION_H
 #define _IFXOS_VERSION_H
 
@@ -18,7 +18,7 @@
 
 
 /**
-   The version of the IFXOS is seperated into 3 numbers:
+   The version of the IFXOS is separated into 3 numbers:
    "<interface revision> . <feature step> . <build step>"
 
 
@@ -39,7 +39,7 @@
       new features have been added and the existing API is not changed.
 
       Example:
-      Add additional socket functions - the available functions are unchenged.
+      Add additional socket functions - the available functions are unchanged.
 
    - Build Step:
       The build step is incremented for internal bugfixes and minor changes.
@@ -55,7 +55,7 @@
 
    #if defined(IFXOS_HAVE_VERSION_CHECK)
    #  if (!IFXOS_VERSION_CHECK_EG_THAN(1,0,2))
-   #     error "IFXOS_VERSION_CHECK: requiere at least IFX OS version 1.2.0"
+   #     error "IFXOS_VERSION_CHECK: require at least IFX OS version 1.2.0"
    #  endif
    #endif
 
@@ -88,7 +88,7 @@
    IFXOS Version defs
    ========================================================================== */
 
-/* versio check is available */
+/* version check is available */
 #define IFXOS_HAVE_VERSION_CHECK       1
 
 
@@ -103,9 +103,9 @@
 /** IFXOS version - Interface revision */
 #define IFXOS_VERSION_REVISION                1
 /** IFXOS version - feature */
-#define IFXOS_VERSION_FEATURE                 6
+#define IFXOS_VERSION_FEATURE                 7
 /** IFXOS version, build number - step */
-#define IFXOS_VERSION_STEP                    9
+#define IFXOS_VERSION_STEP                    1
 /** IFXOS version, build number - build (test, debug, maintenance) */
 #define IFXOS_VERSION_BUILD                   0
 
@@ -138,7 +138,7 @@
 
 /**
    Version Check - less than given version
-   - revison number must match and
+   - revision number must match and
      --> feature number must be less or
      --> step number must be less if feature is the same.
 */
@@ -149,7 +149,7 @@
 
 /**
    Version Check - equal or greater than given version
-   - revison number must match and
+   - revision number must match and
      --> feature number must be greater or
      --> step number must be greater if feature is the same.
 */
@@ -163,9 +163,9 @@
    IFXOS Version - functions
    ========================================================================== */
 IFX_void_t IFXOS_versionGet(
-                     IFX_uint8_t *revision,
-                     IFX_uint8_t *feature,
-                     IFX_uint8_t *step);
+                     IFX_uint8_t *pRevision,
+                     IFX_uint8_t *pFeature,
+                     IFX_uint8_t *pStep);
 
 IFX_boolean_t  IFXOS_versionCheck_equal(
                      IFX_uint8_t revisionNum,

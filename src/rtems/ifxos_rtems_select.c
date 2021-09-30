@@ -120,7 +120,6 @@ IFX_void_t IFXOS_DrvSelectQueueWakeUp(
    qid = (IFX_uint32_t) *pDrvSelectQueue;
    //xq_receive (qid,Q_WAIT,0,msg_buf);  // 0=Wait forever
    xq_send(qid, msg_buf);
-   return;
 //   if(xq_send(qid, msg_buf))
 //       return IFX_ERROR;
 //   return IFX_SUCCESS;
@@ -200,7 +199,7 @@ IFX_int_t IFXOS_Select(
 
    IFXOS_RETURN_IF_POINTER_NULL(pDrvSelectQueue, IFX_ERROR);
 
-   qid = (IFX_uint32_t) eventWaitQueue;
+   qid = eventWaitQueue;
 
    // Note: If waitTime_ms = 0 and Q_WAIT , then no timeout (wait forever).
    if(waitTime_ms==0)

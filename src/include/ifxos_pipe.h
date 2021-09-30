@@ -17,7 +17,7 @@
 
 /** \defgroup IFXOS_IF_PIPES Pipes
 
-   This Group contains the Pipes definitions and function. 
+   This Group contains the Pipes definitions and function.
 
 \ingroup IFXOS_INTERFACE
 */
@@ -112,8 +112,8 @@ IFX_int_t IFXOS_PipeCreate(
    - in case of error the return value is NULL
 */
 IFXOS_Pipe_t *IFXOS_PipeOpen(
-                     IFX_char_t *pName, 
-                     IFX_boolean_t reading, 
+                     IFX_char_t *pName,
+                     IFX_boolean_t reading,
                      IFX_boolean_t blocking);
 
 /**
@@ -136,7 +136,7 @@ IFX_int_t IFXOS_PipeClose(IFXOS_Pipe_t *pPipe);
    streamPipe  - handle of the pipe stream.
 \param
    format      - points to the printf format string.
-   
+
 \return
    For success - Number of written bytes.
    For error   - negative value.
@@ -195,10 +195,10 @@ IFX_int_t IFXOS_PipeWrite(
    a short item count (or zero) (see errno)
 */
 IFX_int_t IFXOS_PipeRead(
-                     IFX_void_t     *pDataBuf, 
-                     IFX_uint32_t   elementSize_byte,  
-                     IFX_uint32_t   elementCount, 
-                     IFXOS_Pipe_t   *pPipe);   
+                     IFX_void_t     *pDataBuf,
+                     IFX_uint32_t   elementSize_byte,
+                     IFX_uint32_t   elementCount,
+                     IFXOS_Pipe_t   *pPipe);
 #endif
 
 #endif      /* #if ( defined(IFXOS_HAVE_PIPE) && (IFXOS_HAVE_PIPE == 1) ) */

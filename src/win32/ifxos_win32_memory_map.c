@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Physical to Virtual Memory Mapping.
 */
 
@@ -37,9 +37,9 @@
    For virtual memory management this is required.
 
 \par Implementation
-   Under Win32 there is no virtal memory management required.
-   This function is introduced for compatibility agains the LINUX concept.
-   A simple asignment of the physical address is done.
+   Under Win32 there is no virtual memory management required.
+   This function is introduced for compatibility against the LINUX concept.
+   A simple assignment of the physical address is done.
 
 \param
    physicalAddr         The physical address for mapping [I]
@@ -64,7 +64,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                IFX_uint8_t    **ppVirtAddr)
 {
    IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-      ("IFXOS: Phy2Virt map - phy 0x%08X --> virt 0x%08X, size = 0x%X" IFXOS_CRLF, 
+      ("IFXOS: Phy2Virt map - phy 0x%08X --> virt 0x%08X, size = 0x%X" IFXOS_CRLF,
         physicalAddr, (unsigned int)physicalAddr, addrRangeSize_byte ));
 
    IFXOS_RETURN_IF_POINTER_NULL(ppVirtAddr, IFX_ERROR);
@@ -81,9 +81,9 @@ IFX_int32_t IFXOS_Phy2VirtMap(
    For virtual memory management this is required.
 
 \par Implementation
-   Under Win32 there is no virtal memory management required.
-   This function is introduced for compatibility agains the LINUX concept.
-   The simple asignment of the physical address is cleared.
+   Under Win32 there is no virtual memory management required.
+   This function is introduced for compatibility against the LINUX concept.
+   The simple assignment of the physical address is cleared.
 
 \param
    pPhysicalAddr        Points to the physical address for release mapping [IO]
@@ -95,7 +95,7 @@ IFX_int32_t IFXOS_Phy2VirtMap(
                         (Cleared if success)
 
 \return
-   IFX_SUCCESS if the release was successful. 
+   IFX_SUCCESS if the release was successful.
                The physicalAddr and the ppVirtAddr pointer is cleared, else
    IFX_ERROR   if something was wrong.
 */
@@ -109,7 +109,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if (ppVirtAddr != IFX_NULL)
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%08X, size = 0x%X" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - unmap virt 0x%08X, size = 0x%X" IFXOS_CRLF,
            (IFX_uintptr_t)(*ppVirtAddr), addrRangeSize_byte ));
 
       *ppVirtAddr = (IFX_uint8_t*)IFX_NULL;
@@ -119,7 +119,7 @@ IFX_int32_t IFXOS_Phy2VirtUnmap(
    if (pPhysicalAddr != IFX_NULL)
    {
       IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_LOW,
-         ("IFXOS: Phy2Virt Unmap - release region 0x%08X size = 0x%X" IFXOS_CRLF, 
+         ("IFXOS: Phy2Virt Unmap - release region 0x%08X size = 0x%X" IFXOS_CRLF,
            (unsigned int)(*pPhysicalAddr), addrRangeSize_byte ));
 
       *pPhysicalAddr = 0;

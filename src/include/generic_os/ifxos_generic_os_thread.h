@@ -15,7 +15,7 @@
 
 /** \defgroup IFXOS_THREAD_GENERIC_OS Task  (Generic OS).
 
-   This Group contains the Generic OS Task definitions and function. 
+   This Group contains the Generic OS Task definitions and function.
 
 \ingroup IFXOS_LAYER_GENERIC_OS
 */
@@ -80,7 +80,7 @@
 #define IFXOS_THREAD_PRIO_HIGHEST                  10
 #endif
 
-/** Generic OS Task - priority - TIME_CRITICAL 
+/** Generic OS Task - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -144,7 +144,7 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
 

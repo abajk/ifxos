@@ -12,7 +12,7 @@
 #if defined(WIN32) && !defined(NUCLEUS_PLUS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for Win32 - 
+   This file contains the IFXOS Layer implementation for Win32 -
    Terminal IO System.
 */
 
@@ -31,37 +31,33 @@
 #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) )
 /**
    Win32 - Disable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOff (void)
 {
-   return;
 }
 
 /**
    Win32 - Enable the local echo of the console.
-*/   
+*/
 IFX_void_t IFXOS_EchoOn (void)
 {
-   return;
 }
 
 /**
    Win32 - Enable the console line mode.
-   In this mode the input from the device is available only after receiving NEWLINE . 
+   In this mode the input from the device is available only after receiving NEWLINE .
    This allows to modify the command line until the Enter key is pressed.
-*/   
+*/
 IFX_void_t IFXOS_KeypressSet (void)
 {
-   return;
 }
 
 /**
-   Win32 - Disable the console line mode. 
-   Plesae refer to \ref IFXOS_KeypressSet .
-*/   
+   Win32 - Disable the console line mode.
+   Please refer to \ref IFXOS_KeypressSet .
+*/
 IFX_void_t IFXOS_KeypressReset (void)
 {
-   return;
 }
 #endif      /* #if ( defined(IFXOS_HAVE_TERMIOS) && (IFXOS_HAVE_TERMIOS == 1) ) */
 

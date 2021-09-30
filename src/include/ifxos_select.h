@@ -12,16 +12,16 @@
 ******************************************************************************/
 
 /** \file
-   This file contains definitions for Select Synchronisation and Signalisation on Driver Side.
+   This file contains definitions for Select Synchronization and Signalization on Driver Side.
 */
 
 /** \defgroup IFXOS_IF_DRV_SELECT Poll/Select (Driver Side).
 
-   This Group contains the Synchronisation and signalisation definitions and function
+   This Group contains the Synchronization and signalization definitions and function
    on driver side for communication between driver and user code.
 
 \note
-   The intention of these signaling feature is to communicate between driver and 
+   The intention of these signaling feature is to communicate between driver and
    user parts.
 
 \attention
@@ -29,7 +29,7 @@
    Further a corresponding adaptation on user and driver side is required.
 
 \remarks
-   For synchronisation between threads / Tasks please have a look for the 
+   For synchronization between threads / Tasks please have a look for the
    "event" feature.
 
 \ingroup IFXOS_IF_SYNC
@@ -96,30 +96,24 @@
 #if ( defined(IFXOS_HAVE_DRV_SELECT) && (IFXOS_HAVE_DRV_SELECT == 1) )
 
 /**
-   Initialize a Select Queue Object for synchronisation between user and driver space
+   Initialize a Select Queue Object for synchronization between user and driver space
    via the select / poll mechanism.
 
 \param
    pDrvSelectQueue   Points to a Driver Select Queue object.
-
-\return 
-   None
 */
 IFX_int32_t IFXOS_DrvSelectQueueInit(
                IFXOS_drvSelectQueue_t  *pDrvSelectQueue);
 
 /**
-   Wakeup from the Select Queue all added task. 
-   This function is used from driver space to signal the occurance of an event 
+   Wakeup from the Select Queue all added task.
+   This function is used from driver space to signal the occurrence of an event
    from driver space to one or several waiting user (poll / select mechanism).
 
 \param
    pDrvSelectQueue   Points to used Select Queue object.
 \param
    drvSelType        OS specific parameter.
-
-\return
-   None
 */
 IFX_void_t IFXOS_DrvSelectQueueWakeUp(
                IFXOS_drvSelectQueue_t  *pDrvSelectQueue,
@@ -128,7 +122,7 @@ IFX_void_t IFXOS_DrvSelectQueueWakeUp(
 /**
    Add an user thread / task to a Select Queue
    This function is used from user space to add a thread / task to a corresponding
-   Select Queue. The thread / task will be waked up if the event occures or if
+   Select Queue. The thread / task will be waked up if the event occurs or if
    the time expires.
 
 \note

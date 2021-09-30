@@ -42,10 +42,10 @@
    otherwise the value of nDefault.
 */
 IFX_int32_t GetKeyInt(
-   IFX_char_t* pSectionName,  /**< section name */
-   IFX_char_t* pKeyName,      /**< key name */
+   const IFX_char_t* pSectionName,  /**< section name */
+   const IFX_char_t* pKeyName,      /**< key name */
    IFX_int32_t nDefault,      /**< return value if key name not found */
-   IFX_char_t* pFile          /**< pointer to file data (array with \0 at end) */)
+   const IFX_char_t* pFile          /**< pointer to file data (array with \0 at end) */)
 {
    IFX_char_t  RetString[15], sDefault[15], *pRetStr = RetString;
    IFX_int32_t ret = nDefault;
@@ -87,23 +87,23 @@ IFX_int32_t GetKeyInt(
    an initialization file (buffered in array at pFile).
 
 \return
-   The return value is the number of caracters copied to the buffer, not
-   including the terminating null caracter.
+   The return value is the number of characters copied to the buffer, not
+   including the terminating null character.
 */
 IFX_int32_t GetKeyString(
-   IFX_char_t* pSectionName,  /**< section name */
-   IFX_char_t* pKeyName,      /**< key name */
-   IFX_char_t* pDefault,      /**< return value if key name not found */
+   const IFX_char_t* pSectionName,  /**< section name */
+   const IFX_char_t* pKeyName,      /**< key name */
+   const IFX_char_t* pDefault,      /**< return value if key name not found */
    IFX_char_t* pRetString,    /**< destination buffer */
    IFX_int32_t nSize,           /**< size of destination buffer */
-   IFX_char_t* pFile          /**< pointer to file data (array with \0 at end) */
+   const IFX_char_t* pFile          /**< pointer to file data (array with \0 at end) */
 )
 {
    IFX_char_t  *pLine=IFX_NULL;
    IFX_int32_t ret = 0;
-   IFX_char_t *pInput,
-        *pSectEnd,
-        *pTok,
+   IFX_char_t *pTok,
+        *pSectEnd;
+   const IFX_char_t *pInput,
         *pKey,
         *pVal;
    IFX_int32_t i;
@@ -153,35 +153,33 @@ IFX_int32_t GetKeyString(
          }
          continue;   /* FIXME ??? */
       }
-      else
+
+      /* we are in a section */
+      if (bSection == 1)
       {
-         /* we are in a section */
-         if (bSection == 1)
+         /* we are in the requested section */
+         pKey = strtok_r(pLine, "=", &pTok);
+         if(pKey == IFX_NULL)
          {
-            /* we are in the requested section */
-            pKey = strtok_r(pLine, "=", &pTok);
-            if(pKey == IFX_NULL)
-            {
-               continue;
-            }
-            pVal = strtok_r(IFX_NULL, "\r", &pTok);
-            if(pVal == IFX_NULL)
-            {
-               continue;
-            }
-            /* is this the requested key? */
-            if (strcmp(pKeyName, pKey) == 0)
-            {
-               #ifdef INI_VERBOSE
-               printf("Found pKey '%s' pVal '%s'\r\n", pKey, pVal);
-               #endif
-               /* get assigned value of the key and return */
-               strncpy(pRetString, pVal, nSize-1);
-               /* make sure, we have an end marker */
-               pRetString[nSize-1] = '\0';
-               ret = (IFX_int32_t)strlen(pRetString);
-               break;
-            }
+            continue;
+         }
+         pVal = strtok_r(IFX_NULL, "\r", &pTok);
+         if(pVal == IFX_NULL)
+         {
+            continue;
+         }
+         /* is this the requested key? */
+         if (strcmp(pKeyName, pKey) == 0)
+         {
+            #ifdef INI_VERBOSE
+            printf("Found pKey '%s' pVal '%s'\r\n", pKey, pVal);
+            #endif
+            /* get assigned value of the key and return */
+            strncpy(pRetString, pVal, nSize-1);
+            /* make sure, we have an end marker */
+            pRetString[nSize-1] = '\0';
+            ret = (IFX_int32_t)strlen(pRetString);
+            break;
          }
       }
    }
@@ -210,21 +208,21 @@ IFX_int32_t GetKeyString(
    Fill the whole desired section into the given buffer.
 
 \return
-   number of caracters copied
+   number of characters copied
 */
 IFX_int32_t GetSection(
-   IFX_char_t *pSectionName,  /**< Name of the section to retrieve */
+   const IFX_char_t *pSectionName,  /**< Name of the section to retrieve */
    IFX_char_t *pBuffer,       /**< pointer to put copy the data to */
    IFX_int32_t nBufferSize,   /**< size of the given buffer */
-   IFX_char_t* pFile          /**< \0 terminated array to search the section in */
+   const IFX_char_t* pFile          /**< \0 terminated array to search the section in */
 )
 {
    IFX_char_t  *pLine=IFX_NULL;
    IFX_int32_t nSectLen;
-   IFX_char_t *pInput,
+   IFX_char_t *pSectNameEnd;
+   const IFX_char_t *pInput,
         *pSectStart,
-        *pSectEnd,
-        *pSectNameEnd;
+        *pSectEnd;
    IFX_int32_t i;
    IFX_boolean_t bSectionFound = IFX_FALSE;
 
@@ -293,11 +291,8 @@ IFX_int32_t GetSection(
       {
          break; /* next (other) section starts here */
       }
-      else
-      {
-         /* this line belongs to the required section */
-         pSectEnd = pInput;
-      }
+      /* this line belongs to the required section */
+      pSectEnd = pInput;
    }
    while ( *pInput != '\0');
 
@@ -316,22 +311,22 @@ IFX_int32_t GetSection(
 
 /**
    get one line of config file without \r\n, but closing \0 .
-   Skips \r and \n until begining of line with data.
+   Skips \r and \n until beginning of line with data.
 
 \return
-   number of caracters from pData to end of line
+   number of characters from pData to end of line
    (to skip this line in buffer of calling function)
 
 \remark
    The pData buffer should contain a null terminated file.
 */
 IFX_int32_t GetNextLine(
-   IFX_char_t* pData,      /**< start of data to scan */
+   const IFX_char_t* pData,      /**< start of data to scan */
    IFX_char_t* pRetLine,   /**< return buffer for line */
    IFX_int32_t nLine         /**< max space in return buffer */
 )
 {
-   IFX_char_t *pIn;
+   const IFX_char_t *pIn;
    IFX_int32_t ret=0;
    IFX_int32_t i;
 

@@ -19,8 +19,8 @@
 
 /** \defgroup IFXOS_MEMORY_LINUX Memory Handling (Linux)
 
-   This Group contains the LINUX memory allocation and mapping definitions and  
-   function. 
+   This Group contains the LINUX memory allocation and mapping definitions and
+   function.
 
    Here we have to differ between:\n
    - memory handling on user space (application code).
@@ -29,7 +29,7 @@
 \par  Kernel Space
    There are several special memory handling functions which are only available
    in Kernel Space:
-   - Allocation of an continious memory block.
+   - Allocation of an continuous memory block.
    - Physical to virtual address mapping.
    - Data exchange between user and kernel space (copy from/to user).
 
@@ -51,11 +51,11 @@
    This Group contains the LINUX Kernel Memory Allocation definitions.
 
    Within the kernel we differ between kmalloc and vmalloc.
-   The important difference between vmalloc and kmalloc is that kmalloc 
-   returns a continious memory space (important for HW interfaces).
+   The important difference between vmalloc and kmalloc is that kmalloc
+   returns a continuous memory space (important for HW interfaces).
 
 \par Implementation - Standard memory allocation
-   For standard memory allocation the virual memory alloc function is used
+   For standard memory allocation the virtual memory alloc function is used
    see "vmalloc"
 
 \par Implementation - Block memory allocation
@@ -67,7 +67,7 @@
 
 /** \defgroup IFXOS_DRV_CPY_USER_SPACE_LINUX Data Exchange, Driver and User Space (Linux Kernel).
 
-   This Group contains the LINUX Kernel definitions for data exchange between 
+   This Group contains the LINUX Kernel definitions for data exchange between
    driver and application.
 
 \par Implementation
@@ -82,7 +82,7 @@
 
 /** \defgroup IFXOS_DRV_CPY_USER_SPACE_LINUX_APPL Data Exchange, Driver and User Space.
 
-   This Group contains the LINUX function definitions for data exchange between 
+   This Group contains the LINUX function definitions for data exchange between
    driver and application.
 
 \par Implementation
@@ -97,11 +97,11 @@
 
 /** \defgroup IIFXOS_DRV_MEMORY_MAP_LINUX Physical to Virtual Address Mapping (Linux Kernel).
 
-   This Group contains the LINUX Kernel definitions for Physical and 
+   This Group contains the LINUX Kernel definitions for Physical and
    Virtual Address Mapping.
 
 \par Implementation
-   For Physical to Virtual Address Mapping the corresponding LINUX Kernel functions 
+   For Physical to Virtual Address Mapping the corresponding LINUX Kernel functions
    are used.
    For detail, please have a look the to LINUX Implementation Doc.
 

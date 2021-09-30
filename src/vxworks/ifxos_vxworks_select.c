@@ -12,8 +12,8 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains the IFXOS Layer implementation for VxWorks 
-   Syncronistation Poll / Select.
+   This file contains the IFXOS Layer implementation for VxWorks
+   Synchronization Poll / Select.
 */
 
 
@@ -40,7 +40,7 @@
 #if ( defined(IFXOS_HAVE_DRV_SELECT) && (IFXOS_HAVE_DRV_SELECT == 1) )
 
 /**
-   VxWorks - Initialize a Select Queue Object for synchronisation between 
+   VxWorks - Initialize a Select Queue Object for synchronization between
    user and driver space via the select / poll mechanism.
 
 \par Implementation
@@ -49,7 +49,7 @@
 \param
    pDrvSelectQueue   Points to a Driver Select Queue object.
 
-\return      
+\return
    IFX_SUCCESS if the initialization was successful, else
    IFX_ERROR in case of error.
 */
@@ -63,8 +63,8 @@ IFX_int32_t IFXOS_DrvSelectQueueInit(
 }
 
 /**
-   VxWorks - Wakeup all the task added from the Select Queue. 
-   This function is used from driver space to signal the occurance of an event 
+   VxWorks - Wakeup all the task added from the Select Queue.
+   This function is used from driver space to signal the occurrence of an event
    from driver space to one or several waiting user (poll / select mechanism).
 
 \par Implementation
@@ -75,9 +75,6 @@ IFX_int32_t IFXOS_DrvSelectQueueInit(
    pDrvSelectQueue   Points to used Select Queue object.
 \param
    drvSelType        OS specific parameter.
-
-\return
-   None
 */
 IFX_void_t IFXOS_DrvSelectQueueWakeUp(
                IFXOS_drvSelectQueue_t  *pDrvSelectQueue,
@@ -86,13 +83,12 @@ IFX_void_t IFXOS_DrvSelectQueueWakeUp(
    IFXOS_RETURN_VOID_IF_POINTER_NULL(pDrvSelectQueue, IFX_ERROR);
 
    selWakeupAll(pDrvSelectQueue, (SELECT_TYPE)drvSelType);
-   return;
 }
 
 /**
    VxWorks - Add an user task to a Select Queue.
    This function is used from user space to add a thread / task to a corresponding
-   Select Queue. The task will be waked up if the event occures or if
+   Select Queue. The task will be waked up if the event occurs or if
    the time expires.
 
 \par Implementation

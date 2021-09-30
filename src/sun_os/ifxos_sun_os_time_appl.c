@@ -16,7 +16,7 @@
 #if defined(SUN_OS)
 
 /** \file
-   This file contains the IFXOS Layer implementation for SunOS Application 
+   This file contains the IFXOS Layer implementation for SunOS Application
    Time and Sleep.
 */
 
@@ -70,15 +70,12 @@ IFXOS_STATIC IFX_void_t IFXOS_NanoSleep(IFXOS_timespec_t *pTVal)
          /* Completed the entire sleep time; all done. */
          return;
       }
-      else 
-      {
-         if (errno == EINTR)
-            /* Interrupted by a signal. Try again. */
-            continue;
-         else
-            /* Some other error; bail out. */
-            return;
-      }
+      if (errno == EINTR)
+         /* Interrupted by a signal. Try again. */
+         continue;
+
+      /* Some other error; bail out. */
+      return;
    }
 }
 #endif
@@ -110,8 +107,6 @@ IFX_void_t IFXOS_MSecSleep(
    tv.tv_nsec = (long) ((sleepTime_ms - (tv.tv_sec * 1000)) * 1000 * 1000);
 
    IFXOS_NanoSleep(&tv);
-
-   return;
 }
 #endif
 
@@ -155,7 +150,7 @@ IFX_void_t IFXOS_SecSleep(
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
@@ -191,7 +186,7 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark

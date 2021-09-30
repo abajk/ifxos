@@ -22,7 +22,7 @@
    This Group contains the eCos Lock and Protection definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -84,7 +84,7 @@
 /** eCos - Identifier for not initialized lock object */
 #define IFXOS_LOCK_NOT_INIT         IFX_NULL
 
-/** eCos - LOCK, type for synchronisation. */
+/** eCos - LOCK, type for synchronization. */
 typedef struct
 {
    /** lock id */
@@ -94,7 +94,7 @@ typedef struct
 
    /** points to the internal system object - for debugging */
    IFX_void_t  *pSysObject;
-} IFXOS_lock_t; 
+} IFXOS_lock_t;
 
 /** @} */
 

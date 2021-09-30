@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_FILE_ACCESS_WIN32_APPL File Access (Win32)
 
-   This Group contains the Win32 File Access definitions and function. 
+   This Group contains the Win32 File Access definitions and function.
 
    To access a file the standard C-lib functions for file handling are wrapped.
 
@@ -31,7 +31,7 @@
 
 /** \defgroup IFXOS_MEM_FILE_WIN32 Memory File (Win32)
 
-   This Group contains the Win32 Memory File definitions and function. 
+   This Group contains the Win32 Memory File definitions and function.
 
    The memory file feature provides the possibility to map a memory to a file.
    This allows to use the standard file operation on the memory block.
@@ -75,10 +75,10 @@
 /** \addtogroup IFXOS_FILE_ACCESS_WIN32_APPL
 @{ */
 
-/** IFX Win32 adaptation - User support "static memory file" 
+/** IFX Win32 adaptation - User support "static memory file"
    No standard file system calls are required.
 
-\attention 
+\attention
    For private memory file support you have to use the corresponding
    IFXOS_FMemClose function.
 */
@@ -96,10 +96,10 @@
 /** Win32 User - map to stdin */
 #define IFXOS_STDIN           stdin
 
-/** Win32 User - Open  text  file  for  reading.  
+/** Win32 User - Open  text  file  for  reading.
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ              "r"
-/** Win32 User - Open  text  file  for  reading (binary).  
+/** Win32 User - Open  text  file  for  reading (binary).
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_READ_BIN          "rb"
 
@@ -110,13 +110,13 @@
          The stream is positioned at the beginning of the file. */
 #define IFXOS_OPEN_MODE_WRITE_BIN         "wb"
 
-/** Win32 User - Open for appending (writing at end of file).  
-         The file  is  created  if it does not exist.  The stream is positioned 
+/** Win32 User - Open for appending (writing at end of file).
+         The file  is  created  if it does not exist.  The stream is positioned
          at the end of the file. */
 #define IFXOS_OPEN_MODE_APPEND            "a"
-/** Win32 User - Open for reading and appending (writing at end  of  file).   
-         The file is created if it does not exist.  The initial file position 
-         for reading is at the beginning  of  the  file,  but  output  is always 
+/** Win32 User - Open for reading and appending (writing at end  of  file).
+         The file is created if it does not exist.  The initial file position
+         for reading is at the beginning  of  the  file,  but  output  is always
          appended to the end of the file */
 #define IFXOS_OPEN_MODE_READ_APPEND       "a+"
 

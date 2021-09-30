@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_GENERIC_OS_APPL Miscellaneous functions (GENERIC_OS)
 
-   This Group contains the GENERIC_OS "Miscellaneous" definitions and function. 
+   This Group contains the GENERIC_OS "Miscellaneous" definitions and function.
 
 
 \ingroup IFXOS_LAYER_GENERIC_OS

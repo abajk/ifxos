@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos 
+   This file contains the IFXOS Layer implementation for eCos
    Time and Wait.
 */
 
@@ -43,7 +43,7 @@ unsigned int delayLoop = 0;
 #  define IFXOS_TIME_MAX      (~((IFX_time_t)0))
 #  define IFXOS_RESOLUTION_MS (1000UL / IFXOS_TICKS_PER_SECOND)
 #  define IFXOS_TICKS_SCALE   (IFXOS_TIME_MAX / IFXOS_RESOLUTION_MS)
-#  define IFXOS_MSEC_SCALE    (IFXOS_TICKS_SCALE * IFXOS_RESOLUTION_MS) 
+#  define IFXOS_MSEC_SCALE    (IFXOS_TICKS_SCALE * IFXOS_RESOLUTION_MS)
 #endif
 
 #if (defined(IFXOS_HAVE_TIME_SLEEP_US) && (IFXOS_HAVE_TIME_SLEEP_US == 1))
@@ -62,9 +62,6 @@ unsigned int delayLoop = 0;
 \param
    sleepTime_us   Time to sleep [us]
 
-\return
-   None.
-
 \remarks
    Available in Driver and Application Space
 */
@@ -77,7 +74,7 @@ IFX_void_t IFXOS_USecSleep(
     unsigned int ix;
     unsigned int iy;
 
-    if (delayLoop == 0 || sleepTime_us == (unsigned int)0xffffffff)      /* need calibration?          */
+    if (delayLoop == 0 || sleepTime_us == 0xffffffff)      /* need calibration?          */
     {
         unsigned int maxLoop;
         unsigned int start = 0;
@@ -135,9 +132,6 @@ IFX_void_t IFXOS_USecSleep(
 \param
    sleepTime_ms   Time to sleep [ms]
 
-\return
-   None.
-
 \remarks
    sleepTime_ms = 0 force a rescheduling.
 
@@ -147,9 +141,9 @@ IFX_void_t IFXOS_USecSleep(
 IFX_void_t IFXOS_MSecSleep(
                IFX_time_t sleepTime_ms)
 {
-   cyg_thread_delay( (int)((sleepTime_ms==0) ? 
+   cyg_thread_delay( ((sleepTime_ms==0) ?
 
-                        0 : ( ((IFXOS_MSEC_TO_TICK(sleepTime_ms)) <= 1) ? 
+                        0 : ( ((IFXOS_MSEC_TO_TICK(sleepTime_ms)) <= 1) ?
 
                                     1 : (IFXOS_MSEC_TO_TICK(sleepTime_ms)) ) ) );
 }
@@ -165,9 +159,6 @@ IFX_void_t IFXOS_MSecSleep(
 
 \param
    sleepTime_sec  Time to sleep [sec]
-
-\return
-   None.
 
 \remarks
    Available in Application Space
@@ -186,17 +177,17 @@ IFX_void_t IFXOS_SecSleep(
    eCos - Get the elapsed time in [ms].
 
 \par Implementation
-   Based on the "cyg_current_time" function and  "IFXOS_TICK_TO_MSEC" macro we calculate the 
+   Based on the "cyg_current_time" function and  "IFXOS_TICK_TO_MSEC" macro we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
-   Provide refTime_ms = 0 to get the current elapsed time. For messurement provide
+   Provide refTime_ms = 0 to get the current elapsed time. For measurement provide
    the current time as reference.
 */
 IFX_time_t IFXOS_ElapsedTimeMSecGet(
@@ -222,13 +213,13 @@ IFX_time_t IFXOS_ElapsedTimeMSecGet(
    eCos - Get the elapsed time since startup in [seconds]
 
 \par Implementation
-   Based on the "cyg_current_time" function and  "IFXOS_TICK_TO_MSEC" macro we calculate the 
+   Based on the "cyg_current_time" function and  "IFXOS_TICK_TO_MSEC" macro we calculate the
    elapsed time since startup or based on the given ref-time.
 
 \param
    refTime_sec Reference time to calculate the elapsed time in [sec].
 
-\return 
+\return
    Elapsed time in [sec] based on the given reference time
 
 \remark

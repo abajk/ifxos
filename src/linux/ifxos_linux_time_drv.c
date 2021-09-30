@@ -17,7 +17,7 @@
 #ifdef __KERNEL__
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX Kernel 
+   This file contains the IFXOS Layer implementation for LINUX Kernel
    Time and Sleep.
 */
 
@@ -30,7 +30,7 @@
    #include <linux/module.h>
 #endif
 #include <linux/sched.h>
-#include <asm/delay.h> 
+#include <asm/delay.h>
 #include <linux/delay.h>
 
 #include "ifx_types.h"
@@ -69,19 +69,14 @@
 \param
    sleepTime_us   Time to sleep [us]
 
-\return
-   None.
-
 \remark
-   Available in 
+   Available in
    - Driver space
 */
 IFX_void_t IFXOS_USecSleep(
                IFX_time_t sleepTime_us)
 {
    udelay(sleepTime_us);
-
-   return;
 }
 #endif
 
@@ -100,11 +95,8 @@ IFX_void_t IFXOS_USecSleep(
 \param
    sleepTime_ms   Time to sleep [ms]
 
-\return
-   None.
-
 \remark
-   Available in 
+   Available in
    - Driver space
 */
 IFX_void_t IFXOS_MSecSleep(
@@ -114,7 +106,6 @@ IFX_void_t IFXOS_MSecSleep(
    set_current_state(TASK_INTERRUPTIBLE);
    schedule_timeout(HZ * (sleepTime_ms) / 1000);
 
-   return;
 }
 #endif
 
@@ -123,17 +114,17 @@ IFX_void_t IFXOS_MSecSleep(
    LINUX Kernel - Get the elapsed time in [ms].
 
 \par Implementation
-   Based on the HZ and jiffies defines we calculate the elapsed time since 
+   Based on the HZ and jiffies defines we calculate the elapsed time since
    startup or based on the given ref-time.
 
 \param
    refTime_ms  Reference time to calculate the elapsed time in [ms].
 
-\return 
+\return
    Elapsed time in [ms] based on the given reference time
 
 \remark
-   Provide refTime_ms = 0 to get the current elapsed time. For messurement provide
+   Provide refTime_ms = 0 to get the current elapsed time. For measurement provide
    the current time as reference.
 */
 IFX_time_t IFXOS_ElapsedTimeMSecGet(

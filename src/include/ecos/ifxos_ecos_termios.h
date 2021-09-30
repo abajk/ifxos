@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_ECOS_APPL Terminal IO System (eCos)
 
-   This Group contains the eCos "Terminal IO System" definitions and function. 
+   This Group contains the eCos "Terminal IO System" definitions and function.
 
 
 \ingroup IFXOS_LAYER_ECOS

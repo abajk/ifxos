@@ -20,7 +20,7 @@
    This Group contains the definitions and functions of the Infineon / Lantiq OS Layer.
 
    Therefore the IFX OS defines and provides wrapper functions to hide the
-   OS specifc implementations.
+   OS specific implementations.
 
    Currently supported:
    - eCos
@@ -32,7 +32,7 @@
 
    This Group contains the mapping and implementation layer for the Linux OS.
 
-   Therefore the Linux Layer is splitted in 2 parts:
+   Therefore the Linux Layer is split in 2 parts:
    - Linux Kernel Layer
    - Linux User Layer
 */
@@ -41,7 +41,7 @@
 
    This Group contains the mapping and implementation layer for the VxWorks OS.
 
-   The VxWorks OS doesen't enforce a clear split between driver and
+   The VxWorks OS doesn't enforce a clear split between driver and
    application code, but for a clear structure and compatibility to Linux the
    IFX OS Layer keeps this border between driver and application code.
 
@@ -51,7 +51,7 @@
 
 /** \defgroup IFXOS_COMMON IFXOS Common Defines
 
-   This Group contains the common OS independant definition.
+   This Group contains the common OS independent definition.
 */
 
 #ifdef __cplusplus
@@ -63,7 +63,7 @@
    IFXOS Version
    ========================================================================== */
 
-/* get the IFXOS version definitons */
+/* get the IFXOS version definitions */
 #include "ifxos_version.h"
 
 /* ============================================================================
@@ -171,11 +171,11 @@
 #define IFXOS_WAIT_FOREVER    0xFFFFFFFF
 
 /**
-   Don't wait at all. The function will check the condition and will return 
+   Don't wait at all. The function will check the condition and will return
    immediately.
 */
-#define IFXOS_NO_WAIT         0x00000000     
-      
+#define IFXOS_NO_WAIT         0x00000000
+
 /** @} */
 
 #ifdef __cplusplus

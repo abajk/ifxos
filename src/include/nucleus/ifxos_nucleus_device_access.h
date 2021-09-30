@@ -19,9 +19,9 @@
 
 /** \defgroup IFXOS_DEVICE_ACCESS_NUCLEUS_APPL Device Access (Nucleus)
 
-   This Group contains the Nucleus Device Access definitions and function. 
+   This Group contains the Nucleus Device Access definitions and function.
 
-   The standard system calles (open, close, etc) are mapped to devcie specific
+   The standard system calls (open, close, etc) are mapped to device specific
    functions.
 
    The poll/select mechanism is supported. This requires OS support and a
@@ -61,7 +61,7 @@
 
 #ifndef _IO
    /** required form OS headers */
-#  error "missing _IO definiton"
+#  error "missing _IO definition"
 #endif
 
 

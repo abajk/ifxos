@@ -80,10 +80,10 @@
    us the possibility to add checks etc.
 
 \par Implementation
-   Before the stub function enters the user thread routin the following setup will
+   Before the stub function enters the user thread routine the following setup will
    be done:
    - make the kernel thread to a daemon
-   - asign the parent to the init process (avoid termination if the parent thread dies).
+   - assign the parent to the init process (avoid termination if the parent thread dies).
    - setup thread name, and signal handling (if required).
    After this the user thread routine will be entered.
 
@@ -124,7 +124,7 @@ IFXOS_STATIC int IFXOS_KernelThreadStartup(void *data)
 
    /* lock the kernel. A new kernel thread starts without
       the big kernel lock, regardless of the lock state
-      of the creator (the lock level is *not* inheritated)
+      of the creator (the lock level is *not* inherited)
    */
    lock_kernel();
 
@@ -230,11 +230,8 @@ IFX_int32_t IFXOS_ThreadInit(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Kernel ThreadInit, object already valid" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - Kernel ThreadInit, object already valid" IFXOS_CRLF));
    }
    else
    {
@@ -248,7 +245,7 @@ IFX_int32_t IFXOS_ThreadInit(
 /**
    LINUX Kernel - Shutdown and terminate a given thread.
    Therefore the thread delete functions triggers the user thread function
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
 \par Implementation
    - force a shutdown via the shutdown flag and wait.
@@ -315,11 +312,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - Kernel ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - Kernel ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {

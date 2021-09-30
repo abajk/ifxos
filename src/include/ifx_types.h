@@ -57,7 +57,7 @@ typedef signed int               IFX_int32_t;
 typedef float                    IFX_float_t;
 /** This is the void datatype.
    It is only a define to be sure, the type
-   is "exactly" the same for C++ comatibility! */
+   is "exactly" the same for C++ compatibility! */
 #define IFX_void_t               void
 
 
@@ -66,7 +66,7 @@ typedef float                    IFX_float_t;
          which defines a long as 64 bits and Win64 uses
          the IL32LLP64 standard which defines a long as 32 bits.
    */
-   #if defined(WIN64)
+   #if defined(WIN64) || defined (_WIN64)
       /** This is the unsigned 64-bit datatype. */
       typedef unsigned long long int   IFX_uint64_t;
       /** This is the signed 64-bit datatype. */

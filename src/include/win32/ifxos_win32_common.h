@@ -16,14 +16,14 @@
    This file contains common definitions used for the Win32 OS adaption.
 */
 
-/** \defgroup IFXOS_IF_WIN32_APPL Defines for Win32 Application Adaptaion
+/** \defgroup IFXOS_IF_WIN32_APPL Defines for Win32 Application Adaptation
 
    This Group contains the Win32 specific definitions and function.
 
 \par Win32 Application Endianess
    Under Win32 in user space the endianess is defined within the corresponding
    header file <endian.h>.
-   The plattform endianess is mapped to the internal used IFXOS endianess definitons.
+   The platform endianess is mapped to the internal used IFXOS endianess definitions.
 
 \ingroup IFXOS_INTERFACE
 */

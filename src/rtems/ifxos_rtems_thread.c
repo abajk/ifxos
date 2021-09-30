@@ -151,7 +151,7 @@ IFX_int32_t IFXOS_ThreadInit(
             printf("Task start error: %d\n", error);
             return IFX_ERROR;
          }
-         args[0]= (IFXOS_ThreadParams_t*)(&pThrCntrl->thrParams);
+         args[0]= (IFX_uint32_t)(&pThrCntrl->thrParams);
          args[1]=0;
          args[2]=0;
          args[3]=0;
@@ -251,11 +251,8 @@ IFX_int32_t IFXOS_ThreadDelete(
 
          return IFX_SUCCESS;
       }
-      else
-      {
-         IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
-            ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
-      }
+      IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
+         ("IFXOS ERROR - ThreadDelete, invalid object" IFXOS_CRLF));
    }
    else
    {

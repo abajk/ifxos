@@ -12,15 +12,15 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer Implementation Frame 
+   This file contains the IFXOS Layer Implementation Frame
    for Generic OS "Device Access".
 */
 
 /*
    Customer-ToDo:
-   For Device Access (open, close, ioctl) the OS specific functions have to be 
+   For Device Access (open, close, ioctl) the OS specific functions have to be
    mapped here
-   The IFXOS Dev IO interface is a generic interface for Device Access and is 
+   The IFXOS Dev IO interface is a generic interface for Device Access and is
    part of the IFX OS Layer which can be used for several OS.
    (If the IFXOS Dev IO Device Access is used no work is required here.)
 */
@@ -114,8 +114,8 @@ IFX_int32_t IFXOS_DeviceClose(
    -1 in case of error
 */
 IFX_int32_t IFXOS_DeviceWrite(
-               const IFX_int32_t    devFd, 
-               const IFX_void_t     *pData, 
+               const IFX_int32_t    devFd,
+               const IFX_void_t     *pData,
                const IFX_uint32_t   nSize_byte)
 {
    /*
@@ -144,8 +144,8 @@ IFX_int32_t IFXOS_DeviceWrite(
    -1 in case of error
 */
 IFX_int32_t IFXOS_DeviceRead(
-               const IFX_int32_t    devFd, 
-               IFX_void_t           *pDataBuf, 
+               const IFX_int32_t    devFd,
+               IFX_void_t           *pDataBuf,
                const IFX_uint32_t   nSize_byte)
 {
    /*
@@ -174,8 +174,8 @@ IFX_int32_t IFXOS_DeviceRead(
    -1  in case of error.
 */
 IFX_int32_t IFXOS_DeviceControl(
-               const IFX_int32_t    devFd, 
-               const IFX_uint32_t   devCmd, 
+               const IFX_int32_t    devFd,
+               const IFX_uint32_t   devCmd,
                IFX_ulong_t          param)
 {
    /*
@@ -193,10 +193,10 @@ IFX_int32_t IFXOS_DeviceControl(
 #if ( defined(IFXOS_HAVE_DEVICE_ACCESS_SELECT) && (IFXOS_HAVE_DEVICE_ACCESS_SELECT == 1) )
 
 /**
-   Wait for a device wake up. 
+   Wait for a device wake up.
 
 \param
-   max_fd      max devFd number to check.  
+   max_fd      max devFd number to check.
 \param
    read_fd_in  contains the devFd for wakeup.
 \param
@@ -209,9 +209,9 @@ IFX_int32_t IFXOS_DeviceControl(
    -1 in case of error.
 */
 IFX_int32_t IFXOS_DeviceSelect(
-               const IFX_uint32_t      max_fd, 
-               const IFXOS_devFd_set_t *read_fd_in, 
-               IFXOS_devFd_set_t       *read_fd_out, 
+               const IFX_uint32_t      max_fd,
+               const IFXOS_devFd_set_t *read_fd_in,
+               IFXOS_devFd_set_t       *read_fd_out,
                const IFX_uint32_t      timeout_ms)
 {
    /*
@@ -219,7 +219,7 @@ IFX_int32_t IFXOS_DeviceSelect(
       Fill with your customer OS implementation like:
       - setup timeval
       - setup fd_set arguments
-      - call selecct like: 
+      - call selecct like:
             select(max_fd, read_fd_out, NULL, NULL, &tv);
    */
 
@@ -239,7 +239,7 @@ IFX_int32_t IFXOS_DeviceSelect(
    NONE
 */
 IFX_void_t IFXOS_DevFdSet(
-               IFX_uint32_t      devFd, 
+               IFX_uint32_t      devFd,
                IFXOS_devFd_set_t *pDevFdSet)
 {
    /*
@@ -267,7 +267,7 @@ IFX_void_t IFXOS_DevFdSet(
 
 */
 IFX_int_t IFXOS_DevFdIsSet(
-               IFX_uint32_t            devFd, 
+               IFX_uint32_t            devFd,
                const IFXOS_devFd_set_t *pDevFdSet)
 {
    /*

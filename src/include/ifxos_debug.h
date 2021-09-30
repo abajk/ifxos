@@ -12,13 +12,13 @@
 ******************************************************************************/
 
 /** \file
-   This file contains common definitions for debug purposal. It defines debug
-   levels and also macros to setup debug groups and the corresponding 
+   This file contains common definitions for debug purpose. It defines debug
+   levels and also macros to setup debug groups and the corresponding
    debug printout macros.
 
 \remarks
-   This is only a addon module to the IFX OS adaptation. This file provides 
-   definitions for debug purposal used within the implementation of the IFX OS layer.
+   This is only a addon module to the IFX OS adaptation. This file provides
+   definitions for debug purpose used within the implementation of the IFX OS layer.
 */
 
 
@@ -27,14 +27,14 @@
    This group collects defines for printout and debug handling.
 
 \par Printout
-   The printout handling depends on the underlaying OS concerning the 
+   The printout handling depends on the underlaying OS concerning the
    available printout functions and the level where the printout has to be done
    (interrupt or user level).
    see "ifxos_print.h"
 
 \par Debug
-   The basic debug handling in a OS independant way is provided by the usage
-   of the previous menitoned printout handling.
+   The basic debug handling in a OS independent way is provided by the usage
+   of the previous mentioned printout handling.
    see "ifxos_debug.h"
 
 \ingroup IFXOS_INTERFACE
@@ -224,9 +224,9 @@
                if ((dbg_level) >= IFXOS_PrnIntModule_##module_name) \
                   { (void) IFXOS_DBG_PRINT_INT print_message ; }\
             } while(0)
-#else 
+#else
 /** Debug printout macro, printout on interrupt level */
-#define IFXOS_PRN_INT_DBG_NL(module_name, dbg_level, print_message) 
+#define IFXOS_PRN_INT_DBG_NL(module_name, dbg_level, print_message)
 #endif
 
 /* ============================================================================
@@ -254,7 +254,7 @@
             } while(0)
 #else
 /** Error printout Macro, printout on interrupt level */
-#define IFXOS_PRN_INT_ERR_NL(module_name, dbg_level, print_message) 
+#define IFXOS_PRN_INT_ERR_NL(module_name, dbg_level, print_message)
 #endif
 
 /** @} */

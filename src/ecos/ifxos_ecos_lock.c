@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos 
+   This file contains the IFXOS Layer implementation for eCos
    Lock and Protection.
 */
 
@@ -36,7 +36,7 @@
 #if ( defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1) )
 /**
    eCos - Initialize a Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \param
    lockId   Provides the pointer to the Lock Object.
@@ -45,7 +45,7 @@
    IFX_SUCCESS if delete was successful, else
    IFX_ERROR if something was wrong
 
-\attention 
+\attention
    Still not supported.
 */
 IFX_int32_t IFXOS_LockInit(
@@ -111,9 +111,6 @@ IFX_int32_t IFXOS_LockDelete(
 \param
    lockId   Provides the pointer to the Lock Object.
 
-\return
-   None
-
 \remarks
    Cannot be used on interrupt level.
 */
@@ -177,10 +174,10 @@ IFX_int32_t IFXOS_LockRelease(
 #if ( defined(IFXOS_HAVE_NAMED_LOCK) && (IFXOS_HAVE_NAMED_LOCK == 1) )
 /**
    eCos - Initialize a Named Lock Object for protection and lock.
-   The lock is based on binary semaphores, recursive calls are not allowded.
+   The lock is based on binary semaphores, recursive calls are not allowed.
 
 \remark
-   The name will be set within the internal lock object. 
+   The name will be set within the internal lock object.
    Currently used for debugging.
 
 \param
@@ -190,7 +187,7 @@ IFX_int32_t IFXOS_LockRelease(
 \param
    lockIdx     additional index which is used to generate the lock name
 
-\return      
+\return
    IFX_SUCCESS if initialization was successful, else
    IFX_ERROR if something was wrong
 */
@@ -203,8 +200,8 @@ IFX_int32_t IFXOS_NamedLockInit(
 
    retVal = IFXOS_LockInit(lockId);
 
-   IFXOS_SYS_OBJECT_USER_DESRC_SET( lockId->pSysObject, 
-                                    (pLockName) ? pLockName : "lock", 
+   IFXOS_SYS_OBJECT_USER_DESRC_SET( lockId->pSysObject,
+                                    (pLockName) ? pLockName : "lock",
                                     lockIdx);
 
    return retVal;
@@ -238,7 +235,7 @@ IFX_int32_t IFXOS_NamedLockInit(
    IFX_ERROR   on error or timeout.
 
 \note
-   To detect timeouts provide the return code varibale, in case of timeout
+   To detect timeouts provide the return code variable, in case of timeout
    the return code is set to 1.
 */
 IFX_int32_t IFXOS_LockTimedGet(

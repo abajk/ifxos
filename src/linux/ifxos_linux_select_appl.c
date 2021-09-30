@@ -12,7 +12,7 @@
 #if defined(LINUX) && !defined(__KERNEL__)
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX User Space 
+   This file contains the IFXOS Layer implementation for LINUX User Space
    Syncronistation Poll / Select.
 
 \Remark
@@ -42,7 +42,7 @@
 #if ( defined(IFXOS_HAVE_DRV_SELECT) && (IFXOS_HAVE_DRV_SELECT == 1) )
 
 /**
-   Linux Appl - Initialize a Select Queue Object for synchronisation between 
+   Linux Appl - Initialize a Select Queue Object for synchronisation between
    user and driver space via the select / poll mechanism.
 
 \attention
@@ -51,7 +51,7 @@
 \param
    pDrvSelectQueue   Points to a Driver Select Queue object.
 
-\return      
+\return
    IFX_SUCCESS if the initialization was successful, else
    IFX_ERROR in case of error.
 */
@@ -64,8 +64,8 @@ IFX_int32_t IFXOS_DrvSelectQueueInit(
 }
 
 /**
-   Linux Appl - Wakeup all the task added from the Select Queue. 
-   This function is used from driver space to signal the occurance of an event 
+   Linux Appl - Wakeup all the task added from the Select Queue.
+   This function is used from driver space to signal the occurance of an event
    from driver space to one or several waiting user (poll / select mechanism).
 
 \attention

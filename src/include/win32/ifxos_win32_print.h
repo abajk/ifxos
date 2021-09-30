@@ -97,9 +97,9 @@
    /** Error Print on Appl-Level (formated) */
 #  define IFXOS_ERR_PRINT_USR(fmt, args...)          IFXOS_fctErrPrintf(fmt, ##args)
 
-   /** Print on Int-Level (unformated) */
+   /** Print on Int-Level (unformatted) */
 #  define IFXOS_PRINT_INT_RAW(fmt, args...)          IFXOS_fctDbgPrintf(fmt, ##args)
-   /** Print on Appl-Level (unformated) */
+   /** Print on Appl-Level (unformatted) */
 #  define IFXOS_PRINT_USR_RAW(fmt, args...)          IFXOS_fctDbgPrintf(fmt, ##args)
 
 #else
@@ -113,9 +113,9 @@
    /** Error Print on Appl-Level (formated) */
 #  define IFXOS_ERR_PRINT_USR                        IFXOS_fctErrPrintf
 
-   /** Print on Int-Level (unformated) */
+   /** Print on Int-Level (unformatted) */
 #  define IFXOS_PRINT_INT_RAW                        IFXOS_fctDbgPrintf
-   /** Print on Appl-Level (unformated) */
+   /** Print on Appl-Level (unformatted) */
 #  define IFXOS_PRINT_USR_RAW                        IFXOS_fctDbgPrintf
 #endif
 

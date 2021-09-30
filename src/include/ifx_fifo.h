@@ -62,9 +62,9 @@ typedef IFX_FIFO IFX_VFIFO;
    ========================================================================= */
 
 extern IFX_return_t IFX_Fifo_Init (
-                           IFX_FIFO*    pFifo, 
-                           IFX_ulong_t* pStart, 
-                           IFX_ulong_t* pEnd, 
+                           IFX_FIFO*    pFifo,
+                           IFX_ulong_t* pStart,
+                           IFX_ulong_t* pEnd,
                            IFX_uint32_t elSizeB);
 extern IFX_void_t   IFX_Fifo_Clear (
                            IFX_FIFO *pFifo);
@@ -83,20 +83,20 @@ extern IFX_uint32_t IFX_Fifo_getCount (
 
 
 extern IFX_return_t IFX_Var_Fifo_Init (
-                           IFX_VFIFO* pFifo, 
+                           IFX_VFIFO* pFifo,
                            IFX_ulong_t* pStart,
-                           IFX_ulong_t* pEnd, 
-                           IFX_uint32_t size);
+                           IFX_ulong_t* pEnd,
+                           IFX_uint32_t maxElSize);
 extern IFX_void_t   IFX_Var_Fifo_Clear (
                            IFX_VFIFO *pFifo);
 extern IFX_ulong_t* IFX_Var_Fifo_readElement (
-                           IFX_VFIFO *pFifo, 
+                           IFX_VFIFO *pFifo,
                            IFX_uint32_t *elSizeB);
 extern IFX_ulong_t* IFX_Var_Fifo_peekElement (
-                           IFX_VFIFO *pFifo, 
+                           IFX_VFIFO *pFifo,
                            IFX_uint32_t *elSizeB);
 extern IFX_ulong_t* IFX_Var_Fifo_writeElement (
-                           IFX_VFIFO *pFifo, 
+                           IFX_VFIFO *pFifo,
                            IFX_uint32_t elSizeB);
 extern IFX_int8_t   IFX_Var_Fifo_isEmpty (
                            IFX_VFIFO *pFifo);

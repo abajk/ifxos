@@ -38,7 +38,6 @@
 IFX_void_t IFXOS_Reboot (void)
 {
    board_reset();
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

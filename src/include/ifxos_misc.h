@@ -17,7 +17,7 @@
 
 /** \defgroup IFXOS_IF_MISC Miscellaneous functions
 
-   This Group contains the Miscellaneous functions. 
+   This Group contains the Miscellaneous functions.
 
 \ingroup IFXOS_INTERFACE
 */
@@ -83,7 +83,7 @@
 #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) )
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void);
 
 #endif

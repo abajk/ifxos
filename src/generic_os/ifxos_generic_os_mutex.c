@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS 
+   This file contains the IFXOS Layer implementation for GENERIC_OS
    Mutex.
 */
 

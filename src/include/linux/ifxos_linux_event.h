@@ -14,34 +14,34 @@
 #ifdef LINUX
 
 /** \file
-   This file contains LINUX definitions for Event Synchronisation and Signalisation.
+   This file contains LINUX definitions for Event Synchronization and Signalization.
 */
 
-/** \defgroup IFXOS_SYNC_LINUX Synchronisation.
+/** \defgroup IFXOS_SYNC_LINUX Synchronization.
 
-   This Group collect the LINUX synchronisation and signaling mechanism used within 
+   This Group collect the LINUX synchronization and signaling mechanism used within
    IFXOS.
 
-   The IFX OS differs between the synchronisation on processes level 
+   The IFX OS differs between the synchronization on processes level
    (threads / tasks) and between user and driver space.
 
-\par processes level Syncronisation
-   For synchronisation on thread / task level a "Event feature" is provided.
+\par processes level Synchronization
+   For synchronization on thread / task level a "Event feature" is provided.
 
 \note
    The intention of these signaling feature is to communicate between different
    threads.
    The feature under LINUX is available in Kernel and User space.
 
-\par Application-Driver Syncronisation
-   Therefore the poll/select mechanism is prepared. 
+\par Application-Driver Synchronization
+   Therefore the poll/select mechanism is prepared.
 
 \ingroup IFXOS_LAYER_LINUX
 */
 
-/** \defgroup IFXOS_EVENT_LINUX_USER Event Synchronisation (Linux User Space).
+/** \defgroup IFXOS_EVENT_LINUX_USER Event Synchronization (Linux User Space).
 
-   This Group contains the LINUX Event definitions and function for 
+   This Group contains the LINUX Event definitions and function for
    communication of threads.
 
 \note
@@ -51,9 +51,9 @@
 \ingroup IFXOS_SYNC_LINUX
 */
 
-/** \defgroup IFXOS_EVENT_LINUX_KERNEL Event Synchronisation (Linux Kernel).
+/** \defgroup IFXOS_EVENT_LINUX_KERNEL Event Synchronization (Linux Kernel).
 
-   This Group contains the LINUX Kernel Event definitions and function for 
+   This Group contains the LINUX Kernel Event definitions and function for
    communication within the driver code.
 
 \note
@@ -115,7 +115,7 @@ typedef struct
    /** wakeup condition flag (used for Kernel Version 2.6) */
    int            bConditionFlag;
 
-} IFXOS_event_t; 
+} IFXOS_event_t;
 
 /** @} */
 
@@ -137,7 +137,7 @@ typedef struct
 {
    /** event object (based on semaphores */
 #if (USE_PHTREAD_SEM == 1)
-   sem_t object;  
+   sem_t object;
 #else
    int object;
 #endif
@@ -147,7 +147,7 @@ typedef struct
 
    /** points to the internal system object - for debugging */
    IFX_void_t    *pSysObject;
-} IFXOS_event_t; 
+} IFXOS_event_t;
 
 /** @} */
 

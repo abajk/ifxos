@@ -19,7 +19,7 @@
    extern "C" {
 #endif
 /* ============================================================================
-   inlcudes
+   includes
    ========================================================================= */
 #include "ifx_types.h"
 #include "ifxos_sys_show_interface.h"
@@ -28,9 +28,9 @@
 #  include "ifxos_lock.h"
 #  include "ifxos_mutex.h"
 #  include "ifxos_event.h"
-#  include "ifxos_thread.h"
 #  include "ifxos_memory_alloc.h"
 #endif
+#  include "ifxos_thread.h"
 
 #include "ifx_fifo.h"
 
@@ -59,7 +59,7 @@
 /**
    Struct to debug/trace the IFXOS LOCK feature.
 */
-typedef struct 
+typedef struct
 {
 #if defined(IFXOS_HAVE_LOCK) && (IFXOS_HAVE_LOCK == 1)
    /** points the LOCK object */
@@ -67,9 +67,9 @@ typedef struct
 #endif
 
    /** thread ID of the waiting thread */
-   IFX_int_t    reqThreadId;
+   IFXOS_thread_t reqThreadId;
    /*
-      statistics 
+      statistics
    */
    /** number of Inits / Init Attempts */
    IFX_uint_t  numOfInit;
@@ -135,7 +135,7 @@ typedef struct
                /*lint -e{19} */ \
                do {\
                   if (pIFXOS_SysObject != IFX_NULL) \
-                     { ((IFXOS_sys_object_t *)(pIFXOS_SysObject))->uSysObject.sysObjLock.reqThreadId = (IFX_int_t)IFXOS_ThreadIdGet(); } \
+                     { ((IFXOS_sys_object_t *)(pIFXOS_SysObject))->uSysObject.sysObjLock.reqThreadId = IFXOS_ThreadIdGet(); } \
                } while (0)
 
 #  else
@@ -153,7 +153,7 @@ typedef struct
                /*lint -e{19} */ \
                do { \
                   if (pIFXOS_SysObject != IFX_NULL) { \
-                     if (IFXOS_SYS_OBJECT_OWNER_THREAD_ID_GET(pIFXOS_SysObject) == (IFX_int_t)IFXOS_ThreadIdGet()) { \
+                     if (IFXOS_SYS_OBJECT_OWNER_THREAD_ID_GET(pIFXOS_SysObject) == IFXOS_ThreadIdGet()) { \
                        ((IFXOS_sys_object_t *)(pIFXOS_SysObject))->uSysObject.sysObjLock.numOfRecursiveCalls++; } } \
                } while (0)
 
@@ -180,7 +180,7 @@ typedef struct
 /**
    Struct to debug/trace the IFXOS MUTEX feature.
 */
-typedef struct 
+typedef struct
 {
 #if defined(IFXOS_HAVE_MUTEX) && (IFXOS_HAVE_MUTEX == 1)
    /** points the MUTEX object */
@@ -188,7 +188,7 @@ typedef struct
 #endif
 
    /*
-      statistics 
+      statistics
    */
    /** number of Inits / Init Attempts */
    IFX_uint_t  numOfInit;
@@ -247,7 +247,7 @@ typedef struct
 /**
    Struct to debug/trace the IFXOS EVENT feature.
 */
-typedef struct 
+typedef struct
 {
 #if defined(IFXOS_HAVE_EVENT) && (IFXOS_HAVE_EVENT == 1)
    /** points the LOCK object */
@@ -255,7 +255,7 @@ typedef struct
 #endif
 
    /*
-      statistics 
+      statistics
    */
    /** number of Inits / Init Attempts */
    IFX_uint_t  numOfInit;
@@ -285,7 +285,7 @@ typedef struct
 /**
    Struct to debug/trace the IFXOS Thread feature.
 */
-typedef struct 
+typedef struct
 {
 #if defined(IFXOS_HAVE_THREAD) && (IFXOS_HAVE_THREAD == 1)
    /** points the THREAD object */
@@ -293,7 +293,7 @@ typedef struct
 #endif
 
    /*
-      statistics 
+      statistics
    */
    /** number of Inits / Init Attempts */
    IFX_uint_t           numOfInit;
@@ -338,15 +338,15 @@ typedef struct
 /**
    Struct to debug/trace the IFXOS MEM ALLOC handling.
 */
-typedef struct 
+typedef struct
 {
    /** points to the FIFO object */
    IFX_void_t *pThis;
 
    /*
-      statistics 
+      statistics
    */
-   /** number of mem allocation calles */
+   /** number of mem allocation calls */
    IFX_uint_t  numOfMemAlloc;
    /** number of mem free calls */
    IFX_uint_t  numOfMemFree;
@@ -399,7 +399,7 @@ typedef struct
 #  define IFXOS_SYS_MEM_ALLOC_COUNT_INC(pIFXOS_SysObject)            /*lint -e{19} */
 #  define IFXOS_SYS_MEM_FREE_COUNT_INC(pIFXOS_SysObject)             /*lint -e{19} */
 #  define IFXOS_SYS_MEM_MAX_BLOCK_SET(pIFXOS_SysObject, blockSize)   /*lint -e{19} */
-#  define IFXOS_SYS_MEM_MAX_BLOCK_SET(pIFXOS_SysObject, blockSize)   /*lint -e{19} */
+#  define IFXOS_SYS_MEM_MIN_BLOCK_SET(pIFXOS_SysObject, blockSize)   /*lint -e{19} */
 #endif
 
 /* ============================================================================
@@ -409,7 +409,7 @@ typedef struct
 /**
    Struct to debug/trace the IFXOS FIFO handling.
 */
-typedef struct 
+typedef struct
 {
 
    /** points to the FIFO object */
@@ -421,7 +421,7 @@ typedef struct
    IFX_ulong_t* pEnd;
 
    /*
-      statistics 
+      statistics
    */
    /** number of Inits / Init Attempts */
    IFX_uint_t  numOfInit;
@@ -505,10 +505,10 @@ typedef struct
 /**
    Debug and trace - this struct contains the PID and Thread ID.
 */
-typedef struct 
+typedef struct
 {
-   IFX_int_t      pId;
-   IFX_int_t      thrId;
+   IFXOS_process_t      pId;
+   IFXOS_thread_t       thrId;
 } IFXOS_sys_obj_thread_info_t;
 
 /**
@@ -565,7 +565,7 @@ struct IFXOS_sys_object_s
 /**
    Debug and trace - this struct contains the PID and Thread ID.
 */
-typedef struct 
+typedef struct
 {
    /** init / setup done */
    IFX_boolean_t  initDone;

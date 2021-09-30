@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_IOPRINT_GENERIC_OS_APPL I/O printout and get (Generic OS)
 
-   This Group contains the Generic OS I/O printout and get definitions and function. 
+   This Group contains the Generic OS I/O printout and get definitions and function.
 
    Therefore the functions are splitted in groups concerning their functionality:
    - char handling, get, put

@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS Application 
+   This file contains the IFXOS Layer implementation for GENERIC_OS Application
    "Miscellaneous functions".
 */
 
@@ -37,7 +37,7 @@
 #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) )
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void)
 {
    /*
@@ -45,8 +45,6 @@ IFX_void_t IFXOS_Reboot (void)
       Fill with your customer OS implementation like:
       - reboot(BOOT_CLEAR);
    */
-
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

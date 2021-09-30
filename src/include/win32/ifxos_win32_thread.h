@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_THREAD_WIN32 Thread  (Win32).
 
-   This Group contains the Win32 Task definitions and function. 
+   This Group contains the Win32 Task definitions and function.
 
 \ingroup IFXOS_LAYER_WIN32
 */
@@ -34,7 +34,7 @@
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#include <windows.h>
+#include <Windows.h>
 
 #include "ifx_types.h"
 
@@ -66,7 +66,7 @@
 #define IFXOS_THREAD_PRIO_HIGH                     THREAD_PRIORITY_ABOVE_NORMAL
 /** Win32 Thread - priority - HIGHEST */
 #define IFXOS_THREAD_PRIO_HIGHEST                  THREAD_PRIORITY_HIGHEST
-/** Win32 Thread - priority - TIME_CRITICAL 
+/** Win32 Thread - priority - TIME_CRITICAL
 \attention
    You should use this priority only for driver threads.
 */
@@ -118,7 +118,7 @@ typedef struct
 
    /** requested kernel thread priority */
    IFX_int32_t             nPriority;
-   
+
    /** flag indicates that the structure is initialized */
    IFX_boolean_t           bValid;
 

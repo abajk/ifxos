@@ -17,23 +17,23 @@
 
 /** \defgroup IFXOS_IF_THREAD Thread / Task.
 
-   This Group contains the thread and task definitions and  
-   function. 
+   This Group contains the thread and task definitions and
+   function.
 
 \par IFXOS Thread / Task Concept
 
-   The IFXOS thread / task interface hides the OS specific implementations. 
-   Therefore the common OS independant user argument structure \ref IFXOS_ThreadParams_t
-   is defined. 
-   Furhter the user thread function must be from type \ref IFXOS_ThreadFunction_t.
+   The IFXOS thread / task interface hides the OS specific implementations.
+   Therefore the common OS independent user argument structure \ref IFXOS_ThreadParams_t
+   is defined.
+   Further the user thread function must be from type \ref IFXOS_ThreadFunction_t.
 
    Thread / task create.\n
-   Internal the thread create is wrapped to get an additional layer 
-   for the IFXOS specific setup. 
+   Internal the thread create is wrapped to get an additional layer
+   for the IFXOS specific setup.
 
-   Therefore the thread create function allocates an internal OS specific data 
+   Therefore the thread create function allocates an internal OS specific data
    structure and setup the given user informations.
-   Then the thread will be created in a OS specific way with the 
+   Then the thread will be created in a OS specific way with the
    - internal OS specific data, and an
    - internal OS specific OS stub function.
 
@@ -43,13 +43,13 @@
    - the shutdown flag is set to "0"
 
    Thread / task delete.\n
-   To terminate a thread / task the thread delete function will signal the 
-   shutdown to the user thread function via the bShutDown flag within the 
+   To terminate a thread / task the thread delete function will signal the
+   shutdown to the user thread function via the bShutDown flag within the
    thread argument structure \ref IFXOS_ThreadFunction_t.
    This requires a cooperation of the user function and the IFXOS Thread control.
 
 \note
-   The OS specific data structures and also the OS specific stub function is 
+   The OS specific data structures and also the OS specific stub function is
    used only internal. So the user doesn't have to know anything about this handing.
 
 \ingroup IFXOS_INTERFACE
@@ -177,7 +177,7 @@ typedef IFX_int32_t (*IFXOS_ThreadFunction_t)(IFXOS_ThreadParams_t *);
    Creates a new thread / task.
 
 \param
-   pControl          - Pointer to thread control structure. This structure has to 
+   pThrCntrl         - Pointer to thread control structure. This structure has to
                        be allocated outside and will be initialized.
 \param
    pName             - specifies the 8-char thread / task name
@@ -197,7 +197,7 @@ typedef IFX_int32_t (*IFXOS_ThreadFunction_t)(IFXOS_ThreadParams_t *);
    - IFX_ERROR thread was not deleted
 */
 IFX_int32_t IFXOS_ThreadInit(
-               IFXOS_ThreadCtrl_t *pControl,
+               IFXOS_ThreadCtrl_t *pThrCntrl,
                IFX_char_t     *pName,
                IFXOS_ThreadFunction_t pThreadFunction,
                IFX_uint32_t   nStackSize,
@@ -207,10 +207,10 @@ IFX_int32_t IFXOS_ThreadInit(
 
 /**
    Shutdown and terminate a given thread.
-   Therefore the thread delete functions triggers the user thread function 
-   to shutdown. In case of not responce (timeout) the thread will be canceled.
+   Therefore the thread delete functions triggers the user thread function
+   to shutdown. In case of not response (timeout) the thread will be canceled.
 
-   Therefore the thread delete functions triggers the user thread function 
+   Therefore the thread delete functions triggers the user thread function
    to shutdown.
 
 \param
@@ -228,7 +228,7 @@ IFX_int32_t IFXOS_ThreadDelete(
 
 /**
    Shutdown a given thread.
-   Therefore the thread delete functions triggers the user thread function 
+   Therefore the thread delete functions triggers the user thread function
    to shutdown.
 
 \param
@@ -259,7 +259,7 @@ IFX_int32_t IFXOS_ThreadShutdown(
                  - IFXOS_THREAD_PRIO_HIGHEST
                  - IFXOS_THREAD_PRIO_TIME_CRITICAL
 \attention
-   The intention for the priority "TIME_CRITICAL" is for use within 
+   The intention for the priority "TIME_CRITICAL" is for use within
    driver space.
 
 \return

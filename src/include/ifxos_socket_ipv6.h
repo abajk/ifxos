@@ -108,7 +108,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -130,7 +130,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -139,7 +139,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_sockAddr6_t *pSocAddr6);
 
 /**
-   Assignes a local address to a IP V6 socket.
+   Assigns a local address to a IP V6 socket.
 
 \param
    socFd       specifies the socket should be bind to the address

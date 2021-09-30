@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_VXWORKS_APPL Miscellaneous functions (VxWorks)
 
-   This Group contains the VxWorks "Miscellaneous" definitions and function. 
+   This Group contains the VxWorks "Miscellaneous" definitions and function.
 
 
 \ingroup IFXOS_LAYER_VXWORKS

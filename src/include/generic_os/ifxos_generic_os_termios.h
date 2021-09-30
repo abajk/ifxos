@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_TERMIOS_GENERIC_OS_APPL Terminal IO System (Generic OS)
 
-   This Group contains the Generic OS "Terminal IO System" definitions and function. 
+   This Group contains the Generic OS "Terminal IO System" definitions and function.
 
 
 \ingroup IFXOS_LAYER_GENERIC_OS

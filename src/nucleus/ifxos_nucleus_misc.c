@@ -12,7 +12,7 @@
 #ifdef NUCLEUS_PLUS
 
 /** \file
-   This file contains the IFXOS Layer implemantation for Nucleus Application 
+   This file contains the IFXOS Layer implementation for Nucleus Application
    "Miscellaneous functions".
 */
 
@@ -33,10 +33,9 @@
 #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) )
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void)
 {
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

@@ -12,7 +12,7 @@
 #ifdef GENERIC_OS
 
 /** \file
-   This file contains the IFXOS Layer implementation for GENERIC_OS User 
+   This file contains the IFXOS Layer implementation for GENERIC_OS User
    I/O printout and get.
 */
 
@@ -68,7 +68,7 @@ IFX_int_t IFXOS_GetChar(void)
    No Success  - error
 */
 IFX_int_t IFXOS_PutChar(
-                     IFX_char_t     c, 
+                     IFX_char_t     c,
                      IFXOS_File_t   *stream)
 {
    /*
@@ -99,8 +99,8 @@ IFX_int_t IFXOS_PutChar(
    No Success  - NULL in case of errors
 */
 IFX_char_t *IFXOS_FGets(
-                     IFX_char_t     *pStrBuf, 
-                     IFX_int_t      nCount, 
+                     IFX_char_t     *pStrBuf,
+                     IFX_int_t      nCount,
                      IFXOS_File_t   *stream)
 {
    /*
@@ -124,13 +124,13 @@ IFX_char_t *IFXOS_FGets(
    stream  - handle of the stream.
 \param
    format  - points to the printf format string.
-   
+
 \return
    For success - Number of written bytes.
    For error   - negative value.
 */
 IFX_int_t IFXOS_FPrintf(
-                     IFXOS_File_t      *stream, 
+                     IFXOS_File_t      *stream,
                      const IFX_char_t  *format, ...)
 {
    IFX_int_t   nRet = 0;
@@ -173,8 +173,8 @@ IFX_int_t IFXOS_FPrintf(
    For error   - negative value.
 */
 IFX_int_t IFXOS_SNPrintf (
-                     IFX_char_t        *pStrBuf, 
-                     IFX_int_t         bufSize, 
+                     IFX_char_t        *pStrBuf,
+                     IFX_int_t         bufSize,
                      const IFX_char_t  *format, ...)
 {
    IFX_int_t   nRet = 0;
@@ -218,9 +218,9 @@ IFX_int_t IFXOS_SNPrintf (
    For error   - negative value.
 */
 IFX_int_t IFXOS_VSNPrintf (
-                     IFX_char_t        *pStrBuf, 
-                     IFX_int_t         bufSize, 
-                     const IFX_char_t  *format, 
+                     IFX_char_t        *pStrBuf,
+                     IFX_int_t         bufSize,
+                     const IFX_char_t  *format,
                      IFXOS_valist_t    vaList)
 {
    IFX_int_t   nRet = 0;
@@ -256,7 +256,7 @@ IFX_int_t IFXOS_VSNPrintf (
 */
 IFX_int_t IFXOS_VFPrintf (
                      IFXOS_File_t      *stream,
-                     const IFX_char_t  *format, 
+                     const IFX_char_t  *format,
                      IFXOS_valist_t    vaList)
 {
    IFX_int_t   nRet = 0;

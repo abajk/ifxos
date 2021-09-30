@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos Application 
+   This file contains the IFXOS Layer implementation for eCos Application
    Pipes.
 */
 
@@ -73,8 +73,8 @@ IFX_int_t IFXOS_PipeCreate(
    - in case of error the return value is NULL
 */
 IFXOS_Pipe_t *IFXOS_PipeOpen(
-                     IFX_char_t *pName, 
-                     IFX_boolean_t reading, 
+                     IFX_char_t *pName,
+                     IFX_boolean_t reading,
                      IFX_boolean_t blocking)
 {
    IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
@@ -113,13 +113,13 @@ IFX_int_t IFXOS_PipeClose(IFXOS_Pipe_t *pPipe)
    streamPipe  - handle of the pipe stream.
 \param
    format      - points to the printf format string.
-   
+
 \return
    For success - Number of written bytes.
    For error   - negative value.
 */
 IFX_int_t IFXOS_PipePrintf(
-                     IFXOS_Pipe_t      *streamPipe, 
+                     IFXOS_Pipe_t      *streamPipe,
                      const IFX_char_t  *format, ...)
 {
    IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,
@@ -152,9 +152,9 @@ IFX_int_t IFXOS_PipePrintf(
    a short item count (or zero) (see errno)
 */
 IFX_int_t IFXOS_PipeRead(
-                     IFX_void_t     *pDataBuf, 
-                     IFX_uint32_t   elementSize_byte,  
-                     IFX_uint32_t   elementCount, 
+                     IFX_void_t     *pDataBuf,
+                     IFX_uint32_t   elementSize_byte,
+                     IFX_uint32_t   elementCount,
                      IFXOS_Pipe_t   *pPipe)
 {
    IFXOS_PRN_USR_ERR_NL( IFXOS, IFXOS_PRN_LEVEL_ERR,

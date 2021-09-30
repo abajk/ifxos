@@ -19,9 +19,9 @@
 
 /** \defgroup IFXOS_IOPRINT_VXWORKS_APPL I/O printout and get (VxWorks)
 
-   This Group contains the VxWorks I/O printout and get definitions and function. 
+   This Group contains the VxWorks I/O printout and get definitions and function.
 
-   Therefore the functions are splitted in groups concerning their functionality:
+   Therefore the functions are split in groups concerning their functionality:
    - char handling, get, put
    - string handling, get/put
    - printf functions

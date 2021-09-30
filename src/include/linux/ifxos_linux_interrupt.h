@@ -38,7 +38,7 @@
    ========================================================================= */
 
 /** IFX Linux adaptation - support interrupt subsystem */
-#ifndef IFXOS_HAVE_INTERRUPT                 
+#ifndef IFXOS_HAVE_INTERRUPT
 #  define IFXOS_HAVE_INTERRUPT                1
 #endif
 

@@ -19,7 +19,7 @@
 
 /** \defgroup IFXOS_MISC_NUCLEUS_APPL Miscellaneous functions (Nucleus)
 
-   This Group contains the Nucleus "Miscellaneous" definitions and function. 
+   This Group contains the Nucleus "Miscellaneous" definitions and function.
 
 
 \ingroup IFXOS_LAYER_NUCLEUS

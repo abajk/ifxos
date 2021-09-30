@@ -1,13 +1,13 @@
-/******************************************************************************
+/****************************************************************************
 
-                              Copyright (c) 2009
-                            Lantiq Deutschland GmbH
-                     Am Campeon 3; 85579 Neubiberg, Germany
+         Copyright (c) 2016 - 2019 Intel Corporation
+         Copyright (c) 2011 - 2016 Lantiq Beteiligungs-GmbH & Co. KG
 
   For licensing information, see the file 'LICENSE' in the root folder of
   this software module.
 
-******************************************************************************/
+*****************************************************************************/
+
 #ifdef LINUX
 #ifdef __KERNEL__
 
@@ -26,6 +26,7 @@
 #include <linux/version.h>
 #include <linux/in.h>
 #include <linux/net.h>
+#include <linux/fs.h>
 #include <linux/inet.h>
 #include <asm/uaccess.h>
 
@@ -108,7 +109,7 @@ IFX_int_t IFXOS_SocketCreate(
    IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
    /* arg3 = 0: do not specifiy the protocol */
-   if (sock_create(PF_INET, socType, 0, (struct socket **) pSocketFd) == -1)
+   if (sock_create(PF_INET, socType, 0, pSocketFd) == -1)
    {
       return IFX_ERROR;
    }
@@ -131,7 +132,7 @@ IFX_int_t IFXOS_SocketCreate(
 IFX_int_t IFXOS_SocketClose(
                   IFXOS_socket_t socketFd)
 {
-   sock_release((struct socket *)socketFd);
+   sock_release(socketFd);
    return IFX_SUCCESS;
 }
 
@@ -192,7 +193,11 @@ IFX_int_t IFXOS_SocketRecvFrom(
    old_fs = get_fs();
    set_fs(KERNEL_DS);
 
-   ret = sock_recvmsg ((struct socket *) socFd, &msg, bufSize_byte, 0);
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
+   ret = sock_recvmsg (socFd, &msg, bufSize_byte, 0);
+#else
+   ret = sock_recvmsg (socFd, &msg, 0);
+#endif
    set_fs(old_fs);
 
    return ret;
@@ -253,9 +258,9 @@ IFX_int_t IFXOS_SocketSendTo(
    set_fs(KERNEL_DS);
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3,19,0)
-   ret = sock_sendmsg((struct socket *) socFd, &msg, bufSize_byte);
+   ret = sock_sendmsg(socFd, &msg, bufSize_byte);
 #else
-   ret = sock_sendmsg((struct socket *) socFd, &msg);
+   ret = sock_sendmsg(socFd, &msg);
 #endif
    set_fs(old_fs);
 
@@ -286,8 +291,7 @@ IFX_int_t IFXOS_SocketBind(
 
    IFXOS_RETURN_IF_POINTER_NULL(pSocAddr, IFX_ERROR);
 
-   ret = ((struct socket *)socFd)->ops->bind((struct socket *)socFd,
-      (struct sockaddr*) pSocAddr, sizeof(IFXOS_sockAddr_t));
+   ret = (socFd->ops->bind(socFd, (struct sockaddr*) pSocAddr, sizeof(IFXOS_sockAddr_t)));
 
    if (ret != 0)
    {

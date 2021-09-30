@@ -73,7 +73,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 #	if (IFXOS_VXWORKS_IPV6_TODO == 0)
 	IFXOS_RETURN_IF_POINTER_NULL(pSocketFd, IFX_ERROR);
 
-	/* arg3 = 0: do not specifiy the protocol */
+	/* arg3 = 0: do not specify the protocol */
 	if((*pSocketFd = socket(AF_INET6, socType, 0)) == -1)
 		{return IFX_ERROR;}
 
@@ -106,7 +106,7 @@ IFX_int_t IFXOS_SocketCreateIpV6(
 
 \return
    Returns the number of received bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketRecvFromIpV6(
 	IFXOS_socket_t socFd,
@@ -155,7 +155,7 @@ IFX_int_t IFXOS_SocketRecvFromIpV6(
 
 \return
    Returns the number of sent bytes. Returns a negative value if an error
-   occured
+   occurred
 */
 IFX_int_t IFXOS_SocketSendToIpV6(
 	IFXOS_socket_t socFd,
@@ -186,7 +186,7 @@ IFX_int_t IFXOS_SocketSendToIpV6(
 }
 
 /**
-   VxWorks - Assignes a local address to a IP V6 socket.
+   VxWorks - Assigns a local address to a IP V6 socket.
 
 \par Implementation
    -  via "bind"

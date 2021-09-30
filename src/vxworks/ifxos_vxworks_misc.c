@@ -12,7 +12,7 @@
 #ifdef VXWORKS
 
 /** \file
-   This file contains the IFXOS Layer implementation for VxWorks Application 
+   This file contains the IFXOS Layer implementation for VxWorks Application
    "Miscellaneous functions".
 */
 
@@ -36,11 +36,10 @@
 #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) )
 /**
    Reboot the board
-*/   
+*/
 IFX_void_t IFXOS_Reboot (void)
 {
    reboot(BOOT_CLEAR);
-   return;
 }
 #endif /* #if ( defined(IFXOS_HAVE_MISC) && (IFXOS_HAVE_MISC == 1) ) */
 

@@ -22,7 +22,7 @@
    This Group contains the Generic OS Lock and Protection definition.
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention

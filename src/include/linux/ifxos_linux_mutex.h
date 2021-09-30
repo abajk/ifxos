@@ -14,7 +14,7 @@
 #ifdef LINUX
 
 /** \file
-   This file contains LINUX definitions for Mutex handling 
+   This file contains LINUX definitions for Mutex handling
    for kernel and user space.
 */
 
@@ -37,7 +37,7 @@
    This Group contains the LINUX Mutex definition (Kernel Space).
 
 \par Implementation
-   The current implementation is based on a binary semaphore and does 
+   The current implementation is based on a binary semaphore and does
    not allow recursive calls.
 
 \attention
@@ -94,7 +94,7 @@
 /** \addtogroup IFXOS_MUTEX_LINUX_DRV
 @{ */
 
-/** LINUX Kernel - MUTEX, type kernel semaphore for synchronisation. */
+/** LINUX Kernel - MUTEX, type kernel semaphore for synchronization. */
 typedef struct
 {
    /** mutex identifier */
@@ -115,7 +115,7 @@ typedef struct
 /** \addtogroup IFXOS_MUTEX_LINUX_APPL
 @{ */
 
-/** LINUX User - MUTEX, type kernel semaphore for synchronisation. */
+/** LINUX User - MUTEX, type kernel semaphore for synchronization. */
 typedef struct
 {
    /** mutex identifier */

@@ -12,7 +12,7 @@
 #ifdef ECOS
 
 /** \file
-   This file contains the IFXOS Layer implementation for eCos 
+   This file contains the IFXOS Layer implementation for eCos
    Mutex.
 */
 
@@ -114,7 +114,7 @@ IFX_int32_t IFXOS_MutexRelease(
          return IFX_SUCCESS;
       }
    }
-   
+
    return IFX_ERROR;
 }
 

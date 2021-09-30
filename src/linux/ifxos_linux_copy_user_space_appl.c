@@ -13,7 +13,7 @@
 
 
 /** \file
-   This file contains the IFXOS Layer implementation for LINUX User Space 
+   This file contains the IFXOS Layer implementation for LINUX User Space
    Data exchange between driver and application.
 
 \Remark
@@ -29,7 +29,7 @@
 #endif
 
 /* ============================================================================
-   IFX LINUX User Space adaptation - Global Includes 
+   IFX LINUX User Space adaptation - Global Includes
    ========================================================================= */
 #include <string.h>
 
@@ -48,7 +48,7 @@
    Linux Appl - Copy a block FORM USER space (application) to driver space (kernel).
 
 \par Implementation
-   Copy data from user to driver space. This function is required for 
+   Copy data from user to driver space. This function is required for
    compatibility agains the LINUX concept and als to increase the stability with
    the split between user and driver code.
    A simple memcpy is used.
@@ -64,13 +64,13 @@
    IFX_NULL if an error occured, else pTo
 
 \remark
-   This function is required for the LINUX adaptation where a clear split 
-   between user code (application level) and driver code (kernel level, 
+   This function is required for the LINUX adaptation where a clear split
+   between user code (application level) and driver code (kernel level,
    privileged code) exists.
 */
 IFX_void_t *IFXOS_CpyFromUser(
-                     IFX_void_t        *pTo, 
-                     const IFX_void_t  *pFrom, 
+                     IFX_void_t        *pTo,
+                     const IFX_void_t  *pFrom,
                      IFX_uint32_t      size_byte)
 {
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);
@@ -84,7 +84,7 @@ IFX_void_t *IFXOS_CpyFromUser(
    Linux Appl - Copy a block form driver space (kernel) TO USER space (application).
 
 \par Implementation
-   Copy data from driver to user space. This function is required for 
+   Copy data from driver to user space. This function is required for
    compatibility agains the LINUX concept and als to increase the stability with
    the split between user and driver code.
    A simple memcpy is used.
@@ -100,13 +100,13 @@ IFX_void_t *IFXOS_CpyFromUser(
    IFX_NULL if an error occured, else pTo
 
 \remark
-   This function is required for the LINUX adaptation where a clear split 
-   between user code (application level) and driver code (kernel level, 
+   This function is required for the LINUX adaptation where a clear split
+   between user code (application level) and driver code (kernel level,
    privileged code) exists.
 */
 IFX_void_t *IFXOS_CpyToUser(
-                     IFX_void_t        *pTo, 
-                     const IFX_void_t  *pFrom, 
+                     IFX_void_t        *pTo,
+                     const IFX_void_t  *pFrom,
                      IFX_uint32_t      size_byte)
 {
    IFXOS_RETURN_IF_POINTER_NULL(pTo, IFX_NULL);

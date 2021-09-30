@@ -19,10 +19,10 @@
 
 /** \defgroup IFXOS_SYNC_GENERIC_OS Synchronisation.
 
-   This Group collect the Generic OS synchronisation and signaling mechanism used within 
+   This Group collect the Generic OS synchronisation and signaling mechanism used within
    IFXOS.
 
-   The IFX OS differs between the synchronisation on processes level 
+   The IFX OS differs between the synchronisation on processes level
    (threads / tasks) and between user and driver space.
 
 \par Task level Syncronisation
@@ -33,14 +33,14 @@
    tasks within the driver space or within the applicaton space.
 
 \par Application-Driver Syncronisation
-   Therefore the poll/select mechanism is prepared. 
+   Therefore the poll/select mechanism is prepared.
 
 \ingroup IFXOS_LAYER_GENERIC_OS
 */
 
 /** \defgroup IFXOS_EVENT_GENERIC_OS Event Synchronisation (Generic OS).
 
-   This Group contains the Generic OS Event definitions and function for 
+   This Group contains the Generic OS Event definitions and function for
    communication of tasks.
 
 \par Implementation
@@ -84,7 +84,7 @@ typedef struct
    IFX_int_t     object;
    /** valid flag */
    IFX_boolean_t bValid;
-} IFXOS_event_t; 
+} IFXOS_event_t;
 
 /** @} */
 
