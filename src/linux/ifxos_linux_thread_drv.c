@@ -154,7 +154,7 @@ IFXOS_STATIC int IFXOS_KernelThreadStartup(void *data)
    retVal = pThrCntrl->pThrFct(&pThrCntrl->thrParams);
    pThrCntrl->thrParams.bRunning = IFX_FALSE;
 
-   complete_and_exit(&pThrCntrl->thrCompletion, (long)retVal);
+   kthread_complete_and_exit(&pThrCntrl->thrCompletion, (long)retVal);
 
    IFXOS_PRN_USR_DBG_NL( IFXOS, IFXOS_PRN_LEVEL_NORMAL,
       ("EXIT - Kernel Thread Startup <%s>" IFXOS_CRLF,
